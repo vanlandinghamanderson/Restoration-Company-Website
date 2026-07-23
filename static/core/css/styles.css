@@ -1,0 +1,72 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    color: #0f172a;
+    background: #f8fafc;
+    padding-top: 92px;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.25rem;
+}
+
+/***** Navigation Bar *****/
+.site-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background: rgba(26, 58, 92, 0.8);
+    backdrop-filter: blur(10px);
+
+}
+
+.header_inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 75px;
+}
+
+.logo {
+    font-family: 'poppins', sans-serif;
+    color: #ffffff;
+    font-size: 1.25rem;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.main-nav {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+}
+
+.main-nav a {
+    color: white;
+    font-weight: 500;
+    font-size: .95rem;
+    text-decoration: none;
+}
+
+.nav-social {
+    padding-left: 15px;
+    border-left: 1px solid rgba(255, 255, 255, .25);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.social-link {
+    height: 34px;
+    width: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    border: 1px solid rgb(255, 255, 255);
+    color: white;
+}

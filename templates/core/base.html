@@ -1,0 +1,47 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="{% static 'core/css/styles.css' %}">
+    <title>{% block title %}{{ restoration_site_setting.company_name }}{% endblock %}</title>
+</head>
+<body>
+    <header class="site-header">
+        <div class="container header_inner">
+            <a href="/" class="logo">{{ restoration_site_setting.company_name}}</a>
+            <nav class="main-nav">
+                <a href="#">Services</a>
+                <a href="#">Media</a>
+                <a href="#">Blogs</a>
+                <a href="#">About</a>
+                <a href="#">Contact</a>
+            </nav>
+            <div class="nav-social">
+                <a href="{{ restoration_site_setting.phone_number }}" class="social-link">
+                    <i class="bi bi-telephone"></i>
+                </a>
+                <a href="{{ restoration_site_setting.email }}" class="social-link">
+                    <i class="bi bi-envelope"></i>
+                </a>
+                <a href="{{ restoration_site_setting.instagram_url }}" class="social-link">
+                    <i class="bi bi-instagram"></i>
+                </a>
+                <a href="{{ restoration_site_setting.facebook_url }}" class="social-link">
+                    <i class="bi bi-facebook"></i>
+                </a>
+                <a href="{{ restoration_site_setting.twiiter_url }}" class="social-link">
+                    <i class="bi bi-twitter-x"></i>
+                </a>
+                <a href="{{ restoration_site_setting.linkedin_url }}" class="social-link">
+                    <i class="bi bi-linkedin"></i>
+                </a>
+            </div>
+        </div>
+    </header>
+    {% block content %}{% endblock %}
+</body>
+</html>

@@ -1,0 +1,113 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    color: #0f172a;
+    background: #f8fafc;
+    padding-top: 92px;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.25rem;
+}
+
+/***** Navigation Bar *****/
+.site-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background: linear-gradient(90deg, #0f172a 0%, #1e3a8a 100%);
+    box-shadow: 0 4px 16px rgba(15, 23, 42, 0.25);
+    border-bottom: 2px solid #60a5fa;
+}
+
+.header_inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 75px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.25rem;
+}
+
+.logo {
+    color: #ffffff;
+    font-size: 1.25rem;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.main-nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.25rem;
+    padding: 0 1.25rem 0.95rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.main-nav a {
+    color: #f8fafc;
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 600;
+    padding: 0.45rem 0.7rem;
+    border-radius: 999px;
+    transition: background 0.2s ease, color 0.2s ease;
+}
+
+.main-nav a:hover {
+    background: rgba(255, 255, 255, 0.16);
+    color: #ffffff;
+}
+
+/***** Hero Section *****/
+.hero-section {
+    padding: 3rem 0 4rem;
+    background: linear-gradient(135deg, #dbeafe 0%, #f8fafc 100%);
+}
+
+.eyebrow {
+    display: inline-block;
+    margin-bottom: 0.75rem;
+    padding: 0.35rem 0.7rem;
+    border-radius: 999px;
+    background: #1d4ed8;
+    color: #ffffff;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+.hero-section h1 {
+    margin: 0 0 1rem;
+    font-size: 2.4rem;
+    line-height: 1.2;
+}
+
+.hero-text {
+    max-width: 650px;
+    margin-bottom: 1.5rem;
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: #334155;
+}
+
+.btn {
+    display: inline-block;
+    padding: 0.8rem 1.2rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.btn-primary {
+    background: #1d4ed8;
+    color: #ffffff;
+}
