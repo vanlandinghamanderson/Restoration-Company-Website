@@ -21,7 +21,6 @@ body {
     z-index: 1000;
     background: rgba(26, 58, 92, 0.8);
     backdrop-filter: blur(10px);
-
 }
 
 .header_inner {
@@ -43,6 +42,8 @@ body {
     display: flex;
     align-items: center;
     gap: 28px;
+    margin-left: auto;
+    margin-right: 15px;
 }
 
 .main-nav a {
@@ -69,4 +70,89 @@ body {
     border-radius: 50%;
     border: 1px solid rgb(255, 255, 255);
     color: white;
+}
+
+/***** Hover Effects *****/
+.logo:hover {
+    transform: scale(1.1);
+    color: white;
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
+}
+
+.main-nav a:hover {
+    transform: scale(1.1);
+    color: white;
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
+}
+
+.social-link:hover {
+    transform: scale(1.1);
+    color: white;
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
+}
+
+.nav-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: white;
+    font-size: 1.5rem;
+    padding: 0.25rem;
+}
+
+.nav-toggle span {
+    width: 25px;
+    height: 3px;
+    background: white;
+    border-radius: 2px;
+}
+
+/***** Mobile *****/
+@media (max-width: 897px) {
+    .header_inner {
+        position: relative;
+    }
+
+    .nav-toggle {
+        display: flex;
+        z-index: 1100;
+    }
+
+    .nav-social {
+        border-left: none;
+        border-top: 1px solid rgba(255, 255, 255, .25);
+        padding-top: 15px;
+        width: 100%;
+        justify-content: center;
+    }
+
+    .main-nav {
+        position: fixed;
+        top: 75px;
+        left: 0;
+        right: -15px;
+        background: rgba(26, 58, 92, 0.98);
+        flex-direction: column;
+        align-items: center;
+        padding: 24px 20px 28px;
+        gap: 16px;
+        transform: translateY(-120%);
+        opacity: 0;
+        pointer-events: none;
+        transition: transform 0.35s ease, opacity 0.35s ease;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    .main-nav.open {
+        transform: translateY(0);
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    .main-nav a {
+        padding: 0.35rem 0;
+    }
 }
