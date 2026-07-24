@@ -1,4 +1,25 @@
 {% extends 'core/base.html' %}
+{% load static %}
 {% block content %}
+<section class="hero">
+    <div class="hero-video-carousel" id="heroCarousel">
+        {% for video in restoration_carousel_background %}
+        <video
+            class="hero-video-slide {% if forloop.first %}active{% endif %}"
+            autoplay muted loop playsinline preload="auto">
+            <source src="{{ video.video_file.url }}" type="video/mp4">
+        </video>
+        {% endfor %}
+        <div class="hero-overlay"></div>
+    </div>
 
+    <div class="hero-content container">
+        <h1>Professional Restoration You Can <span class="highlight">Trust.</span></h1>
+        <p class="hero-subtitle">Keeping Wilson & Surrounding Areas Dry Since 2009.</p>
+        <div class="hero-buttons">
+            <a href="#" class="btn btn-primary">Contact Us</a>
+            <a href="{{ restoration_site_setting.phone_number }}" class="btn btn-outline">Call Us</a>
+        </div>
+    </div>
+</section>
 {% endblock %}
