@@ -196,6 +196,37 @@ body {
     border-radius: 2px;
 }
 
+.hero-trust {
+    margin-top: 20px;
+    display: flex;
+    gap: 1.15rem;
+    font-size: .80rem;
+}
+
+.hero-trust i {
+    margin-right: .3rem;
+}
+
+.hero-caption {
+    position: absolute;
+    padding-top: .75rem;
+    padding-bottom: .75rem;
+    background-color: rgb(20 46 73);
+    bottom: 0;
+    display: flex;
+    gap: 1.15rem;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.hero-caption i {
+    margin-right: .3rem;
+    color: green;
+}
+
+
 /***** Mobile *****/
 @media (max-width: 897px) {
     .header_inner {
