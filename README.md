@@ -65,7 +65,7 @@ This powerful full-stack restoration web application is called "StaDry Restorati
 Once the development server is running, open your browser and go to:
 ``` bash
 http://127.0.0.1:8000
-
+```
 To access the Django admin panel (for managing blog posts, media, services, gallery, the team, etc.)
 
 Create a superuser:
