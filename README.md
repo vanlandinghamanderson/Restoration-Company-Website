@@ -85,7 +85,6 @@ This is currently a solo project built and maintained by me. That said, suggesti
 
 ## License
 This project is not currently licensed for reuse. All rights reserved. You are welcome to view the code, but please do not copy, modify, or redistribute it without permission.
-```
 
 
    
