@@ -31,3 +31,16 @@ class RestorationSiteSetting(models.Model):
 
     def __str__(self):
         return self.company_name
+
+# Needs to be altered eventually
+class RestorationService(models.Model):
+    name = models.CharField(max_length=255)
+    slug = models.SlugField(unique=True)
+    short_description = models.TextField(default=True)
+    order = models.PositiveIntegerField(default=0)
+
+    class Meta:
+        ordering = ['order', 'name']
+
+    def __str__(self):
+        return self.name
