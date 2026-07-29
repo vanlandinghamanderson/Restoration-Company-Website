@@ -39,7 +39,7 @@
 </section>
 
 <!----- Services Section ----->
-<section class="services" id="services">
+<section class="services">
     <div class="container">
         <h2 class="section-title">Our Restoration Services</h2>
         <p class="section-subtitle">We handle water damage, mold, and fire -- from emergency response to full rebuild.</p>
@@ -52,5 +52,36 @@
             {% endfor %}
         </div>
     </div>
+</section>
+
+<!----- Reasons Section ----->
+<section class="reasons">
+    <div class="container reason_inner">
+        <div class="reason-text">
+            <h2 class="section-title">Why Choose <span class="reason_highlight">{{ restoration_site_setting.company_name }}</span>?</h2>
+            <p>
+            We've kept Wilson and surrounding areas of Eastern North Carolina dry since 2009. 
+            We're a BBB Accredited Business and winner of the Wilson Daily Times' Reader's Choice Awards in 2022.
+            We show up fast, day or night, communicate directly with your insurance carrier, handle paperwork,
+            and provided full-service restoration -- while telling you exactly what you're dealing with every step of the way.
+            </p>
+            <ul class="reasons_list">
+                <li><i class="bi bi-check-circle-fill"></i>2022 Reader's Choice in Wilson Times</li>
+                <li><i class="bi bi-check-circle-fill"></i>BBB Accredited</li>
+                <li><i class="bi bi-check-circle-fill"></i>17 Years Experience</li>
+                <li><i class="bi bi-check-circle-fill"></i>Insurance Assistance Available</li>
+                <li><i class="bi bi-check-circle-fill"></i>Quick response</li>
+                <li><i class="bi bi-check-circle-fill"></i>Full-Service Restoration</li>
+                <li><i class="bi bi-check-circle-fill"></i>Free Damage Assessment</li>
+            </ul>
+            <div class="reasons_certfications">
+                {% for certification in restoration_certifications %}
+                <div class="certification">
+                    <img src="{{ certification.image.url }}" alt="{{ certification.name }}">
+                    <h3>{{ certification.name }}</h3>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
 </section>
 {% endblock %}

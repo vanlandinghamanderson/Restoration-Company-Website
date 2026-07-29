@@ -44,3 +44,19 @@ class RestorationService(models.Model):
 
     def __str__(self):
         return self.name
+
+# Certification model for this company earned
+class RestorationCertification(models.Model):
+    image = models.ImageField(upload_to='certifications/')
+    alt_text = models.CharField(max_length=200, blank=True)
+    title = models.CharField(max_length=200, blank=True)
+    caption = models.TextField(blank=True)
+    description = models.TextField(blank=True)
+
+    class Meta:
+        ordering = ['title']
+
+    def __str__(self):
+        return self.title
+
+    
