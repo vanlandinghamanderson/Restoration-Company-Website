@@ -369,7 +369,22 @@ section {
     font-weight: 900;
 }
 
+/* ----- STEP PROCESS SECTION ----- */
+.step-process {
+    background-color: #fff;
+}
 
+.step-process-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 2rem;
+}
+
+.step-card {
+    background-color: #0f172a;
+    border-radius: 9999px;
+    color: white;
+}
 
 /***** Mobile *****/
 @media (max-width: 897px) {
