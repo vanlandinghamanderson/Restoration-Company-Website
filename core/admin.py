@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import RestorationCarouselBackground, RestorationSiteSetting, RestorationService, RestorationCertification
+from .models import RestorationCarouselBackground, RestorationSiteSetting, RestorationService, RestorationCertification, RestorationServiceArea, RestorationReview
 
 # Carousel Background Admin
 class RestorationCarouselBackgroundAdmin(admin.ModelAdmin):
@@ -23,8 +23,19 @@ class RestorationCertificationAdmin(admin.ModelAdmin):
     list_display = ['title', 'alt_text', 'caption', 'description']
     list_editable = ['alt_text', 'caption', 'description']
 
+# Restoration Service Areas Admin
+class RestorationServiceAreaAdmin(admin.ModelAdmin):
+    list_display = ['city', 'state', 'order', 'is_active']
+    list_editable = ['order', 'is_active']
+
+# Restoration Review Admin
+class RestorationReviewAdmin(admin.ModelAdmin):
+    list_display = ['rating', 'name', 'service_area', 'service']
+    list_fliter = ['service_area', 'service']
 
 admin.site.register(RestorationCarouselBackground, RestorationCarouselBackgroundAdmin)
 admin.site.register(RestorationSiteSetting, RestorationSiteSettingAdmin)
 admin.site.register(RestorationService, RestorationServiceAdmin)
 admin.site.register(RestorationCertification, RestorationCertificationAdmin)
+admin.site.register(RestorationServiceArea, RestorationServiceAreaAdmin)
+admin.site.register(RestorationReview, RestorationReviewAdmin)

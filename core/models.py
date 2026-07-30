@@ -59,4 +59,36 @@ class RestorationCertification(models.Model):
     def __str__(self):
         return self.title
 
+# Service Area model
+class RestorationServiceArea(models.Model):
+    city = models.CharField(max_length=100)
+    state = models.CharField(max_length=2, default='NC')
+    order = models.PositiveIntegerField(default=0)
+    is_active = models.BooleanField(default=True)
+
+    class Meta:
+        ordering = ['order', 'city']
+        verbose_name = 'Restoration Service Area'
+        verbose_name_plural = 'Restoration Service Areas'
+
+    def __str__(self):
+        return f'{self.city}, {self.state}'
+
+# Review Model
+class RestorationReview(models.Model):
+    rating = models.PositiveSmallIntegerField(default=5)
+    quote = models.TextField()
+    name = models.CharField(max_length=120)
+    service_area = models.ForeignKey(RestorationServiceArea, on_delete=models.SET_NULL, null=True, blank=True)
+    service = models.ForeignKey(RestorationService, on_delete=models.SET_NULL, null=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ['-id']
+        verbose_name = 'Restoration Review'
+        verbose_name_plural = 'Restoration Reviews'
+
+    def __str__(self):
+        return f"{self.name}, ({self.rating}*)"
+
     

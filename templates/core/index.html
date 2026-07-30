@@ -58,7 +58,7 @@
 <section class="reasons">
     <div class="container reason_inner">
         <div class="reason-text">
-            <h2 class="section-title">Why Choose <span class="reason_highlight">{{ restoration_site_setting.company_name }}</span>?</h2>
+            <h2 class="section-title">Why Choose <span class="highlight">{{ restoration_site_setting.company_name }}</span>?</h2>
             <p>
             We've kept Wilson and surrounding areas of Eastern North Carolina dry since 2009. 
             We're a BBB Accredited Business and winner of the Wilson Daily Times' Reader's Choice Awards in 2022.
@@ -83,5 +83,27 @@
                 {% endfor %}
             </div>
         </div>
+    </div>
 </section>
+
+<!----- Review Section ----->
+<section class="reviews">
+    <div class="container">
+        <h2 class="section-title">What Did Our <span class="highlight">Customers</span> Say?</h2>
+        <div class="review-grid">
+        {% for review in restoration_reviews %}
+            <div class="review-card">
+                <div class="review-stars">
+                    {% for i in "12345" %}{% if forloop.counter <= review.rating %}★{% else %}☆{% endif %} {% endfor %}
+                </div>
+                <p>{{ review.quote }}</p>
+                <p class="review-name">{{ review.name }}</p>
+                <p class="review-service">{{ review.service }}</p>
+                <p class="review-service_area">{{ review.service_area }}</p>
+            </div>
+        {% endfor %}
+        </div>
+    </div>
+</section>
+
 {% endblock %}
