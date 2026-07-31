@@ -370,20 +370,85 @@ section {
 }
 
 /* ----- STEP PROCESS SECTION ----- */
-.step-process {
-    background-color: #fff;
-}
-
 .step-process-grid {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 2rem;
+    margin-top: 2.5rem;
 }
 
 .step-card {
+    text-align: center;
+}
+
+.circle-step {
     background-color: #0f172a;
-    border-radius: 9999px;
+    width: 4rem;
+    height: 4rem;
     color: white;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border-radius: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    font-weight: 600;
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+}
+
+.step-title {
+    font-weight: 600;
+    margin-bottom: .5rem;
+    font-size: 1.125rem;
+}
+
+.step-subtitle {
+    font-size: .875rem;
+}
+
+/* ----- CALL TO ACTION BANNER ----- */
+.cta-banner {
+    background: rgba(26, 58, 92, 1);
+}
+
+.cta-banner h2 {
+    color: white;
+    text-align: left;
+}
+
+.cta-banner p {
+    color: white;
+    text-align: left;
+}
+
+.cta-buttons {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.cta-phone, .cta-contact {
+    padding: 1rem 2rem;
+    border-radius: .75rem;
+}
+
+.cta-phone span, .cta-contact span {
+    color: white;
+}
+
+.cta-phone a, .cta-contact a {
+    text-decoration: none;
+    color: white;
+}
+
+.cta-phone {
+    background-color: #008FFF;
+}
+
+.cta-contact {
+    background-color: rgb(20 46 73);
 }
 
 /***** Mobile *****/
