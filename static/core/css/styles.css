@@ -451,6 +451,67 @@ section {
     background-color: rgb(20 46 73);
 }
 
+/* ---------- FOOTER SECTION ---------- */
+.site-footer {
+    background-color: rgb(9 22 36);
+    color: white;
+    padding: 4rem 0;
+}
+
+.footer_grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr 2fr;
+    gap: 3rem;
+    padding-bottom: 4rem;
+}
+
+.footer-logo {
+    display: flex;
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-decoration: none;
+    color: white;
+    margin-bottom: 1rem;
+}
+
+.footer-brand p {
+    font-size: .875rem;
+}
+
+.footer-link h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.footer-link a {
+    color: white;
+    text-decoration: none;
+    font-size: .875rem;
+}
+
+.footer-link ul {
+    list-style-type: none;
+    padding: 0;
+    font-size: .875rem;
+}
+
+.footer-contact h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.footer-contact p {
+    font-size: .875rem;
+    margin-bottom: 0.5rem;
+    text-decoration: none;
+}
+
+.footer-contact p, a {
+    color: white;
+    text-decoration: none;
+}
 /***** Mobile *****/
 @media (max-width: 897px) {
     .header_inner {
