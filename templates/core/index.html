@@ -15,12 +15,18 @@
         <div class="hero-overlay"></div>
     </div>
 
-    <div class="hero-content container">
+    <div class="hero-content">
         <h1>Professional Restoration You Can <span class="highlight">Trust.</span></h1>
         <p class="hero-subtitle">Keeping Wilson & Surrounding Areas Dry Since 2009.</p>
         <div class="hero-buttons">
-            <a href="#" class="btn btn-primary">Contact Us</a>
-            <a href="{{ restoration_site_setting.phone_number }}" class="btn btn-outline">Call Us</a>
+            <div class="btn contact_button">
+                <span><i class="bi bi-envelope-fill"></i></span>
+                <a href="#">Contact Us</a>
+            </div>
+            <div class="btn call_button">
+                <span><i class="bi bi-telephone-fill"></i></span>
+                <a href="tel:{{ restoration_site_setting.phone_number }}">Call Us</a>
+            </div>
         </div>
         <div class="hero-trust">
             <span><i class="bi bi-award"></i>2022 Reader's Choice</span>
@@ -58,7 +64,7 @@
 <section class="reasons">
     <div class="container reason_inner">
         <div class="reason-text">
-            <h2 class="section-title">Why Choose <span class="highlight">{{ restoration_site_setting.company_name }}</span>?</h2>
+            <h2 class="section-title reason-title">Why Choose <span class="highlight">{{ restoration_site_setting.company_name }}</span>?</h2>
             <p>
             We've kept Wilson and surrounding areas of Eastern North Carolina dry since 2009. 
             We're a BBB Accredited Business and winner of the Wilson Daily Times' Reader's Choice Awards in 2022.
@@ -74,14 +80,14 @@
                 <li><i class="bi bi-check-circle-fill"></i>Full-Service Restoration</li>
                 <li><i class="bi bi-check-circle-fill"></i>Free Damage Assessment</li>
             </ul>
-            <div class="reasons_certfications">
+        </div>
+        <div class="reasons_certfications">
                 {% for certification in restoration_certifications %}
                 <div class="certification">
                     <img src="{{ certification.image.url }}" alt="{{ certification.name }}">
-                    <h3>{{ certification.name }}</h3>
+                    <h4>{{ certification.title }}</h4>
                 </div>
                 {% endfor %}
-            </div>
         </div>
     </div>
 </section>
@@ -132,22 +138,22 @@
 
 <!----- Call To Action Banner Section ----->
 <section class="cta-banner">
-    <div class="container">
-        <h2 class="section-title">Connect with StaDry!</h2>
-        <p class="section-subtitle">We know property damage is stressful. Let us take care of the restoration so you can focus on what matters. Free assessment, no obligation.</p>
+    <div class="container cta-banner_inner">
+        <div>
+            <h2 class="section-title">Connect with StaDry!</h2>
+            <p class="section-subtitle">We know property damage is stressful. Let us take care of the restoration so you can focus on what matters. Free assessment, no obligation.</p>
+        </div>
+        
         <div class="cta-buttons">
-            <div class="cta-phone">
+            <div class="btn cta-phone">
                 <span><i class="bi bi-telephone-fill"></i></span>
                 <a href="tel:{{ restoration_site_setting.phone_number }}">Call Us</a>
             </div>
-            <div class="cta-contact">
+            <div class="btn cta-contact">
                 <span><i class="bi bi-envelope-fill"></i></span>
                 <a href="#">Contact Us</a>
             </div>
         </div>
     </div>
 </section>
-
-
-
 {% endblock %}
