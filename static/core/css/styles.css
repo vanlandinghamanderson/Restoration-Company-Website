@@ -555,6 +555,48 @@ section {
     text-shadow: 0 0 1px #ffffff;
 }
 
+/* ---------- ABOUT US SECTION ---------- */
+.about-us-hero {
+    background-color: #1b538e;
+    color: white;
+    padding: 80px 0 30px;
+    text-align: center;
+}
+
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    animation: fadeInUp 2s ease forwards; 
+}
+
+.team-card {
+    background-color: #fff;
+    border-radius: 12px;
+    padding: 32px 24px;
+    text-align: center;
+}
+
+
+.team_member-pic {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center; 
+}
+
+.team-card h3 {
+    margin-top: 4px;
+}
+
+.team-card p {
+    text-transform: capitalize;
+    color: #008fff;
+    font-weight: 800;
+    margin-top: 4px;
+}
+
 /* ---------- FOOTER SECTION ---------- */
 .site-footer {
     background-color: rgb(9 22 36);

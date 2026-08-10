@@ -91,4 +91,16 @@ class RestorationReview(models.Model):
     def __str__(self):
         return f"{self.name}, ({self.rating}*)"
 
-    
+# Team Model
+class RestorationTeam(models.Model):
+    image = models.ImageField(upload_to='restoration_team')
+    team_member = models.CharField(max_length=255, blank=True)
+    occupation = models.CharField(max_length=200)
+    order = models.PositiveIntegerField(default=0)
+
+    class Meta:
+        ordering = ['order', 'team_member', 'occupation']
+        verbose_name = 'Restoration Team'
+
+    def __str__(self):
+        return f"{self.team_member}, ({self.occupation})"
