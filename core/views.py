@@ -13,6 +13,16 @@ def index(request):
     }
     return render(request, 'core/index.html', context)
 
+# Gallery Page
+def gallery(request):
+    context = {
+        'restoration_site_setting' : RestorationSiteSetting.objects.first(),
+        'restoration_services' : RestorationService.objects.all(),
+        'restoration_service_areas' : RestorationServiceArea.objects.all(),
+    }
+    return render(request, 'core/gallery.html', context)
+
+
 # About Us Page
 def about(request):
     context = {
@@ -22,3 +32,12 @@ def about(request):
         'restoration_team_members': RestorationTeam.objects.all(),
     }
     return render(request, 'core/about.html', context)
+
+# Contact Page
+def contact(request):
+    context = {
+        'restoration_site_setting': RestorationSiteSetting.objects.first(),
+        'restoration_services' : RestorationService.objects.all(),
+        'restoration_service_areas' : RestorationServiceArea.objects.all(),
+    }
+    return render(request, 'core/contact.html', context)

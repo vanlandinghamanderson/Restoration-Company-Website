@@ -555,17 +555,20 @@ section {
     text-shadow: 0 0 1px #ffffff;
 }
 
-/* ---------- ABOUT US SECTION ---------- */
-.about-us-hero {
+/**/
+.page-hero {
     background-color: #1b538e;
     color: white;
-    padding: 80px 0 30px;
+    padding: 150px 0 60px;
     text-align: center;
 }
 
-.about-us-hero h1 {
+.page-hero h1 {
     font-weight: 700;
 }
+
+/* ---------- ABOUT US SECTION ---------- */
+
 
 .team h2 {
     margin-bottom: 2rem;
