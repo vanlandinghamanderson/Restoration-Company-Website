@@ -563,6 +563,14 @@ section {
     text-align: center;
 }
 
+.about-us-hero h1 {
+    font-weight: 700;
+}
+
+.team h2 {
+    margin-bottom: 2rem;
+}
+
 .team-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -577,7 +585,6 @@ section {
     text-align: center;
 }
 
-
 .team_member-pic {
     width: 200px;
     height: 200px;
@@ -587,7 +594,7 @@ section {
 }
 
 .team-card h3 {
-    margin-top: 4px;
+    margin-top: 1rem;
 }
 
 .team-card p {
@@ -595,6 +602,13 @@ section {
     color: #008fff;
     font-weight: 800;
     margin-top: 4px;
+}
+
+/* ---------- HOVER EFFECT FOR TEAM CARD ---------- */
+.team-card:hover {
+    transform: scale(1.1);
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.8);
+    transition: transform .5s ease;
 }
 
 /* ---------- FOOTER SECTION ---------- */

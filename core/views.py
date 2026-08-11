@@ -18,7 +18,7 @@ def about(request):
     context = {
         'restoration_site_setting': RestorationSiteSetting.objects.first(),
         'restoration_services': RestorationService.objects.all(),
-        'restoration_services_areas': RestorationServiceArea.objects.all(),
+        'restoration_service_areas': RestorationServiceArea.objects.all(),
         'restoration_team_members': RestorationTeam.objects.all(),
     }
     return render(request, 'core/about.html', context)
