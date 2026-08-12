@@ -41,3 +41,12 @@ def contact(request):
         'restoration_service_areas' : RestorationServiceArea.objects.all(),
     }
     return render(request, 'core/contact.html', context)
+
+# Our Services Page
+def service_list(request):
+    context = {
+        'restoration_site_setting' : RestorationSiteSetting.objects.first(),
+        'restoration_services' : RestorationService.objects.all(),
+        'restoration_service_areas' : RestorationServiceArea.objects.all(),
+    }
+    return render(request, 'core/services.html', context)

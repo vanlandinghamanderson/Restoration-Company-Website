@@ -14,9 +14,11 @@
 <body>
     <header class="site-header">
         <div class="container header_inner">
+            {% if restoration_site_setting %}
             <a href="/" class="logo">{{ restoration_site_setting.company_name}}</a>
+            {% endif %}
             <nav class="main-nav">
-                <a href="{% url 'index' %}#services">Services</a>
+                <a href="{% url 'service_list' %}">Services</a>
                 <a href="{% url 'gallery' %}">Gallery</a>
                 <a href="#">Blogs</a>
                 <a href="{% url 'about' %}">About</a>

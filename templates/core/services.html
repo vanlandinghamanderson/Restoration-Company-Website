@@ -1,0 +1,22 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block content %}
+<section class="page-hero">
+    <div class="container page-hero_inner">
+        <h1>Our Services</h1>
+        <p class="page_text">Professional, certified restoration for every type of property damage.</p>
+    </div>
+</section>
+<section>
+    <div class="container">
+        <div class="services-grid">
+            {% for service in restoration_services %}
+            <div class="service-card">
+                <h3>{{ service.name }}</h3>
+                <p>{{ service.short_description }}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}
