@@ -11,9 +11,11 @@
     <div class="container">
         <div class="services-grid">
             {% for service in restoration_services %}
-            <div class="service-card">
-                <h3>{{ service.name }}</h3>
-                <p>{{ service.short_description }}</p>
+            <div class="service-card"> 
+                <a href="{% url 'service_detail' slug=service.slug %}">
+                    <h3>{{ service.name }}</h3>
+                    <p>{{ service.short_description }}</p>
+                </a>
             </div>
             {% endfor %}
         </div>

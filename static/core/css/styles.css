@@ -292,7 +292,8 @@ section {
 }
 
 .services-grid {
-    margin-top: 48px;
+    margin-top: 4rem;
+    margin-bottom: 4rem;
     display: grid;
     gap: 24px;
     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -303,6 +304,11 @@ section {
     border-radius: 5px;
     padding: 24px 36px;
     text-align: center;
+    cursor: pointer;
+}
+
+.service-card a {
+    color: black;
 }
 
 .service-card h3 {

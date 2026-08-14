@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .models import RestorationCarouselBackground, RestorationServiceArea, RestorationSiteSetting, RestorationService, RestorationCertification, RestorationReview, RestorationTeam
+from django.http import HttpResponse
 
 # Home Page
 def index(request):
@@ -50,3 +51,15 @@ def service_list(request):
         'restoration_service_areas' : RestorationServiceArea.objects.all(),
     }
     return render(request, 'core/services.html', context)
+
+# Our Service Detail
+def service_detail(request, slug):
+    context = {
+        'restoration_site_setting' : RestorationSiteSetting.objects.first(),
+        'restoration_services' : RestorationService.objects.all(),
+        'restoration_service_areas' : RestorationServiceArea.objects.all(),
+
+        # Gets the slug from the Service model
+        'restoration_service': RestorationService.objects.get(slug=slug)
+    }
+    return render(request, 'core/service_detail.html', context)

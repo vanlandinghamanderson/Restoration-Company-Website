@@ -52,13 +52,12 @@
         <div class="services-grid">
             {% for service in restoration_services %}
             <div class="service-card">
-                <h3>{{ service.name }}</h3>
-                <p>{{ service.short_description }}</p>
+                <a href="{% url 'service_detail' slug=service.slug %}">
+                    <h3>{{ service.name }}</h3>
+                    <p>{{ service.short_description }}</p>
+                </a>
             </div>
             {% endfor %}
-        </div>
-        <div class="section-cta">
-            <a href="{% url 'service_list' %}">View All Services</a>
         </div>
     </div>
 </section>
