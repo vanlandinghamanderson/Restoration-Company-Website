@@ -1,6 +1,5 @@
 from django.shortcuts import render
-from .models import RestorationCarouselBackground, RestorationServiceArea, RestorationSiteSetting, RestorationService, RestorationCertification, RestorationReview, RestorationTeam
-from django.http import HttpResponse
+from .models import RestorationCarouselBackground, RestorationServiceArea, RestorationSiteSetting, RestorationService, RestorationCertification, RestorationReview, RestorationTeam, RestorationProject
 
 # Home Page
 def index(request):
@@ -20,6 +19,8 @@ def gallery(request):
         'restoration_site_setting' : RestorationSiteSetting.objects.first(),
         'restoration_services' : RestorationService.objects.all(),
         'restoration_service_areas' : RestorationServiceArea.objects.all(),
+
+        'restoration_projects' : RestorationProject.objects.all(),
     }
     return render(request, 'core/gallery.html', context)
 

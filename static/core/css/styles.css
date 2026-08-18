@@ -12,7 +12,7 @@ body {
     background: #f8fafc;
 }
 
-h1, h2, h3, h4 {
+span, h1, h2, h3, h4 {
     font-family: var(--font-heading);
 }
 
@@ -702,6 +702,65 @@ section {
     font-size: .85rem;
     color: rgba(255, 255, 255, .6);
 }
+
+/* ---------- GALLERY ---------- */
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1.5rem;
+}
+
+.gallery-item {
+    position: relative;
+    border-radius: 2px;
+    overflow: hidden;
+    background-color: #f4f7fb;
+}
+
+.gallery-item--before-after {
+    aspect-ratio: unset; /*?*/
+}
+
+.before-after {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    height: 100%
+}
+
+.before-after-panel {
+    position: relative;
+    overflow: hidden;
+}
+
+.before-after-panel img {
+    width: 200px;
+    height: auto;
+    object-fit: cover;
+}
+
+.before-after-title {
+    position: absolute;
+    left: 50%;
+    right: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+
+
+
 
 /***** Mobile *****/
 @media (max-width: 897px) {

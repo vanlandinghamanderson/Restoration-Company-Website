@@ -7,10 +7,55 @@
         <p class="page_text">Look at our work we did from the past!</p>
     </div>
 </section>
+
 <section>
     <div class="container">
         <h2 class="section-title">Our Restoration Projects</h2>
+
+        <!---------- Displays the before/after pictures ---------->
+        <div class="gallery-grid" id="gallery-container">
+            {% for project in restoration_projects %}
+            <div class="gallery-item gallery-item--before-after" aria-label="{{ project.title }}">
+                <div class="before-after">
+                    {% if project.before_image %}
+                    <div class="before-after-panel">
+                        <img src="{{ project.before_image.url }}" alt="{{ project.title }} -- Before Restoration">
+                        <span class="before-after-title">Before</span>
+                    </div>
+                    {% endif %}
+                    {% if project.after_image %}
+                    <div class="before-after-panel">
+                        <img src="{{ project.after_image.url }}" alt="{{ project.title }} -- After Restoration">
+                        <span class="before-after-title">After</span>
+                    </div>
+                    {% endif %}
+                    {% if not project.before_image and not project.after_image %}
+                    <div class="gallery-placeholder" aria-hidden="true"><i class="bi bi-image"></i></div>
+                    {% endif %}
+                </div>
+                <div class="gallery-caption sr-only">
+                    <strong>{{ project.title }}</strong>
+                        {% if project.alt_text %}
+                        <p>{{ project.alt_text }}</p>
+                        {% endif %}
+                        {% if project.caption %}
+                        <p>{{ project.caption }}</p>
+                        {% endif %}
+                        {% if project.description %}
+                        <p>{{ project.description }}</p>
+                        {% endif %}
+                        {% if project.service %}
+                        <span>{{ project.service.name }}</span>
+                        {% endif %}
+                </div>
+            </div>
+            {% empty %}
+            <p class="empty-state">Gallery photos coming soon...<a href="{% url 'core:contact' %}"></a></p>
+            {% endfor %}
+        </div>
     </div>
 </section>
+
+
 
 {% endblock %}
