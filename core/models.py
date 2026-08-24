@@ -38,6 +38,7 @@ class RestorationService(models.Model):
     slug = models.SlugField(unique=True)
     short_description = models.TextField(default=True)
     order = models.PositiveIntegerField(default=0)
+    is_active = models.BooleanField(default=True)
 
     class Meta:
         ordering = ['order', 'name']
@@ -107,20 +108,27 @@ class RestorationTeam(models.Model):
 
 # Project Model
 class RestorationProject(models.Model):
-    before_image = models.ImageField(upload_to='restoration_projects/before/')
-    after_image = models.ImageField(upload_to='restoration_projects/after/')
+    service = models.ForeignKey(RestorationService, on_delete=models.SET_NULL, null=True, blank=True)
     title = models.CharField(max_length=200, blank=True)
-    alt_text = models.CharField(max_length=200, blank=True)
+    before_image = models.ImageField(upload_to='restoration_projects/before/')
+    before_alt_text = models.CharField(max_length=250, blank=True)
+    after_image = models.ImageField(upload_to='restoration_projects/after/')
+    after_alt_txt = models.CharField(max_length=250, blank=True)
     caption = models.TextField(blank=True)
     description = models.TextField(blank=True)
-    service = models.ForeignKey(RestorationService, on_delete=models.SET_NULL, null=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
-        ordering = ['before_image', 'after_image', 'title', 'alt_text', 'caption', 'description']
         verbose_name = 'Restoration Projects'
         verbose_name_plural = "Restoration Projects"
 
     def __str__(self):
-        return f"{self.title}, ({self.description})"
+        return self.title or f"{self.service.name} gallery item"
+
+    def get_before_alt(self):
+        return self.before_alt_text or f"{self.service.name} before restoration damage"
+
+    def __str__ (self):
+        return self.after_alt_txt or f"{self.service.name} after restoration damage"
 
     

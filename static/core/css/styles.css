@@ -758,7 +758,12 @@ section {
     border: 0;
 }
 
-
+.filter-bar {
+    display: flex;
+    gap: .5rem;
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+}
 
 
 
