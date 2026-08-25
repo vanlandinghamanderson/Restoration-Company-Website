@@ -35,7 +35,6 @@ class RestorationSiteSetting(models.Model):
 # Needs to be altered eventually
 class RestorationService(models.Model):
     name = models.CharField(max_length=255)
-    slug = models.SlugField(unique=True)
     short_description = models.TextField(default=True)
     order = models.PositiveIntegerField(default=0)
     is_active = models.BooleanField(default=True)

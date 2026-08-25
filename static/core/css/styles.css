@@ -296,15 +296,15 @@ section {
     margin-bottom: 4rem;
     display: grid;
     gap: 24px;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
 }
 
 .service-card {
     background: #fff;
     border-radius: 5px;
-    padding: 24px 36px;
+    padding: 24px;
     text-align: center;
-    cursor: pointer;
+    width: 40vh;
 }
 
 .service-card a {
@@ -322,11 +322,44 @@ section {
     font-style: 'Inter', sans-serif;
 }
 
+/*---------- VIEW SERVICES BUTTON - HOMEPAGE ---------- */
+.view-more-services {
+    display: block;
+    width: max-content;
+    margin: 0 auto;
+    background-color: #008FFF;
+    color: white;
+    padding: 1rem;
+    border-radius: .75rem;
+    align-items: center;
+    justify-items: center;
+}
+
+.view-more-services:hover {
+    transform: scale(1.1);
+    transition: transform .5s ease;
+    background-color: white;
+    color: #008FFF;
+    box-shadow: 0 0 25px rgba(255, 255, 255, 0.8), 0 0 50px rgb(255, 255, 255);
+    text-shadow: 0 0 15px #008FFF;
+}
+
 /*---------- HOVER EFFECT - SERVICE SECTION ----------*/
 .service-card:hover {
     transform: scale(1.1);
     transition: transform .5s ease;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.8);
+}
+
+/*---------- REQUEST BUTTON - SERVICE PAGE ----------*/
+.request-button {
+    background-color: #008FFF;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    justify-items: center;
+    padding: 1rem;
+    margin-top: 10px;
 }
 
 /* ----- Reason Section ----- */

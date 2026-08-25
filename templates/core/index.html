@@ -50,16 +50,18 @@
         <h2 class="section-title">Our Restoration Services</h2>
         <p class="section-subtitle">We handle water damage, mold, and fire -- from emergency response to full rebuild.</p>
         <div class="services-grid">
-            {% for service in restoration_services %}
+
+            <!----- slice":3" Gets the first 3 items from the table ----->
+            {% for service in restoration_services|slice:":3" %}
             <div class="service-card">
-                <a href="{% url 'service_detail' slug=service.slug %}">
-                    <h3>{{ service.name }}</h3>
-                    <p>{{ service.short_description }}</p>
-                </a>
+                <h3>{{ service.name }}</h3>
+                <p>{{ service.short_description }}</p>
             </div>
             {% endfor %}
         </div>
     </div>
+    <a href="{% url 'service_list' %}" class="view-more-services">View All Services</a>
+
 </section>
 
 <!----- Reasons Section ----->

@@ -67,9 +67,7 @@
                 {% if restoration_services %}
                 <ul>
                     {% for service in restoration_services %}
-                    <a href="{% url 'service_detail' slug=service.slug %}">
-                        <li>{{ service.name }}</li>
-                    </a>
+                    <li>{{ service.name }}</li>
                     {% endfor %}
                 </ul>
                 {% endif %}

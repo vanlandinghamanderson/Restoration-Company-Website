@@ -9,16 +9,17 @@
 </section>
 <section>
     <div class="container">
+        <h2 class="section-title">We Provide...</h2>
         <div class="services-grid">
             {% for service in restoration_services %}
-            <div class="service-card"> 
-                <a href="{% url 'service_detail' slug=service.slug %}">
-                    <h3>{{ service.name }}</h3>
-                    <p>{{ service.short_description }}</p>
-                </a>
+            <div class="service-card">
+                <h2>{{ service.name }}</h2>
+                <p>{{ service.short_description }}</p>
+                <a href="{% url 'contact' %}" class="request-button">Request This Service</a>
             </div>
+            {% empty %}
+            <p>Services will be available soon...</p>
             {% endfor %}
         </div>
-    </div>
 </section>
 {% endblock %}

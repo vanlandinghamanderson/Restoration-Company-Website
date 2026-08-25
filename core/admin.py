@@ -16,7 +16,6 @@ class RestorationSiteSettingAdmin(admin.ModelAdmin):
 # Restoration Service Admin
 class RestorationServiceAdmin(admin.ModelAdmin):
     list_display = ['name', 'order']
-    prepopulated_fields = {'slug': ("name",)}
 
 # Restoration Certification Admin
 class RestorationCertificationAdmin(admin.ModelAdmin):
