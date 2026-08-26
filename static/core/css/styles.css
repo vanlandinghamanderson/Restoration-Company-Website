@@ -305,10 +305,10 @@ section {
     padding: 24px;
     text-align: center;
     width: 40vh;
-}
-
-.service-card a {
-    color: black;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
 }
 
 .service-card h3 {
@@ -320,6 +320,7 @@ section {
 
 .service-card p {
     font-style: 'Inter', sans-serif;
+    margin-top: auto;
 }
 
 /*---------- VIEW SERVICES BUTTON - HOMEPAGE ---------- */
@@ -356,10 +357,20 @@ section {
     background-color: #008FFF;
     cursor: pointer;
     display: flex;
-    justify-content: center;
-    justify-items: center;
     padding: 1rem;
-    margin-top: 10px;
+    margin-top: auto;
+    justify-content: center;
+    border-radius: .5rem;
+}
+
+/*----- HOVER EFFECT REQUEST BUTTON - SERVICE PAGE ----- */
+.request-button:hover {
+    transform: scale(1.08);
+    transition: transform .5s ease;
+    background-color: #008FFF;
+    box-shadow: 0 0 10px #008FFF, 0 0 50px #008FFF;
+    font-weight: bolder;
+    text-shadow: 0 0 1px #ffffff;
 }
 
 /* ----- Reason Section ----- */
