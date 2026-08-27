@@ -37,6 +37,7 @@ class RestorationService(models.Model):
     name = models.CharField(max_length=255)
     short_description = models.TextField(default=True)
     order = models.PositiveIntegerField(default=0)
+    slug = models.SlugField(unique=False, blank=True, null=True) #Safe for now
     is_active = models.BooleanField(default=True)
 
     class Meta:

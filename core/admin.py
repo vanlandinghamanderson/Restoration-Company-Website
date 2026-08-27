@@ -16,6 +16,7 @@ class RestorationSiteSettingAdmin(admin.ModelAdmin):
 # Restoration Service Admin
 class RestorationServiceAdmin(admin.ModelAdmin):
     list_display = ['name', 'order']
+    prepopulated_fields = {'slug': ('name',)}
 
 # Restoration Certification Admin
 class RestorationCertificationAdmin(admin.ModelAdmin):
@@ -39,8 +40,8 @@ class RestorationTeamAdmin(admin.ModelAdmin):
 
 # Restoration Project Admin
 class RestorationProjectAdmin(admin.ModelAdmin):
-    list_display = ['before_image', 'after_image', 'title', 'description']
-    list_display_links = ['before_image', 'after_image']
+    list_display = ['title', 'service']
+    list_filter = ['service']
 
 admin.site.register(RestorationCarouselBackground, RestorationCarouselBackgroundAdmin)
 admin.site.register(RestorationSiteSetting, RestorationSiteSettingAdmin)

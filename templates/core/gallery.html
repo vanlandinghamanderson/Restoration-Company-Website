@@ -13,8 +13,15 @@
         <h2 class="section-title">Our Restoration Projects</h2>
 
         <!---------- Filter Bar ---------->
-        <nav class="filter-bar">
-            
+        <nav class="filter-bar" aria-label="Filter gallery by service">
+            <a href="{% url 'gallery' %}" class="filter-button{% if not active_service %} active {% endif %}">All</a>
+            {% for service in restoration_services %}
+            <a href="{% url 'gallery' %}?service={{ service.slug }}"
+                class="filter-button{% if active_service == service.slug %}active{% endif %}"
+                aria-pressed="{% if active_service == service.slug %}true{% else %}false{% endif %}">
+                {{ service.name }}
+            </a>
+            {% endfor %}
         </nav>
 
         <!---------- Displays the before/after pictures ---------->

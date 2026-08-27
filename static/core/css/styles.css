@@ -809,6 +809,25 @@ section {
     margin-bottom: 2rem;
 }
 
+.filter-button {
+    border: gray 2px solid;
+    padding: .45rem 1rem;
+    border-radius: 1rem;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.filter-button:hover, .filter-button.active {
+    transform: scale(1.05);
+    padding: .45rem 1rem;
+    border-radius: 1rem;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    background-color: rgb(9 22 36);
+}
+
 
 
 /***** Mobile *****/
