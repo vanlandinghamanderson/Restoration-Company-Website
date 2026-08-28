@@ -810,6 +810,7 @@ section {
 }
 
 .filter-button {
+    background-color: rgb(203, 203, 203);
     border: gray 2px solid;
     padding: .45rem 1rem;
     border-radius: 1rem;

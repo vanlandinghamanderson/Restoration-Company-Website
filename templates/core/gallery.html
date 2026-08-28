@@ -14,11 +14,15 @@
 
         <!---------- Filter Bar ---------->
         <nav class="filter-bar" aria-label="Filter gallery by service">
-            <a href="{% url 'gallery' %}" class="filter-button{% if not active_service %} active {% endif %}">All</a>
+            <a href="{% url 'gallery' %}" 
+               class="filter-button{% if not active_service %} active {% endif %}"
+               data-service="all"
+               aria-pressed="{% if not active_service %}true{% else %}false{% endif %}">All</a>
             {% for service in restoration_services %}
             <a href="{% url 'gallery' %}?service={{ service.slug }}"
                 class="filter-button{% if active_service == service.slug %}active{% endif %}"
-                aria-pressed="{% if active_service == service.slug %}true{% else %}false{% endif %}">
+                data-service="{{ service.slug }}"
+                aria-current="{% if active_service == service.slug %}true{% else %}false{% endif %}">
                 {{ service.name }}
             </a>
             {% endfor %}
@@ -67,7 +71,5 @@
         </div>
     </div>
 </section>
-
-
 
 {% endblock %}
