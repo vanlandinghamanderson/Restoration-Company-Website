@@ -33,3 +33,6 @@ def contact(request):
 def service_list(request):
     return render(request, 'core/services.html', {})
 
+# Blog Page
+def blog_list(request):
+    return render(request, 'core/blogs.html', {})
