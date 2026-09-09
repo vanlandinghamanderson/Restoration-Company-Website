@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from .models import RestorationCarouselBackground, RestorationService, RestorationCertification, RestorationReview, RestorationTeam, RestorationProject
+from .models import RestorationCarouselBackground, RestorationPost, RestorationService, RestorationCertification, RestorationReview, RestorationTeam, RestorationProject
 
 # Home Page
 def index(request):
@@ -31,8 +31,22 @@ def contact(request):
 
 # Our Services Page
 def service_list(request):
-    return render(request, 'core/services.html', {})
+    context = {
+        'restoration_services': RestorationService.objects.all(),
+    }
+    return render(request, 'core/services.html', context)
 
 # Blog Page
 def blog_list(request):
-    return render(request, 'core/blogs.html', {})
+    service_filter = request.GET.get('service')
+    restoration_posts = RestorationPost.objects.all()
+    restoration_services = RestorationService.objects.filter(is_active=True)
+    active_service = None
+    if service_filter:
+        restoration_posts = restoration_posts.filter(related_service__slug=service_filter)
+        active_service = service_filter
+    return render(request, 'core/blogs.html', {
+        'restoration_posts': restoration_posts,
+        'restoration_services': restoration_services,
+        'active_service': active_service,
+    })

@@ -807,6 +807,8 @@ section {
     gap: .5rem;
     flex-wrap: wrap;
     margin-bottom: 2rem;
+    margin-top: 2rem;
+    justify-content: center;
 }
 
 .filter-button {

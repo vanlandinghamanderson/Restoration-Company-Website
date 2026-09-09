@@ -131,4 +131,29 @@ class RestorationProject(models.Model):
     def __str__ (self):
         return self.after_alt_txt or f"{self.service.name} after restoration damage"
 
-    
+
+class RestorationPost(models.Model):
+    title = models.CharField(max_length=200)
+    short_description = models.TextField(blank=True)
+    slug = models.SlugField(max_length=200, unique=True, blank=True)
+    featured_image = models.ImageField(upload_to='blog/', blank=True, null=True)
+    body = models.TextField(blank=True)
+    source_author = models.CharField(max_length=100, blank=True)
+    source_url = models.URLField(blank=True)
+    related_service = models.ForeignKey(RestorationService, on_delete=models.SET_NULL, null=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    published_at = models.DateTimeField(blank=True, null=True)
+
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        ordering = ['-created_at']
+        verbose_name_plural = 'Restoration Posts'
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = self.title.lower().replace(' ', '-')
+        super().save(*args, **kwargs)
