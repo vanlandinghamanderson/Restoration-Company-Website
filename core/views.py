@@ -45,7 +45,7 @@ def blog_list(request):
     if service_filter:
         restoration_posts = restoration_posts.filter(related_service__slug=service_filter)
         active_service = service_filter
-    return render(request, 'core/blogs.html', {
+    return render(request, 'core/blog_list.html', {
         'restoration_posts': restoration_posts,
         'restoration_services': restoration_services,
         'active_service': active_service,

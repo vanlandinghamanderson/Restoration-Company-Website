@@ -24,6 +24,17 @@
         </nav>
 
         <!---------- Displays the blogs ---------->
+        <div class="blog-list">
+            {% for post in restoration_posts %}
+            <article class="blog-card">
+                <div class="blog-card__inner">
+
+                </div>
+            </article>
+            {% empty %}
+            <p class="empty-state">No blogs available. Come back later!</p>
+            {% endfor %}
+        </div>
     </div>
 </section>
 {% endblock %}
