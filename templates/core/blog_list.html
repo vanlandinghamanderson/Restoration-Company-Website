@@ -13,7 +13,7 @@
 
         <!---------- Filter Bar for the Blogs ---------->
         <nav class="filter-bar" aria-label="Filter blogs by service">
-            <a href="{% url 'blog_list' %}" class="filter-button{% if not active_service %}active{% endif %}">All</a>
+            <a href="{% url 'blog_list' %}" class="filter-button{% if not active_service %} active {% endif %}">All</a>
             {% for service in restoration_services %}
             <a href="{% url 'blog_list' %}?service={{ service.slug }}"
                 class="filter-button{% if active_service == service.slug %} active {% endif %}"
@@ -24,11 +24,26 @@
         </nav>
 
         <!---------- Displays the blogs ---------->
-        <div class="blog-list">
+        <div class="blog-grid">
             {% for post in restoration_posts %}
             <article class="blog-card">
                 <div class="blog-card__inner">
-
+                    {% if post.related_service %}
+                    <span class="blog-card_tag">{{ post.related_service.name }}</span>
+                    {% endif %}
+                    <h2 itemprop="headline">
+                        <a href="{{ post.get_absolute_url }}">
+                            {{ post.title}}
+                        </a>
+                    </h2>
+                    <p item="short_description">{{ post.excerpt }}</p>
+                    <footer class="blog-card_meta">
+                        <span itemprop="author">{{ post.author }}</span>
+                        {% if post.published_at %}
+                        <time itemprop="datePublished" datetime="{{ post.published_at | date:'c'}}">{{ post.published_at|date:"M j, Y" }}</time>
+                        {% endif %}
+                    </footer>
+                    <a href="{{ post.get_absolute_url }}" class="btn btn--secondary" aria-label="Read {{ post.title }}">Read Article</a>
                 </div>
             </article>
             {% empty %}

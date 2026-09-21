@@ -19,6 +19,11 @@ span, h1, h2, h3, h4 {
 a, p {
     font-family: var(--font-body);
 }
+
+.empty-state {
+    margin: 0 auto;
+    margin-top: 2rem;
+}
 /*---------- THE NAVIGATION BAR ----------*/
 
 .site-header {
@@ -832,12 +837,11 @@ section {
 }
 
 /* ---------- BLOG LIST PAGE ---------- */
-.blog-list {
+.blog-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(auto-fit, (300px, 100%));
     gap: 2rem;
-    margin: 0 auto;
-    max-width: 780px;
+    justify-content: center;
 }
 
 .blog-card {
@@ -846,7 +850,7 @@ section {
     border: 1px solid #dde3ed;
     overflow: hidden;
 }
-
+x
 .blog-card__container {
     padding: 1.5rem;
     display: flex;

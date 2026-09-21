@@ -1,4 +1,6 @@
 from django.db import models
+from django.utils.text import slugify
+from django.urls import reverse
 
 # Video for the Carousel
 class RestorationCarouselBackground(models.Model):
@@ -131,29 +133,29 @@ class RestorationProject(models.Model):
     def __str__ (self):
         return self.after_alt_txt or f"{self.service.name} after restoration damage"
 
-
-class RestorationPost(models.Model):
-    title = models.CharField(max_length=200)
-    short_description = models.TextField(blank=True)
-    slug = models.SlugField(max_length=200, unique=True, blank=True)
-    featured_image = models.ImageField(upload_to='blog/', blank=True, null=True)
-    body = models.TextField(blank=True)
-    source_author = models.CharField(max_length=100, blank=True)
-    source_url = models.URLField(blank=True)
-    related_service = models.ForeignKey(RestorationService, on_delete=models.SET_NULL, null=True, blank=True)
+class Post(models.Model):
+    title = models.CharField(max_length=300)
+    slug = models.SlugField(unique=True, blank=True)
+    excerpt = models.TextField(blank=True, default="")    
+    content = models.TextField()
+    author = models.CharField(max_length=200, default='StaDry Restorations')
+    is_published = models.BooleanField(default=False)
+    published_at = models.DateTimeField(blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    published_at = models.DateTimeField(blank=True, null=True)
+    related_service = models.ForeignKey(RestorationService, on_delete=models.SET_NULL, null=True, blank=True)
 
+    class Meta:
+        ordering = ['-published_at', '-created_at']
+        verbose_name_plural = 'Posts'
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.title)
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return self.title
 
-    class Meta:
-        ordering = ['-created_at']
-        verbose_name_plural = 'Restoration Posts'
-
-    def save(self, *args, **kwargs):
-        if not self.slug:
-            self.slug = self.title.lower().replace(' ', '-')
-        super().save(*args, **kwargs)
+    def get_absoulte_url(self):
+        return reverse('core:blog_detail', kwargs={'slug': self.slug})

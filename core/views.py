@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from .models import RestorationCarouselBackground, RestorationPost, RestorationService, RestorationCertification, RestorationReview, RestorationTeam, RestorationProject
+from .models import RestorationCarouselBackground, Post, RestorationService, RestorationCertification, RestorationReview, RestorationTeam, RestorationProject
 
 # Home Page
 def index(request):
@@ -39,7 +39,7 @@ def service_list(request):
 # Blog Page
 def blog_list(request):
     service_filter = request.GET.get('service')
-    restoration_posts = RestorationPost.objects.all()
+    restoration_posts = Post.objects.all()
     restoration_services = RestorationService.objects.filter(is_active=True)
     active_service = None
     if service_filter:
