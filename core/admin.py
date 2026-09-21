@@ -1,60 +1,59 @@
 from django.contrib import admin
-from .models import RestorationCarouselBackground, Post, RestorationSiteSetting, RestorationService, RestorationCertification, RestorationServiceArea, RestorationReview, RestorationTeam, RestorationProject
+from .models import CarouselBackground, Post, SiteSetting, Service, Certification, ServiceArea, Review, Team, Project
 
 # Carousel Background Admin
-class RestorationCarouselBackgroundAdmin(admin.ModelAdmin):
+@admin.register(CarouselBackground)
+class CarouselBackgroundAdmin(admin.ModelAdmin):
     list_display = ('title', 'caption', 'order', 'is_active')
     list_filter = ('is_active',)
     search_fields = ('title', 'caption')
     ordering = ('order',)
 
-# Restoration Site Setting Admin
-class RestorationSiteSettingAdmin(admin.ModelAdmin):
+# Site Setting Admin
+@admin.register(SiteSetting)
+class SiteSettingAdmin(admin.ModelAdmin):
     fields = ['company_name', 'email', 'phone_number', 'address', 'city', 'state', 'zip_code', 'instagram_url', 'facebook_url', 'twitter_url', 'linkedin_url']
     list_display = ('company_name', 'email', 'phone_number', 'city', 'state')
 
 # Restoration Service Admin
-class RestorationServiceAdmin(admin.ModelAdmin):
+@admin.register(Service)
+class ServiceAdmin(admin.ModelAdmin):
     list_display = ['name', 'order']
     prepopulated_fields = {'slug': ('name',)}
 
-# Restoration Certification Admin
-class RestorationCertificationAdmin(admin.ModelAdmin):
+# Certification Admin
+@admin.register(Certification)
+class CertificationAdmin(admin.ModelAdmin):
     list_display = ['title', 'alt_text', 'caption', 'description']
     list_editable = ['alt_text', 'caption', 'description']
 
 # Restoration Service Areas Admin
-class RestorationServiceAreaAdmin(admin.ModelAdmin):
+@admin.register(ServiceArea)
+class ServiceAreaAdmin(admin.ModelAdmin):
     list_display = ['city', 'state', 'order', 'is_active']
     list_editable = ['order', 'is_active']
 
 # Restoration Review Admin
-class RestorationReviewAdmin(admin.ModelAdmin):
+@admin.register(Review)
+class ReviewAdmin(admin.ModelAdmin):
     list_display = ['rating', 'name', 'service_area', 'service']
     list_filter = ['service_area', 'service']
 
 # Restoration Team Admin
-class RestorationTeamAdmin(admin.ModelAdmin):
+@admin.register(Team)
+class TeamAdmin(admin.ModelAdmin):
     list_display = ['team_member', 'occupation', 'order']
     list_display_links = ('occupation',)
 
 # Restoration Project Admin
-class RestorationProjectAdmin(admin.ModelAdmin):
+@admin.register(Project)
+class ProjectAdmin(admin.ModelAdmin):
     list_display = ['title', 'service']
     list_filter = ['service']
 
-# Restoration Blog Posts
+# Posts Admin
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
     list_display = ['title', 'author', 'is_published', 'published_at']
     list_filter = ['is_published', 'related_service']
     prepopulated_fields = {'slug':('title',)}
-
-admin.site.register(RestorationCarouselBackground, RestorationCarouselBackgroundAdmin)
-admin.site.register(RestorationSiteSetting, RestorationSiteSettingAdmin)
-admin.site.register(RestorationService, RestorationServiceAdmin)
-admin.site.register(RestorationCertification, RestorationCertificationAdmin)
-admin.site.register(RestorationServiceArea, RestorationServiceAreaAdmin)
-admin.site.register(RestorationReview, RestorationReviewAdmin)
-admin.site.register(RestorationTeam, RestorationTeamAdmin)
-admin.site.register(RestorationProject, RestorationProjectAdmin)

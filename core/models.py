@@ -3,7 +3,7 @@ from django.utils.text import slugify
 from django.urls import reverse
 
 # Video for the Carousel
-class RestorationCarouselBackground(models.Model):
+class CarouselBackground(models.Model):
     title = models.CharField(max_length=100)
     caption = models.CharField(max_length=200)
     description = models.TextField(default=True)
@@ -13,12 +13,13 @@ class RestorationCarouselBackground(models.Model):
 
     class Meta:
         ordering = ['order']
+        verbose_name = 'Carousel Background'
 
     def __str__(self):
         return self.title
 
 # Site Setting for the Company
-class RestorationSiteSetting(models.Model):
+class SiteSetting(models.Model):
     company_name = models.CharField(max_length=200)
     email = models.EmailField()
     phone_number = models.CharField(max_length=20)
@@ -31,11 +32,14 @@ class RestorationSiteSetting(models.Model):
     twitter_url = models.URLField(blank=True, null=True)
     linkedin_url = models.URLField(blank=True, null=True)
 
+    class Meta:
+        verbose_name = 'Site Setting'
+
     def __str__(self):
         return self.company_name
 
 # Needs to be altered eventually
-class RestorationService(models.Model):
+class Service(models.Model):
     name = models.CharField(max_length=255)
     short_description = models.TextField(default=True)
     order = models.PositiveIntegerField(default=0)
@@ -49,7 +53,7 @@ class RestorationService(models.Model):
         return self.name
 
 # Certification model for this company earned
-class RestorationCertification(models.Model):
+class Certification(models.Model):
     image = models.ImageField(upload_to='certifications/')
     alt_text = models.CharField(max_length=200, blank=True)
     title = models.CharField(max_length=200, blank=True)
@@ -58,12 +62,13 @@ class RestorationCertification(models.Model):
 
     class Meta:
         ordering = ['title']
+        verbose_name_plural = 'Certifications'
 
     def __str__(self):
         return self.title
 
 # Service Area model
-class RestorationServiceArea(models.Model):
+class ServiceArea(models.Model):
     city = models.CharField(max_length=100)
     state = models.CharField(max_length=2, default='NC')
     order = models.PositiveIntegerField(default=0)
@@ -71,31 +76,29 @@ class RestorationServiceArea(models.Model):
 
     class Meta:
         ordering = ['order', 'city']
-        verbose_name = 'Restoration Service Area'
-        verbose_name_plural = 'Restoration Service Areas'
+        verbose_name_plural = 'Service Areas'
 
     def __str__(self):
         return f'{self.city}, {self.state}'
 
 # Review Model
-class RestorationReview(models.Model):
+class Review(models.Model):
     rating = models.PositiveSmallIntegerField(default=5)
     quote = models.TextField()
     name = models.CharField(max_length=120)
-    service_area = models.ForeignKey(RestorationServiceArea, on_delete=models.SET_NULL, null=True, blank=True)
-    service = models.ForeignKey(RestorationService, on_delete=models.SET_NULL, null=True, blank=True)
+    service_area = models.ForeignKey(ServiceArea, on_delete=models.SET_NULL, null=True, blank=True)
+    service = models.ForeignKey(Service, on_delete=models.SET_NULL, null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
         ordering = ['-id']
-        verbose_name = 'Restoration Review'
-        verbose_name_plural = 'Restoration Reviews'
+        verbose_name_plural = 'Reviews'
 
     def __str__(self):
         return f"{self.name}, ({self.rating}*)"
 
 # Team Model
-class RestorationTeam(models.Model):
+class Team(models.Model):
     image = models.ImageField(upload_to='restoration_team')
     team_member = models.CharField(max_length=255, blank=True)
     occupation = models.CharField(max_length=200)
@@ -103,14 +106,14 @@ class RestorationTeam(models.Model):
 
     class Meta:
         ordering = ['order', 'team_member', 'occupation']
-        verbose_name = 'Restoration Team'
+        verbose_name = 'Team'
 
     def __str__(self):
         return f"{self.team_member}, ({self.occupation})"
 
 # Project Model
-class RestorationProject(models.Model):
-    service = models.ForeignKey(RestorationService, on_delete=models.SET_NULL, null=True, blank=True)
+class Project(models.Model):
+    service = models.ForeignKey(Service, on_delete=models.SET_NULL, null=True, blank=True)
     title = models.CharField(max_length=200, blank=True)
     before_image = models.ImageField(upload_to='restoration_projects/before/')
     before_alt_text = models.CharField(max_length=250, blank=True)
@@ -121,8 +124,7 @@ class RestorationProject(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
-        verbose_name = 'Restoration Projects'
-        verbose_name_plural = "Restoration Projects"
+        verbose_name_plural = "Projects"
 
     def __str__(self):
         return self.title or f"{self.service.name} gallery item"
@@ -143,7 +145,7 @@ class Post(models.Model):
     published_at = models.DateTimeField(blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    related_service = models.ForeignKey(RestorationService, on_delete=models.SET_NULL, null=True, blank=True)
+    related_service = models.ForeignKey(Service, on_delete=models.SET_NULL, null=True, blank=True)
 
     class Meta:
         ordering = ['-published_at', '-created_at']
