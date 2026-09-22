@@ -41,6 +41,7 @@ class SiteSetting(models.Model):
 # Needs to be altered eventually
 class Service(models.Model):
     name = models.CharField(max_length=255)
+    icon = models.CharField(max_length=100, default='service', help_text='Icon needed')
     short_description = models.TextField(default=True)
     order = models.PositiveIntegerField(default=0)
     slug = models.SlugField(unique=False, blank=True, null=True) #Safe for now
@@ -48,6 +49,7 @@ class Service(models.Model):
 
     class Meta:
         ordering = ['order', 'name']
+        verbose_name_plural = 'Services'
 
     def __str__(self):
         return self.name

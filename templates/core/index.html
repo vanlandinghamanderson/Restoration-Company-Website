@@ -54,6 +54,9 @@
             <!----- slice":3" Gets the first 3 items from the table ----->
             {% for service in restoration_services|slice:":3" %}
             <div class="service-card">
+                <div class="service_icon">
+                    <i class="bi bi-{{service.icon}}"></i>
+                </div>
                 <h3>{{ service.name }}</h3>
                 <p>{{ service.short_description }}</p>
             </div>
