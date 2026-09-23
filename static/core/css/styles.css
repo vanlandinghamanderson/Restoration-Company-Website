@@ -24,6 +24,11 @@ a, p {
     margin: 0 auto;
     margin-top: 2rem;
 }
+
+aside {
+    display: block;
+    unicode-bidi: isolate;
+}
 /*---------- THE NAVIGATION BAR ----------*/
 
 .site-header {
@@ -895,6 +900,29 @@ section {
     background-color: #008FFF;
     color: white;
 }
+
+/* ---------- BLOG DETAIL PAGE ---------- */
+.blog-article_meta {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+}
+
+.two-col {
+    display: grid;
+    gap: 3rem;
+    align-items: start;
+    grid-template-columns: 1fr 340px;
+}
+
+.sidebar-cta {
+    border: 1px solid lightblue;
+    border-radius: 2rem;
+    padding: 1.75rem;
+    margin-bottom: 1.5rem;
+}
+
+
 
 /***** Mobile *****/
 @media (max-width: 897px) {

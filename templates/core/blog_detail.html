@@ -1,0 +1,40 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block content %}
+<article itemscope itemtype="https://schema.org/BlogPosting">
+    <section class="page-hero">
+        <div class="container page-hero_inner">
+            {% if restoration_post.related_service %}
+            <span class="page-hero_tag">{{ restoration_post.related_service.name }}</span>
+            {% endif %}
+            <h1 itemprop="blog-title_headline">{{ restoration_post.title }}</h1>
+            <div class="blog-article_meta">
+                <span itemprop="blog_author">{{ restoration_post.author }}</span>
+                {% if restoration_post.published_at %}
+                <time itemprop="datePublished" datetime="{{ restoration_post.published_at|date:'c' }}">{{ restoration_post.published_at|date:"F j, Y"}}</time>
+                {% endif %}
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="container two-col">
+            <div class="two-col__main prose" itemprop="articleBody">
+                {{ restoration_post.content|linebreaks }}
+            </div>
+
+            <aside class="two-col_sidebar">
+                <div class="sidebar-cta">
+                    <h3>Need Some Restoration Help?</h3>
+                    <p>Reach Out to Us Today!</p>
+                    <div class="sidebar-cta_buttons">
+                        <a href="{% url 'contact' %}" class="btn contact-button">Free Estimate</a>
+                        <a href="tel:{{ restoration_site_setting.phone_number }}"  class="btn btn--outline btn--block">
+                            <i class="bi bi-telephone" aria-hidden="true"></i>Call Us
+                        </a>
+                    </div>
+                </div>
+            </aside>
+    </section>
+    
+</article>
+{% endblock %}

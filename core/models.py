@@ -161,5 +161,5 @@ class Post(models.Model):
     def __str__(self):
         return self.title
 
-    def get_absoulte_url(self):
-        return reverse('core:blog_detail', kwargs={'slug': self.slug})
+    def get_absolute_url(self):
+        return reverse('blog_detail', kwargs={'slug': self.slug})

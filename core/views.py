@@ -36,7 +36,7 @@ def service_list(request):
     }
     return render(request, 'core/services.html', context)
 
-# Blog Page
+# Blog List Page
 def blog_list(request):
     service_filter = request.GET.get('service')
     restoration_posts = Post.objects.all()
@@ -50,3 +50,27 @@ def blog_list(request):
         'restoration_services': restoration_services,
         'active_service': active_service,
     })
+
+# Blog Detail Page
+def blog_detail(request, slug):
+    """
+    Render a single blog post page
+
+    Looks up the post by its URL slug and finds a few related posts
+    that share the same service
+    """
+
+    # Gets the published post matching this slug, otherwise show a 404 page
+    post = get_object_or_404(Post, slug=slug, is_published=True)
+
+    # Up to 3 other published posts about the same service
+    related_posts = Post.objects.filter(
+        is_published=True, related_service=post.related_service
+    ).exclude(pk=post.pk)[:3]
+
+    return render(request, 'core/blog_detail.html', {
+        'restoration_post': post,
+        'restoration_related_posts': related_posts,
+        'page_title': post.title,
+    })
+
