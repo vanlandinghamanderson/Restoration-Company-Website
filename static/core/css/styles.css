@@ -919,10 +919,53 @@ section {
     border: 1px solid lightblue;
     border-radius: 2rem;
     padding: 1.75rem;
-    margin-bottom: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+    background-color: #262626;
+    color: white;
 }
 
+.sidebar-cta h1 {
+    font-weight: bolder;
+}
 
+.sidebar-cta p {
+    font-size: medium;
+    margin: auto;
+}
+
+.sidebar-cta_buttons {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+}
+
+.contact-button {
+    color: white;
+    background-color: #0f172a;
+}
+
+.contact-button:hover {
+    transform: scale(1.1);
+    background-color: #0f172a;
+    color: white;
+}
+
+.call-button {
+    color: white;
+    background-color: #008FFF;
+    display: flex;
+    gap: .5rem;
+    justify-content: center;
+}
+
+.call-button:hover {
+    transform: scale(1.1);
+    background-color: #008FFF;
+    color: white;
+}
 
 /***** Mobile *****/
 @media (max-width: 897px) {
