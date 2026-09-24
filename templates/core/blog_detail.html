@@ -1,5 +1,7 @@
 {% extends 'core/base.html' %}
 {% load static %}
+{% load markdown_extras %}
+
 {% block content %}
 <article itemscope itemtype="https://schema.org/BlogPosting">
     <section class="page-hero">
@@ -19,7 +21,7 @@
     <section>
         <div class="container two-col">
             <div class="two-col__main prose" itemprop="articleBody">
-                {{ restoration_post.content|linebreaks }}
+                {{ restoration_post.content|markdown }}
             </div>
 
             <aside class="two-col_sidebar">

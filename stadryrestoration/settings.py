@@ -71,6 +71,9 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 'core.context_processors.site_globals',
             ],
+            'libraries': {
+                'markdown_extras': 'core.templatetags.markdown_extras',
+            },
         },
     },
 ]

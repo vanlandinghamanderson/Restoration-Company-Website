@@ -851,7 +851,7 @@ section {
 /* ---------- BLOG LIST PAGE ---------- */
 .blog-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, (300px, 100%));
+    grid-template-columns: repeat(3, 1fr);
     gap: 2rem;
     justify-content: center;
 }
@@ -966,6 +966,25 @@ section {
     background-color: #008FFF;
     color: white;
 }
+
+.prose h1 { 
+    font-size: 2em;   
+    font-weight: 700; 
+    text-align: left; 
+}
+
+.prose h2 { 
+    font-size: 1.6em; 
+    font-weight: 700; 
+    text-align: left;
+}
+
+.prose h3 { 
+    font-size: 1.3em; 
+    font-weight: 700; 
+    text-align: left; 
+}
+
 
 /***** Mobile *****/
 @media (max-width: 897px) {
