@@ -4,12 +4,22 @@
 <section class="page-hero">
     <div class="container page-hero_inner">
         <h1>Contact Us</h1>
-        <p class="page_text">If you have any problems with your house, or any questions... contact us today!</p>
+        <p class="page_text">Get a free estimate for your restoration needs -- we are honest, ethical, and local!
+        </p>
     </div>
 </section>
 <section>
-    <div class="container">
-        <h2 class="section-title">Reach Out Today!</h2>
+    <div class="container two-col">
+        <div class="two-col">
+            <h2 class="section-title">Reach Out Today!</h2>
+            <!-- SCRIPT -->
+            
+            <form method="POST" action="{% url 'contact' %}" novalidate aria-label="Contact form" id="contact-app">
+                {% csrf_token %}
+                
+            </form>
+
+        </div>
     </div>
 </section>
 {% endblock %}

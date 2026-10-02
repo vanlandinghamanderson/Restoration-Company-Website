@@ -163,3 +163,19 @@ class Post(models.Model):
 
     def get_absolute_url(self):
         return reverse('blog_detail', kwargs={'slug': self.slug})
+
+# Customer Table for customers who write a message on the contact page
+class Customer(models.Model):
+    full_name = models.CharField(max_length=200)
+    email = models.EmailField()
+    phone_number = models.CharField(max_length=20, blank=True)
+    message = models.TextField()
+    requested_service = models.ForeignKey(Service, on_delete=models.SET_NULL, null=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ['-created_at']
+        verbose_name_plural = 'Customers'
+
+    def __str__(self):
+        return f'{self.full_name} - wrote a message on {self.created_at.strftime("%Y-%m-%d")}'

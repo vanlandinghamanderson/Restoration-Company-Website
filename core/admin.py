@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import CarouselBackground, Post, SiteSetting, Service, Certification, ServiceArea, Review, Team, Project
+from .models import CarouselBackground, Customer, Post, SiteSetting, Service, Certification, ServiceArea, Review, Team, Project
 
 # Carousel Background Admin
 @admin.register(CarouselBackground)
@@ -57,3 +57,11 @@ class PostAdmin(admin.ModelAdmin):
     list_display = ['title', 'author', 'is_published', 'published_at']
     list_filter = ['is_published', 'related_service']
     prepopulated_fields = {'slug':('title',)}
+
+# Customers Admin
+@admin.register(Customer)
+class CustomerAdmin(admin.ModelAdmin):
+    list_display = ['full_name', 'email', 'phone_number', 'requested_service', 'created_at']
+    list_filter = ['requested_service', 'created_at']
+    readonly_fields = ('full_name', 'email', 'phone_number', 'requested_service', 'message', 'created_at')
+    

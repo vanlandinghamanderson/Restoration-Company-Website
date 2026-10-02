@@ -1,5 +1,9 @@
 from django.shortcuts import render, get_object_or_404
 from .models import CarouselBackground, Post, Service, Certification, Review, Team, Project
+from .forms import CustomerForm
+from django.contrib import messages as message
+from django.views.decorators.http import require_POST
+from django.http import JsonResponse
 
 # Home Page
 def index(request):
@@ -26,8 +30,31 @@ def about(request):
     return render(request, 'core/about.html', context)
 
 # Contact Page
+# 'if request.method == 'POST' is after a customer writes a message, that's for the submit button, otherwise it's an empty form
+# 'form = CustomerForm(request.POST) is for a customer who fills in the form and submits it, the data is sent to the server and stored in the database
+# 'if form.is_valid()' is for the server to check if the data is valid, if it is valid, it will be saved in the database
 def contact(request):
-    return render(request, 'core/contact.html', {})
+    if request.method == 'POST':
+        form = CustomerForm(request.POST)
+        if form.is_valid():
+            form.save()
+            message.success(request, 'Thank you for your message! We will get back to you as soon as possible.')
+    else: 
+        form = CustomerForm()
+    return render(request, 'core/contact.html', {
+        'form': form})
+
+# Contact API
+# '@required_POST' means only accept submissions (GET gets a 405)
+# 'form = CustomerForm(request.POST)' same as contact view
+#  If the form is valid, it saves the database prints as 200 ok, otherwise it prints as 400 bad request
+@require_POST
+def contact_api(request):
+    form = CustomerForm(request.POST)
+    if form.is_valid():
+        form.save()
+        return JsonResponse({'ok': True}, status=200)
+    return JsonResponse({'ok': False, 'errors': form.errors}, status=400)
 
 # Our Services Page
 def service_list(request):
