@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from .models import CarouselBackground, Post, Service, Certification, Review, Team, Project
 from .forms import CustomerForm
 from django.contrib import messages as message
@@ -39,6 +39,7 @@ def contact(request):
         if form.is_valid():
             form.save()
             message.success(request, 'Thank you for your message! We will get back to you as soon as possible.')
+            return redirect('contact')
     else: 
         form = CustomerForm()
     return render(request, 'core/contact.html', {

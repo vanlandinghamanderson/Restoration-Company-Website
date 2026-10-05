@@ -8,6 +8,7 @@
         </p>
     </div>
 </section>
+
 <section>
     <div class="container two-col">
         <div class="two-col">
@@ -15,8 +16,36 @@
             <!-- SCRIPT -->
             
             <form method="POST" action="{% url 'contact' %}" novalidate aria-label="Contact form" id="contact-app">
-                {% csrf_token %}
                 
+                {# Shows the success message #}
+                {% if messages %}
+                {% for message in messages %}
+                <div class="alert alert-success" role="alert">
+                    {{ message }}
+                </div>
+                {% endfor %}
+                {% endif %}
+                
+                {% csrf_token %}
+
+                {# Add the fields #}
+                {% for field in form %}
+                <div class="form-group">
+                    <label for="{{ field.id_for_label }}">{{ field.label }}
+                        {% if field.field.required %}<span class="required" aria-label="required">*</span>{% endif %}
+                    </label>
+                    {{ field }}
+                    
+                    {# Shows errors under each field #}
+                    {% if field.errors %}
+                    <ul class="alert alert-danger" role="alert">
+                        {{ field.errors }}
+                    </ul>
+                    {% endif %}
+                </div>
+                {% endfor %}
+
+                <button type="submit" class="btn btn--primary btn--lg">Submit Message</button>
             </form>
 
         </div>
