@@ -29,6 +29,16 @@ aside {
     display: block;
     unicode-bidi: isolate;
 }
+
+.btn--lg {
+    padding: .85rem 2rem;
+    font-size: 1.05rem;
+}
+
+.btn--primary {
+    background-color: #008FFF;
+    color: white;
+}
 /*---------- THE NAVIGATION BAR ----------*/
 
 .site-header {
@@ -984,6 +994,50 @@ section {
     font-weight: 700; 
     text-align: left; 
 }
+
+/* ---------- Contact Page ---------- */
+.form-group {
+    margin-bottom: 1.2rem;
+}
+
+.form-control {
+    display: block;
+    width: 100vh;
+    padding: .65rem 1rem;
+    font-size: 1rem;
+    color: #495057;
+    background-color: #ffffff00;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+}
+
+.form-control::placeholder { 
+    color: #b0b8c8; 
+}
+
+.form-control:focus {
+    border-color: #008FFF;
+    outline: none;
+    box-shadow: 0 0 0 0.2rem rgba(0, 143, 255, 0.25);
+}
+
+.required {
+    color: #c0392b;
+    font-weight: bold;
+}
+
+.contact-info-card {
+    background-color: #f4f7fb;;
+    border-radius: 12px;
+    padding: 24px;
+    text-align: center;
+    width: 40vh;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+}
+
 
 
 /***** Mobile *****/

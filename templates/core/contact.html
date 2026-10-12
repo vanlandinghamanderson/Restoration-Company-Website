@@ -11,44 +11,69 @@
 
 <section>
     <div class="container two-col">
-        <div class="two-col">
+        <div class="two-col__main">
             <h2 class="section-title">Reach Out Today!</h2>
             <!-- SCRIPT -->
             
             <form method="POST" action="{% url 'contact' %}" novalidate aria-label="Contact form" id="contact-app">
-                
-                {# Shows the success message #}
-                {% if messages %}
-                {% for message in messages %}
-                <div class="alert alert-success" role="alert">
-                    {{ message }}
-                </div>
-                {% endfor %}
-                {% endif %}
-                
                 {% csrf_token %}
-
+                <div class="alert alert--success" role="alert" data-contact-success hidden>Your message has been sent! We will reach out to you as soon as we can.</div>
+                <div class="alert alert--error" role="alert" data-contact-error hidden>There was an error sending your message. Please try again later.</div>
+                
                 {# Add the fields #}
-                {% for field in form %}
-                <div class="form-group">
-                    <label for="{{ field.id_for_label }}">{{ field.label }}
-                        {% if field.field.required %}<span class="required" aria-label="required">*</span>{% endif %}
-                    </label>
-                    {{ field }}
-                    
-                    {# Shows errors under each field #}
-                    {% if field.errors %}
-                    <ul class="alert alert-danger" role="alert">
-                        {{ field.errors }}
-                    </ul>
-                    {% endif %}
+                <div data-contact-fields>
+                    {% for field in form %}
+                    <div class="form-group">
+                        <label for="{{ field.id_for_label }}">
+                            {{ field.label}}
+                            {% if field.field.required %}<span class="required" aria-label="required">*</span>{% endif %}
+                        </label>
+                        {{ field}}
+                        {% if field.errors %}
+                        <ul class="field-errors" role="alert">
+                            {% for error in field.errors %}
+                            <li>{{ error }}</li>
+                            {% endfor %}
+                        </ul>
+                        {% endif %}
+                    </div>
+                    {% endfor %}
                 </div>
-                {% endfor %}
-
                 <button type="submit" class="btn btn--primary btn--lg">Submit Message</button>
             </form>
-
         </div>
+
+        <aside class="two-col__sidebar contact-sidebar">
+            <div class="contact-info-card">
+                <h3>Contact Information</h3>
+                <ul>
+                    <li>
+                        <i class="bi bi-telephone" aria-hiden="true"></i>
+                        <div>
+                            <strong>Phone Number: </strong>
+                            <a href="tel:{{ restoration_site_settings.phone_number }}">{{ restoration_site_setting.phone_number }}</a>
+                        </div>
+                    </li>
+                    <li>
+                        <i class="bi bi-envelope" aria-hidden="true"></i>
+                        <div>
+                            <strong>Email: </strong>
+                            <a href="mailto:{{ restoration_site_settings.email }}">{{ restoration_site_setting.email }}</a>
+                        </div>
+                    </li>
+                    <li>
+                        <i class="bi bi-geo-alt" aria-hidden="true"></i>
+                        <div>
+                            <strong>Address: </strong>
+                            <address>{{ restoration_site_setting.address }}</address>
+                            <span>{{ restoration_site_setting.city }}, {{ restoration_site_setting.state }} {{ restoration_site_setting.zip_code }}</span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </aside>
+
+
     </div>
 </section>
 {% endblock %}
