@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import CarouselBackground, Customer, Post, SiteSetting, Service, Certification, ServiceArea, Review, Team, Project
+from .models import CarouselBackground, Customer, Post, SiteSetting, Service, Certification, ServiceArea, Review, Team, Project, BusinessHours
 
 # Carousel Background Admin
 @admin.register(CarouselBackground)
@@ -9,11 +9,23 @@ class CarouselBackgroundAdmin(admin.ModelAdmin):
     search_fields = ('title', 'caption')
     ordering = ('order',)
 
+# Business Hours Admin
+class BusinessHoursInline(admin.TabularInline):
+    model = BusinessHours
+    extra = 0
+    max_num = 7
+
 # Site Setting Admin
 @admin.register(SiteSetting)
 class SiteSettingAdmin(admin.ModelAdmin):
     fields = ['company_name', 'email', 'phone_number', 'address', 'city', 'state', 'zip_code', 'instagram_url', 'facebook_url', 'twitter_url', 'linkedin_url']
     list_display = ('company_name', 'email', 'phone_number', 'city', 'state')
+    inlines = [BusinessHoursInline]
+
+    def has_add_permission(self, request):
+        # Allow adding only if there are no existing SiteSetting instances
+        return not SiteSetting.objects.exists()
+
 
 # Restoration Service Admin
 @admin.register(Service)

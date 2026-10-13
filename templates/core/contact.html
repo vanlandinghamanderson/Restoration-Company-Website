@@ -48,28 +48,55 @@
                 <h3>Contact Information</h3>
                 <ul>
                     <li>
-                        <i class="bi bi-telephone" aria-hiden="true"></i>
+                        <i class="bi bi-telephone-fill" aria-hidden="true"></i>
                         <div>
-                            <strong>Phone Number: </strong>
-                            <a href="tel:{{ restoration_site_settings.phone_number }}">{{ restoration_site_setting.phone_number }}</a>
+                            <strong>Phone:</strong>
+                            <a href="tel:{{ restoration_site_setting.phone_number }}">{{ restoration_site_setting.phone_number }}</a>
                         </div>
                     </li>
                     <li>
-                        <i class="bi bi-envelope" aria-hidden="true"></i>
+                        <i class="bi bi-envelope-fill" aria-hidden="true"></i>
                         <div>
-                            <strong>Email: </strong>
-                            <a href="mailto:{{ restoration_site_settings.email }}">{{ restoration_site_setting.email }}</a>
+                            <strong>Email:</strong>
+                            <a href="mailto:{{ restoration_site_setting.email }}">{{ restoration_site_setting.email }}</a>
                         </div>
                     </li>
                     <li>
-                        <i class="bi bi-geo-alt" aria-hidden="true"></i>
+                        <i class="bi bi-geo-alt-fill" aria-hidden="true"></i>
                         <div>
-                            <strong>Address: </strong>
-                            <address>{{ restoration_site_setting.address }}</address>
-                            <span>{{ restoration_site_setting.city }}, {{ restoration_site_setting.state }} {{ restoration_site_setting.zip_code }}</span>
+                            <strong>Address:</strong>
+                            <p>{{ restoration_site_setting.address }},{{ restoration_site_setting.city }}, {{ restoration_site_setting.state }} {{ restoration_site_setting.zip_code }}</p>
+                        </div>
+                    </li>
+                    <li>
+                        <i class="bi bi-clock-fill" aria-hidden="True"></i>
+                        <div>
+                            <strong>Hours of Operation: </strong>
+                            {% with hours=restoration_site_setting.grouped_hours %}
+                                {% if hours %}
+                                <div class="contact-business-hours">
+                                    {% for hour in hours %}
+                                    {% if hour.is_closed %}
+                                    <div><span>{{ hour.label }}:</span> Closed</div>
+                                    {% else %}
+                                    <div><span>{{ hour.label }}:</span> {{ hour.open_time|time:"g:i A" }}-{{ hour.close_time|time:"g:i A" }}</div>
+                                    {% endif %}
+                                    {% endfor %}
+                                </div>
+                                {% endif %}
+                            {% endwith %}
                         </div>
                     </li>
                 </ul>
+            </div>
+            <div class="emergency-call-card">
+                <i class="bi bi-cloud-lightning-rain-fill"></i>
+                <h3>Emergency? Call Now.</h3>
+                <p>If you recently had a problem in your home? Don't wait.</p>
+                <div class="emergency-call-button">
+                    <i class="bi bi-telephone-fill" aria-hidden="true"></i>
+                    <a href="tel:{{ restoration_site_setting.phone_number }}">{{ restoration_site_setting.phone_number }}</a>
+                </div>
             </div>
         </aside>
 
