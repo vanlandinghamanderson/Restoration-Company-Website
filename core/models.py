@@ -106,7 +106,7 @@ class BusinessHours(models.Model):
 # Needs to be altered eventually
 class Service(models.Model):
     name = models.CharField(max_length=255)
-    icon = models.CharField(max_length=100, default='service', help_text='Icon needed')
+    image = models.ImageField(upload_to="services/", blank=True, null=True)
     short_description = models.TextField(default='')
     order = models.PositiveIntegerField(default=0)
     slug = models.SlugField(unique=False, blank=True, null=True) #Safe for now

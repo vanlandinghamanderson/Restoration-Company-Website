@@ -1,6 +1,7 @@
 :root {
     --font-heading: 'Poppins', sans-serif;
     --font-body: 'Inter', sans-serif;
+    --color-accent: #008FFF;
 }
 
 html {
@@ -32,6 +33,9 @@ a, p {
 .empty-state {
     margin: 0 auto;
     margin-top: 2rem;
+    grid-column: 1 / -1;
+    text-align: center;
+    margin-bottom: 2rem;
 }
 
 aside {
@@ -45,7 +49,7 @@ aside {
 }
 
 .btn--primary {
-    background-color: #008FFF;
+    background-color: var(--color-accent);
     color: white;
 }
 /*---------- THE NAVIGATION BAR ----------*/
@@ -320,12 +324,28 @@ section {
     margin-right: auto;
 }
 
+.section-label {
+    display: flex;
+    justify-content: center;
+    text-transform: uppercase;
+    color: var(--color-accent);
+    font-weight: 700;
+    font-size: 0.8rem;
+}
+
 .services-grid {
     margin-top: 4rem;
     margin-bottom: 4rem;
     display: grid;
-    gap: 24px;
-    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    grid-template-columns: repeat(4, 1fr);
+    margin: 0 auto;
+}
+
+.services-grid .service-card:first-child {
+    grid-column: 2/4;
+    justify-self: center;
+    width: calc((100% - 20px)/2);
 }
 
 .service-card {
@@ -358,6 +378,15 @@ section {
     border-radius: .5rem;
     padding: .25rem .5rem;
     color: #008FFF;
+}
+
+.section-cta {
+    text-align: center;
+    margin-top: 2.5rem;
+}
+
+.section-cta__text {
+    margin-bottom: 2.5rem;
 }
 /*---------- VIEW SERVICES BUTTON - HOMEPAGE ---------- */
 .view-more-services {
