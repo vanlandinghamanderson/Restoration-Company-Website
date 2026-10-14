@@ -14,7 +14,6 @@
         <div class="two-col__main">
             <h2 class="section-title">Reach Out Today!</h2>
             <!-- SCRIPT -->
-            
             <form method="POST" action="{% url 'contact' %}" novalidate aria-label="Contact form" id="contact-app">
                 {% csrf_token %}
                 <div class="alert alert--success" role="alert" data-contact-success hidden>Your message has been sent! We will reach out to you as soon as we can.</div>
@@ -30,7 +29,7 @@
                         </label>
                         {{ field}}
                         {% if field.errors %}
-                        <ul class="field-errors" role="alert">
+                        <ul class="field-errors" role="alert" data-field-errors="{{ field.name }}">
                             {% for error in field.errors %}
                             <li>{{ error }}</li>
                             {% endfor %}
@@ -41,6 +40,10 @@
                 </div>
                 <button type="submit" class="btn btn--primary btn--lg">Submit Message</button>
             </form>
+
+            <script>
+                window.CONTACT_API_URL = "{% url 'contact_api' %}";
+            </script>
         </div>
 
         <aside class="two-col__sidebar contact-sidebar">

@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
     heroCarousel();
     navBarToggle();
     galleryFilter();
+    initContactForm();
 });
 
 function heroCarousel() {
@@ -126,4 +127,81 @@ function galleryFilter() {
     /* Run once on load */
     applyFilter(currentSlug());
 
+}
+
+function initContactForm() {
+    const form = document.getElementById('contact-app');
+
+    if (!form || !window.CONTACT_API_URL) return;
+
+    const submitBtn = form.querySelector('button[type="submit"]');
+    const successAlert = form.querySelector('[data-contact-success]');
+    const errorAlert = form.querySelector('[data-contact-error]');
+    const fields = form.querySelector('[data-contact-fields]');
+
+    if (successAlert) successAlert.hidden = true;
+    if (errorAlert) {
+        errorAlert.hidden = true;
+        errorAlert.textContent = '';
+    }
+
+    form.querySelectorAll('[data-field-errors]').forEach((el) => {
+        el.hidden = true;
+        el.innerHTML = '';
+    });
+
+    form.addEventListener('submit', async (event) => {
+        event.preventDefault();
+
+        if (!submitBtn) return;
+        submitBtn.disabled = true;
+
+        if (errorAlert) {
+            errorAlert.hidden = true;
+            errorAlert.textContent = '';
+        }
+
+        try {
+            const response = await fetch(window.CONTACT_API_URL, {
+                method: 'POST',
+                body: new FormData(form),
+                headers: {
+                    'X-CSRFToken': form.querySelector('[name="csrfmiddlewaretoken"]').value,
+                },
+            });
+
+            const data = await response.json();
+
+            if (response.ok && data.ok) {
+                if (successAlert) successAlert.hidden = false;
+                if (fields) fields.hidden = true;
+                form.reset();
+                return;
+            }
+
+            const errors = data.errors || {};
+            Object.keys(errors).forEach((name) => {
+                if (name === '__all__') {
+                    if (errorAlert) {
+                        errorAlert.textContent = errors.__all__[0];
+                        errorAlert.hidden = false;
+                    }
+                    return;
+                }
+
+                const list = form.querySelector(`[data-field-errors="${name}"]`);
+                if (list) {
+                    list.innerHTML = errors[name].map((msg) => `<li>${msg}</li>`).join('');
+                    list.hidden = false;
+                }
+            });
+        } catch (err) {
+            if (errorAlert) {
+                errorAlert.textContent = 'Something went wrong. Please try again or call us directly.';
+                errorAlert.hidden = false;
+            }
+        } finally {
+            submitBtn.disabled = false;
+        }
+    });
 }
