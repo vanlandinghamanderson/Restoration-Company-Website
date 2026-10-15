@@ -11,11 +11,12 @@
     <div class="container">
         <div class="services-grid">
             {% for service in restoration_services %}
-            <div class="service-card">
-                <h2>{{ service.name }}</h2>
+            <article class="service-card">
+                <img src="{{ service.image.url }}" alt="{{ service.name }}" class="service-card__image" loading="lazy" width="800" height="450">
+                <h3>{{ service.name }}</h3>
                 <p>{{ service.short_description }}</p>
-                <a href="{% url 'contact' %}" class="request-button">Request This Service</a>
-            </div>
+                <a href="{% url 'contact' %}" class="btn btn--primary">Request This Service</a>
+            </article>
             {% empty %}
             <p class="empty-state">Services will be available soon...</p>
             {% endfor %}
