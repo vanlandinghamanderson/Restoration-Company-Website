@@ -599,7 +599,7 @@ section {
 /* ----- CALL TO ACTION BANNER ----- */
 .cta-banner {
     background: rgba(26, 58, 92, 1);
-    padding: 2rem 0;
+    padding: 3rem 0;
 }
 
 .cta-banner_inner {
@@ -753,7 +753,7 @@ section {
     font-family: var(--font-heading);
 }
 
-.footer-brand p {
+.footer-brand p, .footer-link p{
     font-size: .875rem;
     line-height: 1.75;
 }
@@ -769,6 +769,7 @@ section {
     text-decoration: none;
     font-size: .875rem;
 }
+
 
 .footer-link ul {
     list-style-type: none;
@@ -926,7 +927,6 @@ section {
 
 .blog-card_headline, h2 {
     text-align: center;
-    padding: 1rem;
 }
 
 .blog-card_headline, a {

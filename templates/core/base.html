@@ -61,18 +61,6 @@
                 <p>Restoration services serving Wilson and surrounding areas throughout eastern NC since 2009.
                     Water damage, mold, and fire restoration. 
                 </p>
-                {% with hours=restoration_site_setting.business_hours.all %}
-                    {% if hours %}
-                        <div class="footer-business-hours">
-                            <h3>Business Hours</h3>
-                            <ul>
-                                {% for hour in hours %}
-                                    <li>{{ hour.get_day_display }}: {{ hour.open_time|time:"g:i A" }} - {{ hour.close_time|time:"g:i A" }}</li>
-                                {% endfor %}
-                            </ul>
-                        </div>
-                    {% endif %}
-                {% endwith %}
             </div>
             <div class="footer-link">
                 <h3>Services</h3>
@@ -81,6 +69,8 @@
                     {% for service in restoration_services %}
                     <li>{{ service.name }}</li>
                     {% endfor %}
+                {% else %}
+                    <p>Services are not available...</p>
                 </ul>
                 {% endif %}
             </div>
