@@ -53,7 +53,7 @@
         <div class="services-grid">
             {% for service in restoration_services %}
             <article class="service-card">
-                <img src="{{ service.image.url }}" alt="{{ service.name }}" class="service-card__image" loading="lazy" width="800" height="450">
+                <img src="{{ service.image_card.url }}" alt="{{ service.name }}" class="service-card__image" loading="lazy" width="800" height="450">
                 <h3>{{ service.name }}</h3>
                 <p>{{ service.short_description }}</p>
             </article>

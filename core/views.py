@@ -5,6 +5,8 @@ from django.contrib import messages as message
 from django.views.decorators.http import require_POST
 from django.http import JsonResponse
 
+
+
 # Home Page
 def index(request):
     context = {
@@ -29,6 +31,18 @@ def about(request):
     }
     return render(request, 'core/about.html', context)
 
+def _contact_initial(slug):
+    """Pre-fill the contact when arriving from a 'Request This Service' """
+    if not slug:
+        return {}
+    service = Service.objects.filter(slug=slug, is_active=True).first()
+    if not service:
+        return {}
+    return {
+        'service': service,
+        'message': f"I'd like to request {service.name} service."
+    }
+
 # Contact Page
 # 'if request.method == 'POST' is after a customer writes a message, that's for the submit button, otherwise it's an empty form
 # 'form = CustomerForm(request.POST) is for a customer who fills in the form and submits it, the data is sent to the server and stored in the database
@@ -41,7 +55,7 @@ def contact(request):
             message.success(request, 'Thank you for your message! We will get back to you as soon as possible.')
             return redirect('contact')
     else: 
-        form = CustomerForm()
+        form = CustomerForm(initial=_contact_initial(request.GET.get('requested_service')))
     return render(request, 'core/contact.html', {
         'form': form})
 

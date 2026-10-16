@@ -1,7 +1,11 @@
+# django-imagekit creates smaller copies of uploaded images,
+# so pages don't have to download the full-size originals.
 from django.db import models
 from django.utils.text import slugify
 from django.urls import reverse
 from django.core.exceptions import ValidationError
+from imagekit.models import ImageSpecField
+from imagekit.processors import ResizeToFill
 
 
 # Video for the Carousel
@@ -111,6 +115,18 @@ class Service(models.Model):
     order = models.PositiveIntegerField(default=0)
     slug = models.SlugField(unique=False, blank=True, null=True) #Safe for now
     is_active = models.BooleanField(default=True)
+
+    # A smaller, faster-loading version of `image` used on the service cards.
+    # - Not stored in the database, so no migration is needed.
+    # - Generated the first time it's requested and saved in media/CACHE/.
+    # - Cropped to 800x450 (16:9) to match the card's aspect ratio in CSS.
+    # - Format must be "JPEG" (not "JPG"), or Pillow raises a KeyError.
+    image_card = ImageSpecField(
+        source="image",
+        processors=[ResizeToFill(800, 450)],
+        format="JPEG",
+        options={"quality": 75},
+    )
 
     class Meta:
         ordering = ['order', 'name']

@@ -48,6 +48,9 @@ INSTALLED_APPS = [
 
     #Apps
     'core',
+
+    # Imagekit installed
+    "imagekit",
 ]
 
 MIDDLEWARE = [
