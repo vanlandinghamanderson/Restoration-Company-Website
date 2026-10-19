@@ -7,20 +7,83 @@
         <p class="page_text">Meet the StaDry Team!</p>
     </div>
 </section>
-<section class="page-section">
-    <div class="container">
-        <h2 class="section-title">Our Team</h2>
-        {% if restoration_team_members %}
-        <div class="team-grid">
-            {% for member in restoration_team_members %}
-            <div class="team-card">
-                <img class="team_member-pic" src="{{ member.image.url }}" alt="Profile Picture">
-                <h3>{{ member.team_member }}</h3>
-                <p>{{ member.occupation }}</p>
+
+<section>
+    <div class="container two-col">
+        <div class="two-main__col">
+            <div>
+                <h2 class="section-title" style="text-align: left;">Our Story</h2>
+                <p>At {{ restoration_site_setting.company_name }}, we're a trusted restoration contactor serving Wilson, Raleigh, Durham, Greenville, and other surrounding areas with integrity, professionalism, and quality craftmanship.</p>
+                <p>We specialize in water damage, fire damage, mold remediation restoration, and we also offer home remodeling. Our team is committed to building last relationships with local clients by delivering honest assessments, quality workmanship, and personalized service on every project. Contact us today to get started.</p>
+                <p>Need your roofing, siding, or painting done? Visit our roofing website & our siding and painting website.</p>
             </div>
-            {% endfor %}
+            <div>
+                <h2 class="section-title" style="text-align: left">Our Certifications</h2>
+                <ul class="certification-list">
+                    {% for certification in certifications %}
+                    <li><i class="bi bi-award-fill"></i>{{ certification.title }}</li>
+                    {% empty %}
+                    <p class="empty-state">No rewards are listed right now.</p>
+                    {% endfor %}
+                </ul>
+            </div>
         </div>
-        {% endif %}
     </div>
-</section>
+    <div class="container">
+        <h2 class="section-title" style="text-align: left;">Our Values</h2>
+        <div class="value-grid">
+            <div class="value-item">
+                <i class="bi bi-briefcase-fill"></i>
+                <h3>Professionalism</h3>
+                <p>Our crews are consistently courteous, competent, and on time. Because we know that every team member represents the entire business, we only hire the best roofers. Additionally, we keep in constant contact with you from the time you receive your initial estimate until the day we finish the job’s clean-up.</p>
+            </div>
+            <div class="value-item">
+                <i class="bi bi-patch-check-fill"></i>
+                <h3>Integrity</h3>
+                <p>Expressed, we still think that integrity is essential in business and life. Our roofing contractors strive to earn your trust by being open and two-way in our communication (we don’t just talk; we also take the time to listen to you), following through on our commitments, and standing by all of the services and promises we make.</p>
+            </div>
+            <div class="value-item">
+                <i class="bi bi-shield-fill-check"></i>
+                <h3>Honesty</h3>
+                <p>Sincerity is the cornerstone of any successful long-term business connection, so practice it everywhere. We will always be truthful in all of our interactions and communication. Never will we try to sell you something you don’t need or overbid a task.</p>
+            </div>
+        </div>
+    </div>
+    <section>
+        <div class="about-us">
+            <div class="container">
+                <h2 class="section-title">Meet Our Team</h2>
+                    <div class="team-grid">
+                        {% for team in teams %}
+                        <div class="team-card">
+                            <img src="{{ team.image.url }}" class="team_member-pic">
+                            <h3>{{ team.team_member }}</h3>
+                            <span>{{ team.occupation }}</span>
+                        </div>
+                        {% empty %}
+                        <p class="empty-state">No team member is available...</p>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+    </section>
+
+    {% if reviews %}
+    <section>
+        <div class="review">
+            <div class="container">
+                <h2 class="section-title">What People Are Saying?</h2>
+                <div class="review-grid">
+                {% for review in reviews %}
+                <article class="review-card">
+
+                </article>
+                {% empty %}
+                <p class="empty-state">No reviews available...</p>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+    {% endif %}
+
 {% endblock %}

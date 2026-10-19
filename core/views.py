@@ -26,10 +26,15 @@ def gallery(request):
 
 # About Us Page
 def about(request):
-    context = {
-        'restoration_team_members': Team.objects.all(),
-    }
-    return render(request, 'core/about.html', context)
+    certifications = Certification.objects.filter(is_active=True)
+    teams = Team.objects.filter(is_active=True)
+    reviews = Review.objects.filter(is_active=True)
+    return render(request, 'core/about.html', {
+        'certifications': certifications,
+        'teams': teams,
+        'reviews': reviews,
+    })
+                  
 
 def _contact_initial(slug):
     """Pre-fill the contact when arriving from a 'Request This Service' """

@@ -142,6 +142,7 @@ class Certification(models.Model):
     title = models.CharField(max_length=200, blank=True)
     caption = models.TextField(blank=True)
     description = models.TextField(blank=True)
+    is_active = models.BooleanField(default=False)
 
     class Meta:
         ordering = ['title']
@@ -172,6 +173,7 @@ class Review(models.Model):
     service_area = models.ForeignKey(ServiceArea, on_delete=models.SET_NULL, null=True, blank=True)
     service = models.ForeignKey(Service, on_delete=models.SET_NULL, null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
+    is_active = models.BooleanField(default=False)
 
     class Meta:
         ordering = ['-id']
@@ -186,6 +188,7 @@ class Team(models.Model):
     team_member = models.CharField(max_length=255, blank=True)
     occupation = models.CharField(max_length=200)
     order = models.PositiveIntegerField(default=0)
+    is_active = models.BooleanField(default=False)
 
     class Meta:
         ordering = ['order', 'team_member', 'occupation']

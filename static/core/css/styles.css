@@ -4,7 +4,9 @@
     --font-body: 'Inter', sans-serif;
     --color-accent: #008FFF;
     --color-accent-dark: #0089f2;
+    --color-surface: #f4f7fb;
     --color-line: #dde3ed;
+    --color-primary: rgb(20 46 73);
     --radius-md: 12px;
 }
 
@@ -496,33 +498,6 @@ section {
     color: teal;
 }
 
-.reasons_certfications {
-    display: flex;
-    flex-direction: column-reverse;
-    justify-content: center;
-    align-items: center;
-    gap: .5rem;
-}
-
-.certification {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 1rem;
-}
-
-.certification img {
-    width: 125px;
-    aspect-ratio: 1/1;
-    object-fit: contain;
-    filter: drop-shadow(0px 4px 8px rgba(0, 0, 0, 0.5));
-}
-
-.certification h4 {
-    text-align: center;
-}
-
 /* ----- REVIEW SECTION ----- */
 .reviews {
     background-color: #f8fafc;
@@ -693,6 +668,54 @@ section {
 
 /* ---------- ABOUT US SECTION ---------- */
 
+.certification-list {
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: .25rem;
+}
+
+.certification-list li {
+    display: flex;
+    align-items: center;
+    gap: .625rem;
+}
+
+.certification-list li i {
+    color: var(--color-accent);
+}
+/**/
+.value-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 1rem;
+}
+
+.value-item {
+    background-color: var(--color-surface);
+    padding: 1.5rem;
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-md);
+    display: flex;
+    gap: .25rem;
+    flex-direction: column;
+    align-items: center;
+}
+
+.value-item, i {
+    font-size: 1.5rem;
+    color: var(--color-primary);
+}
+
+.value-item p {
+    text-align: center;
+    font-size: medium;
+}
+
+.about-us {
+    margin-top: 2.5rem;
+}
 
 .team h2 {
     margin-bottom: 2rem;
@@ -706,15 +729,16 @@ section {
 }
 
 .team-card {
-    background-color: #fff;
-    border-radius: 12px;
+    background-color: var(--color-surface);
     padding: 32px 24px;
     text-align: center;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--color-line);
 }
 
 .team_member-pic {
-    width: 200px;
-    height: 200px;
+    width: 150px;
+    height: 150px;
     border-radius: 50%;
     object-fit: cover;
     object-position: center; 
@@ -724,11 +748,13 @@ section {
     margin-top: 1rem;
 }
 
-.team-card p {
-    text-transform: capitalize;
-    color: #008fff;
-    font-weight: 800;
+.team-card span {
+    text-transform: uppercase;
+    color: var(--color-accent);
     margin-top: 4px;
+    font-weight: 700;
+    font-size: 0.8rem;
+    margin-bottom: 1rem;
 }
 
 /* ---------- HOVER EFFECT FOR TEAM CARD ---------- */
