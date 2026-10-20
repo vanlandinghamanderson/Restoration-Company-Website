@@ -88,9 +88,9 @@
                      <div class="review-stars">
                         {% for i in "12345" %}{% if forloop.counter <= review.rating %}★{% else %}☆{% endif %} {% endfor %}
                     </div>
-                    <blockquote itemprop="reviewBody">{{ review.quote }}</blockquote>
+                    <blockquote itemprop="review-body">{{ review.quote }}</blockquote>
                     <footer>
-                        <strong itemprop="name">{{ review.name }}</strong>
+                        <strong itemprop="review-name">{{ review.name }}</strong>
                         {% if review.service_area %}
                         <span class="review-service_area">{{ review.service_area }}</span>
                         {% endif %}

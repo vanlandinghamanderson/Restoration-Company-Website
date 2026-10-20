@@ -9,12 +9,13 @@ from django.http import JsonResponse
 
 # Home Page
 def index(request):
-    context = {
-        'restoration_carousel_background' : CarouselBackground.objects.filter(is_active=True).order_by('order'),
-        'restoration_certifications': Certification.objects.all(),
-        'restoration_reviews' : Review.objects.all(),
-    }
-    return render(request, 'core/index.html', context)
+    restoration_carousel_background = CarouselBackground.objects.filter(is_active=True).order_by('order')
+    reviews = Review.objects.filter(is_active=True)
+    restoration_certifications = Certification.objects.filter(is_active=True)
+    return render(request, 'core/index.html', {
+        'restoration_carousel_background': restoration_carousel_background,
+        'reviews': reviews,
+        'restoration_certifications': restoration_certifications })
 
 # Gallery Page
 def gallery(request):

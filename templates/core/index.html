@@ -93,19 +93,27 @@
 <!----- Review Section ----->
 <section class="reviews">
     <div class="container">
-        <h2 class="section-title">What Did Our <span class="highlight">Customers</span> Say?</h2>
-        <div class="review-grid">
-        {% for review in restoration_reviews %}
-            <div class="review-card">
+        <span class="section-label">What Did Our Customers Say</span>
+        <h2 class="section-title">Trusted By Homeowners in North Carolina</h2>
+        <div class="review-grid">{% for review in reviews %}
+            <article class="review-card">
                 <div class="review-stars">
                     {% for i in "12345" %}{% if forloop.counter <= review.rating %}★{% else %}☆{% endif %} {% endfor %}
                 </div>
-                <p>{{ review.quote }}</p>
-                <p class="review-name">{{ review.name }}</p>
-                <p class="review-service">{{ review.service }}</p>
-                <p class="review-service_area">{{ review.service_area }}</p>
-            </div>
-        {% endfor %}
+                <blockquote itemprop="review-body">{{ review.quote }}</blockquote>
+                <footer>
+                    <strong itemprop="review-name">{{ review.name }}</strong>
+                    {% if review.service_area %}
+                    <span class="review-service_area">{{ review.service_area }}</span>
+                    {% endif %}
+                    {% if review.service %}
+                    <span class="review-service">{{ review.service }}</span>
+                    {% endif %}
+                </footer>
+            </article>
+            {% empty %}
+            <p class="empty-state">No reviews available...</p>
+            {% endfor %}
         </div>
     </div>
 </section>
