@@ -174,6 +174,42 @@
     </div>
 </section>
 
+<!----- Blog Posts Section ----->
+<section class="blog-posts-section">
+    <div class="container">
+        <span class="section-label">Resources</span>
+        <h2 class="section-title">Restoration Tips &amp; Guides</h2>
+        <div class="blog-grid">
+            {% for post in posts %}
+            <article class="blog-card">
+                <div class="blog-card__inner">
+                    {% if post.related_service %}
+                    <span class="blog-card_tag">{{ post.related_service }}</span>
+                    {% endif %}
+                    <h2 itemprop="blog-card_headline">
+                        <a href="{{ post.get_absolute_url }}">
+                            {{ post.title }}
+                        </a>
+                    </h2>
+                    <p item="blog-card_desc">{{ post.excerpt }}</p>
+                    <footer class="blog-card_meta">
+                        <span itemprop="author">{{ post.author }}</span>
+                        {% if post.published_at %}
+                        <time itemprop="datePublished" datetime="{{ post.published_at | date:'c'}}">{{ post.published_at|date:"M j, Y" }}</time>
+                        {% endif %}
+                    </footer>
+                </div>
+            </article>
+            {% empty %}
+            <p class="empty-state">No blog posts avaliable.</p>
+            {% endfor %}
+        </div>
+        <div class="section-cta">
+            <a href="{% url 'blog_list' %}" class="btn btn-secondary">View All Articles</a>
+        </div>
+    </div>
+</section>
+
 <!----- Call To Action Banner Section ----->
 <section class="cta-banner">
     <div class="container cta-banner_inner">
