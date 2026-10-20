@@ -143,6 +143,37 @@
     </div>
 </section>
 
+<!----- Gallery Section ----->
+<section class="gallery">
+    <div class="container">
+        <span class="section-label">Our Work</span>
+        <h2 class="section-title">Before &amp; After Gallery </h2>
+        <p class="section-subtitle">Real projects, real results. See what StaDry can do for your property.</p>
+        <div class="gallery-grid">
+            {% for project in projects %}
+            <div class="gallery-item" arial-label="{{ project.title }}">
+                {% if project.after_image %}
+                <img src="{{ project.after_image.url }}" alt="{{ project.after_alt_txt }}">
+                {% else %}
+                <p>After picture is not available at the moment.</p>
+                {% endif %}
+                <div class="gallery-item__overlay">
+                    <span>{{ project.title }}</span>
+                    {% if item.service %}
+                    <small>{{ item.service.name }}</small>
+                    {% endif %}
+                </div>
+            </div>
+            {% empty %}
+            <p class="empty-state">No projects not available right now, come back later.</p>
+            {% endfor %}
+        </div>
+        <div class="section-cta">
+            <a href="{% url 'gallery' %}" class="btn btn-secondary">View All Gallery</a>
+        </div>
+    </div>
+</section>
+
 <!----- Call To Action Banner Section ----->
 <section class="cta-banner">
     <div class="container cta-banner_inner">

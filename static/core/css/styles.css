@@ -7,6 +7,7 @@
     --color-surface: #f4f7fb;
     --color-line: #dde3ed;
     --color-primary: rgb(20 46 73);
+    --color-primary-dark: rgb(16, 36, 58);
     --radius-md: 12px;
 }
 
@@ -70,11 +71,25 @@ aside {
 
 .btn-primary {
     background-color: var(--color-accent);
-    color: white;
+    color: fff;
 }
 
 .btn-primary:hover {
     background: var(--color-accent-dark);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+    font-weight: bold;
+    text-shadow: 0 0 1px #ffffff;
+    transition: transform 1s ease-out;
+}
+
+.btn-secondary {
+    background: var(--color-primary);
+    color: #fff;
+}
+
+.btn-secondary:hover {
+    background-color: var(--color-primary-dark);
     transform: translateY(-1px);
     box-shadow: var(--shadow-md);
     font-weight: bold;

@@ -208,7 +208,8 @@ class Project(models.Model):
     caption = models.TextField(blank=True)
     description = models.TextField(blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
-
+    is_published = models.BooleanField(default=False)
+    
     class Meta:
         verbose_name_plural = "Projects"
 
