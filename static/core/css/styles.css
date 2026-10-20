@@ -12,11 +12,20 @@
 
 html {
     display: block;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 body {
     margin: 0;
     color: #0f172a;
     background: #f8fafc;
+    padding: 0;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
 }
 
 span, h1, h2, h3, h4 {
@@ -47,6 +56,11 @@ a, p {
 aside {
     display: block;
     unicode-bidi: isolate;
+}
+
+.btn--block {
+    width: 100%;
+    justify-content: center;
 }
 
 .btn--lg {
@@ -520,6 +534,12 @@ section {
     width: 40vh;
 }
 
+.review-card footer {
+    display: flex;
+    flex-direction: column;
+    gap: .25rem;
+}
+
 .review-stars {
     color: gold;
     font-size: 1.1rem;
@@ -984,6 +1004,10 @@ section {
     color: white;
 }
 
+.about-section {
+    margin-top: -5rem;
+}
+
 /* ---------- BLOG DETAIL PAGE ---------- */
 .blog-article_meta {
     display: flex;
@@ -998,25 +1022,26 @@ section {
     grid-template-columns: 1fr 340px;
 }
 
-.sidebar-cta {
-    border: 1px solid lightblue;
-    border-radius: 2rem;
-    padding: 1.75rem;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    text-align: center;
-    background-color: #262626;
-    color: white;
+.two-main__col p {
+    line-height: 2;
 }
 
-.sidebar-cta h1 {
+.sidebar-cta {
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-md);
+    padding: 1.75rem;
+    background-color: var(--color-surface);
+}
+
+.sidebar-cta h3 {
     font-weight: bolder;
+    margin-bottom: 1rem;
 }
 
 .sidebar-cta p {
     font-size: medium;
     margin: auto;
+    margin-bottom: 1.25rem;
 }
 
 .sidebar-cta_buttons {

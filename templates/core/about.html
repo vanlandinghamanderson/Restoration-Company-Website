@@ -28,30 +28,40 @@
                 </ul>
             </div>
         </div>
+        <aside class="two-col__sidebar">
+            <div class="sidebar-cta">
+                <h3>Ready to Work With Us?</h3>
+                <p>Contact us today for a free, no-pressure estimate.</p>
+                <a href="{% url 'contact' %}" class="btn btn-primary btn--block">Get A Free Quote</a>
+            </div>
+        </aside>
     </div>
-    <div class="container">
-        <h2 class="section-title" style="text-align: left;">Our Values</h2>
-        <div class="value-grid">
-            <div class="value-item">
-                <i class="bi bi-briefcase-fill"></i>
-                <h3>Professionalism</h3>
-                <p>Our crews are consistently courteous, competent, and on time. Because we know that every team member represents the entire business, we only hire the best roofers. Additionally, we keep in constant contact with you from the time you receive your initial estimate until the day we finish the job’s clean-up.</p>
-            </div>
-            <div class="value-item">
-                <i class="bi bi-patch-check-fill"></i>
-                <h3>Integrity</h3>
-                <p>Expressed, we still think that integrity is essential in business and life. Our roofing contractors strive to earn your trust by being open and two-way in our communication (we don’t just talk; we also take the time to listen to you), following through on our commitments, and standing by all of the services and promises we make.</p>
-            </div>
-            <div class="value-item">
-                <i class="bi bi-shield-fill-check"></i>
-                <h3>Honesty</h3>
-                <p>Sincerity is the cornerstone of any successful long-term business connection, so practice it everywhere. We will always be truthful in all of our interactions and communication. Never will we try to sell you something you don’t need or overbid a task.</p>
+</section>
+    <section>
+        <div class="container about-section">
+            <h2 class="section-title">Our Values</h2>
+            <div class="value-grid">
+                <div class="value-item">
+                    <i class="bi bi-briefcase-fill"></i>
+                    <h3>Professionalism</h3>
+                    <p>We hire only the best professionals: courteous, skilled, and punctual. We keep you updated from estimated clean-up.</p>
+                </div>
+                <div class="value-item">
+                    <i class="bi bi-patch-check-fill"></i>
+                    <h3>Integrity</h3>
+                    <p>Integrity guides everything we do. Keep our word, we listen, and we stand behind our work.</p>
+                </div>
+                <div class="value-item">
+                    <i class="bi bi-shield-fill-check"></i>
+                    <h3>Honesty</h3>
+                    <p>We're honest with you, always. You'll get straight answers, no uneccessary work, and no inflated quotes.</p>
+                </div>
             </div>
         </div>
-    </div>
+    </section>
     <section>
         <div class="about-us">
-            <div class="container">
+            <div class="container about-section">
                 <h2 class="section-title">Meet Our Team</h2>
                     <div class="team-grid">
                         {% for team in teams %}
@@ -68,15 +78,26 @@
             </div>
     </section>
 
-    {% if reviews %}
     <section>
         <div class="review">
-            <div class="container">
+            <div class="container about-section">
                 <h2 class="section-title">What People Are Saying?</h2>
                 <div class="review-grid">
                 {% for review in reviews %}
-                <article class="review-card">
-
+                <article class="review-card" itemscope itemtype="https://schema.org/Review">
+                     <div class="review-stars">
+                        {% for i in "12345" %}{% if forloop.counter <= review.rating %}★{% else %}☆{% endif %} {% endfor %}
+                    </div>
+                    <blockquote itemprop="reviewBody">{{ review.quote }}</blockquote>
+                    <footer>
+                        <strong itemprop="name">{{ review.name }}</strong>
+                        {% if review.service_area %}
+                        <span class="review-service_area">{{ review.service_area }}</span>
+                        {% endif %}
+                        {% if review.service %}
+                        <span class="review-service">{{ review.service }}</span>
+                        {% endif %}
+                    </footer>
                 </article>
                 {% empty %}
                 <p class="empty-state">No reviews available...</p>
@@ -84,6 +105,5 @@
             </div>
         </div>
     </section>
-    {% endif %}
 
 {% endblock %}
