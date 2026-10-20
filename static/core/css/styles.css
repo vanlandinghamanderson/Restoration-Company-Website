@@ -574,7 +574,7 @@ section {
 }
 
 .circle-step {
-    background-color: #0f172a;
+    background-color: var(--color-primary);
     width: 4rem;
     height: 4rem;
     color: white;
@@ -588,6 +588,7 @@ section {
     font-weight: 600;
     font-size: 1.25rem;
     margin-bottom: 1rem;
+    box-shadow: var(--shadow-md);
 }
 
 .step-title {
