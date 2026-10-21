@@ -33,7 +33,7 @@ html, body {
     margin: 0;
 }
 
-span, h1, h2, h3, h4 {
+a, span, h1, h2, h3, h4 {
     font-family: var(--font-heading);
     font-weight: 700;
 }
@@ -79,13 +79,14 @@ aside {
     color: fff;
 }
 
-.btn-primary:hover {
-    background: var(--color-accent-dark);
-    transform: translateY(-1px);
-    box-shadow: var(--shadow-md);
-    font-weight: bold;
-    text-shadow: 0 0 1px #ffffff;
-    transition: transform 1s ease-out;
+.btn-white {
+    background: #fff;
+    color: var(--color-primary);
+    font-weight: 700;
+}
+
+.btn-white:hover {
+    background: var(--color-surface);
 }
 
 .btn-secondary {
@@ -638,6 +639,12 @@ section {
     gap: 2rem;
 }
 
+.cta-banner__actions {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
 .cta-banner h2 {
     color: white;
     text-align: left;
@@ -1059,6 +1066,8 @@ section {
     padding: 1.75rem;
     background-color: var(--color-surface);
 }
+
+
 
 .sidebar-cta_contact {
     display: flex;

@@ -213,21 +213,14 @@
 
 <!----- Call To Action Banner Section ----->
 <section class="cta-banner">
-    <div class="container cta-banner_inner">
+    <div class="container cta-banner__inner">
         <div>
             <h2 class="section-title">Connect with StaDry!</h2>
             <p class="section-subtitle">We know property damage is stressful. Let us take care of the restoration so you can focus on what matters. Free assessment, no obligation.</p>
         </div>
-        
-        <div class="cta-buttons">
-            <div class="btn cta-phone">
-                <span><i class="bi bi-telephone-fill"></i></span>
-                <a href="tel:{{ restoration_site_setting.phone_number }}">Call Us</a>
-            </div>
-            <div class="btn cta-contact">
-                <span><i class="bi bi-envelope-fill"></i></span>
-                <a href="{% url 'contact' %}">Contact Us</a>
-            </div>
+        <div class="cta-banner__actions">
+            <a href="{% url 'contact' %}" class="btn btn-primary btn--lg">Request a Free Estimate</a>
+            <a href="tel:{{ restoration_site_setting.phone_number }}" class="btn btn-white btn--lg">{{ restoration_site_setting.phone_number }}</a>
         </div>
     </div>
 </section>
