@@ -24,11 +24,11 @@ def index(request):
 
 # Gallery Page
 def gallery(request):
-    context = {
-        'restoration_projects' : Project.objects.all(),
-        'active_service': False,
-    }
-    return render(request, 'core/gallery.html', context)
+    projects = Project.objects.filter(is_published=True)
+    return render(request, 'core/gallery.html', {
+        'projects':projects,
+        'active_service':False,
+    })
 
 # About Us Page
 def about(request):

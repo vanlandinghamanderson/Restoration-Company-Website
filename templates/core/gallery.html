@@ -10,8 +10,6 @@
 
 <section>
     <div class="container">
-        <h2 class="section-title">Our Restoration Projects</h2>
-
         <!---------- Filter Bar ---------->
         <nav class="filter-bar" aria-label="Filter gallery by service">
             <a href="{% url 'gallery' %}" 
@@ -30,7 +28,7 @@
 
         <!---------- Displays the before/after pictures ---------->
         <div class="gallery-grid" id="gallery-container">
-            {% for project in restoration_projects %}
+            {% for project in projects %}
             <div class="gallery-item gallery-item--before-after" aria-label="{{ project.title }}">
                 <div class="before-after">
                     {% if project.before_image %}
@@ -66,10 +64,20 @@
                 </div>
             </div>
             {% empty %}
-            <p class="empty-state">Gallery photos coming soon...<a href="{% url 'core:contact' %}"></a></p>
+            <p class="empty-state">Gallery photos coming soon...<a href="{% url 'contact' %}"></a></p>
             {% endfor %}
         </div>
     </div>
+</section>
+<section class="cta-banner">
+    <div class="container cta-banner__inner">
+        <div>
+            <h2>Want Results Like These Pictures?</h2>
+            <p>Contact StaDry today for an free estimate for your property damage.</p>
+        </div>
+        <a href="{% url 'contact' %}" class="btn btn-primary btn--lg">Request an Estimate</a>
+    </div>
+
 </section>
 
 {% endblock %}

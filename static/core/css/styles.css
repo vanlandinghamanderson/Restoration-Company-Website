@@ -35,6 +35,7 @@ html, body {
 
 span, h1, h2, h3, h4 {
     font-family: var(--font-heading);
+    font-weight: 700;
 }
 
 h3 {
@@ -626,11 +627,11 @@ section {
 
 /* ----- CALL TO ACTION BANNER ----- */
 .cta-banner {
-    background: rgba(26, 58, 92, 1);
+    background: var(--color-primary);
     padding: 3rem 0;
 }
 
-.cta-banner_inner {
+.cta-banner__inner {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -700,7 +701,7 @@ section {
 
 /**/
 .page-hero {
-    background-color: #1b538e;
+    background-color: var(--color-primary);
     color: white;
     padding: 150px 0 60px;
     text-align: center;
