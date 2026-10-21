@@ -5,10 +5,13 @@
     --color-accent: #008FFF;
     --color-accent-dark: #0089f2;
     --color-surface: #f4f7fb;
+    --color-muted: #5a6272;
     --color-line: #dde3ed;
     --color-primary: rgb(20 46 73);
     --color-primary-dark: rgb(16, 36, 58);
+
     --radius-md: 12px;
+    --radius-sm: 6px;
 }
 
 html {
@@ -954,29 +957,25 @@ section {
     display: flex;
     gap: .5rem;
     flex-wrap: wrap;
-    margin-bottom: 2rem;
     margin-top: 2rem;
-    justify-content: center;
+    margin-bottom: 2rem;
 }
 
 .filter-button {
-    background-color: rgb(203, 203, 203);
-    border: gray 2px solid;
-    padding: .45rem 1rem;
-    border-radius: 1rem;
-    font-size: 1rem;
-    font-weight: 600;
-    cursor: pointer;
+   padding: .45rem 1rem;
+   border-radius: var(--radius-md);
+   border: 2px solid var(--color-line);
+   font-size: .88rem;
+   font-weight: 600;
+   background: #fff;
+   cursor: pointer;
+   align-items: center;
 }
 
 .filter-button:hover, .filter-button.active {
-    transform: scale(1.05);
-    padding: .45rem 1rem;
-    border-radius: 1rem;
-    font-size: 1rem;
-    font-weight: 600;
-    cursor: pointer;
-    background-color: rgb(9 22 36);
+    background: var(--color-primary);
+    color: #fff;
+    border-color: var(--color-primary);
 }
 
 /* ---------- BLOG LIST PAGE ---------- */
