@@ -15,7 +15,7 @@
                 <img src="{{ service.image_card.url }}" alt="{{ service.name }}" class="service-card__image" loading="lazy" width="800" height="450">
                 <h3>{{ service.name }}</h3>
                 <p>{{ service.short_description }}</p>
-                <a href="{% url 'contact' %}?=service{{ service.slug }}" class="btn btn-primary">Request This Service</a>
+                <a href="{% url 'contact' %}?requested_service={{ service.slug }}" class="btn btn-primary" aria-label="Request {{ service.name }}">Request This Service</a>
             </article>
             {% empty %}
             <p class="empty-state">Services will be available soon...</p>

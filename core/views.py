@@ -50,7 +50,7 @@ def _contact_initial(slug):
     if not service:
         return {}
     return {
-        'service': service,
+        'requested_service': service,
         'message': f"I'd like to request {service.name} service."
     }
 
