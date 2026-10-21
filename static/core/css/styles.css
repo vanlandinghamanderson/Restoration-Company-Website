@@ -22,6 +22,7 @@ body {
     color: #0f172a;
     background: #f8fafc;
     padding: 0;
+    line-height: 1.65;
 }
 
 html, body {
@@ -706,6 +707,12 @@ section {
     font-weight: 700;
 }
 
+.page-hero_icon i {
+    font-size: 3rem;
+    color: var(--color-accent);
+    margin-bottom: 1rem;
+}
+
 /* ---------- ABOUT US SECTION ---------- */
 
 .certification-list {
@@ -1051,6 +1058,12 @@ section {
     border-radius: var(--radius-md);
     padding: 1.75rem;
     background-color: var(--color-surface);
+}
+
+.sidebar-cta_contact {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
 }
 
 .sidebar-cta h3 {

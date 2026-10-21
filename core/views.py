@@ -19,7 +19,8 @@ def index(request):
         'reviews': reviews,
         'restoration_certifications': restoration_certifications,
         'projects': projects,
-        'posts': posts })
+        'posts': posts, 
+    })
 
 # Gallery Page
 def gallery(request):
@@ -83,10 +84,16 @@ def contact_api(request):
 
 # Our Services Page
 def service_list(request):
-    context = {
-        'restoration_services': Service.objects.all(),
-    }
-    return render(request, 'core/services.html', context)
+    services = Service.objects.filter(is_active=True)
+    return render(request, 'core/service_list.html', {
+        'services': services,
+    })
+
+def service_detail(request, slug):
+    service = get_object_or_404(Service, slug=slug, is_active=True)
+    return render(request, 'core/service_detail.html', {
+        'service':service,
+    })
 
 # Blog List Page
 def blog_list(request):

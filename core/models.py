@@ -115,6 +115,8 @@ class Service(models.Model):
     order = models.PositiveIntegerField(default=0)
     slug = models.SlugField(unique=False, blank=True, null=True) #Safe for now
     is_active = models.BooleanField(default=True)
+    description = models.TextField()
+    icon = models.CharField(max_length=100, default='wrench', help_text='Bootstrap icon')
 
     # A smaller, faster-loading version of `image` used on the service cards.
     # - Not stored in the database, so no migration is needed.
@@ -134,6 +136,9 @@ class Service(models.Model):
 
     def __str__(self):
         return self.name
+
+    def get_absolute_url(self):
+        return reverse('service_detail', kwargs={'slug': self.slug})
 
 # Certification model for this company earned
 class Certification(models.Model):

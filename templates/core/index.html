@@ -56,7 +56,7 @@
                 <img src="{{ service.image_card.url }}" alt="{{ service.name }}" class="service-card__image" loading="lazy" width="800" height="450">
                 <h3>{{ service.name }}</h3>
                 <p>{{ service.short_description }}</p>
-                <a href="#" class="btn btn--outline service-card_btn">Read More</a>
+                <a href="{{ service.get_absolute_url }}" class="btn btn--outline service-card_btn">Read More</a>
             </article>
             {% empty %}
             <p class="empty-state">Services coming soon.</p>
