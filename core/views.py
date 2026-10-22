@@ -98,8 +98,10 @@ def service_list(request):
 
 def service_detail(request, slug):
     service = get_object_or_404(Service, slug=slug, is_active=True)
+    projects = Project.objects.filter(service=service)
     return render(request, 'core/service_detail.html', {
-        'service':service,
+        'service': service,
+        'projects': projects,
     })
 
 # Blog List Page

@@ -923,6 +923,10 @@ section {
     justify-content: center;
 }
 
+.gallery-grid--sm {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); 
+}
+
 .gallery-item {
     position: relative;
     border-radius: var(--radius-lg);

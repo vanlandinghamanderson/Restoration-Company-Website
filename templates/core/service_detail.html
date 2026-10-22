@@ -27,6 +27,21 @@
                 <p class="empty-state">Description for this service is not available at the moment.</p>
                 {% endif %}
             </div>
+
+            {% if projects %}
+            <h2>Our Projects for {{ service.name }}</h2>
+            <div class="gallery-grid gallery-grid--sm">
+                {% for project in projects %}
+                <div class="gallery-item">
+                    {% if project.after_image %}
+                    <img src="{{ project.after_image.url }}" alt="{{ project.after_alt_txt }}" loading="lazy" width="300" height="220">
+                    {% endif %}
+                    <div class="gallery-item__overlay"><span>{{ project.title }}</span></div>
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+
         </main>
         <aside class="two-col_sidebar">
             <div class="sidebar-cta">
