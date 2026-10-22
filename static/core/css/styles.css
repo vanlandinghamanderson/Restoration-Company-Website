@@ -168,6 +168,13 @@ aside {
     gap: 12px;
 }
 
+.nav-social i {
+    color: white;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+}
+
 .social-link {
     height: 34px;
     width: 34px;
