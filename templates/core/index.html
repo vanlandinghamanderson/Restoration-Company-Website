@@ -19,14 +19,10 @@
         <h1>Professional Restoration You Can <span class="highlight">Trust.</span></h1>
         <p class="hero-subtitle">Keeping Wilson & Surrounding Areas Dry Since 2009.</p>
         <div class="hero-buttons">
-            <div class="btn contact_button">
-                <span><i class="bi bi-envelope-fill"></i></span>
-                <a href="{% url 'contact' %}">Contact Us</a>
-            </div>
-            <div class="btn call_button">
-                <span><i class="bi bi-telephone-fill"></i></span>
-                <a href="tel:{{ restoration_site_setting.phone_number }}">Call Us</a>
-            </div>
+            <a href="{% url 'contact' %}" class="btn btn-primary btn--lg">Get a Free Quote</a>
+            <a href="tel:{{ restoration_site_setting.phone_number }}" class="btn btn-secondary btn--lg">
+                <i class="bi bi-telephone-fill"></i>Call Now
+            </a>
         </div>
         <div class="hero-trust">
             <span><i class="bi bi-award"></i>2022 Reader's Choice</span>

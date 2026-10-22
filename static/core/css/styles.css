@@ -257,6 +257,17 @@ aside {
     flex-wrap: wrap;
 }
 
+.hero-buttons a {
+    display: flex;
+    align-items: center;
+    gap: 1rem
+}
+
+.hero-buttons i {
+    color: #fff;
+    font-size: 1rem;
+}
+
 .btn {
     padding: 10px 20px;
 }
@@ -325,6 +336,7 @@ aside {
 
 .hero-trust i {
     margin-right: .3rem;
+    color: white;
 }
 
 .hero-caption {
