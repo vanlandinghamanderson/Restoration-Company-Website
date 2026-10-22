@@ -13,7 +13,7 @@ def index(request):
     reviews = Review.objects.filter(is_active=True)
     restoration_certifications = Certification.objects.filter(is_active=True)
     projects = Project.objects.filter(is_published=True)[:3] #Slices 3
-    posts = Post.objects.filter(is_published=True)[:4] #Slices 4
+    posts = Post.objects.filter(is_published=True)[:3] #Slices 3
     return render(request, 'core/index.html', {
         'restoration_carousel_background': restoration_carousel_background,
         'reviews': reviews,
@@ -24,10 +24,17 @@ def index(request):
 
 # Gallery Page
 def gallery(request):
+    service_filter = request.GET.get('service')
     projects = Project.objects.filter(is_published=True)
+    services = Service.objects.filter(is_active=True)
+    active_service = None
+    if service_filter:
+        projects = projects.filter(service__slug=service_filter)
+        active_service = service_filter
     return render(request, 'core/gallery.html', {
         'projects':projects,
-        'active_service':False,
+        'services': services,
+        'active_service':active_service,
     })
 
 # About Us Page

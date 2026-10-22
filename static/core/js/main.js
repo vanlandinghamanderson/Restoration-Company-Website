@@ -97,7 +97,7 @@ function galleryFilter() {
     bar.addEventListener("click", function(e) {
 
         /* Figures out which button was clicked */
-        const btn = e.target.closet(".filter-button");
+        const btn = e.target.closest(".filter-button");
         if (!btn) return;
 
         /* Respect modifier clicks */

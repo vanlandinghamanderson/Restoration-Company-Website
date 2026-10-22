@@ -92,6 +92,7 @@
 </section>
 
 <!----- Review Section ----->
+
 <section class="reviews">
     <div class="container">
         <span class="section-label">What Did Our Customers Say</span>
@@ -145,6 +146,8 @@
 </section>
 
 <!----- Gallery Section ----->
+
+{% if projects %}
 <section class="gallery">
     <div class="container">
         <span class="section-label">Our Work</span>
@@ -154,19 +157,11 @@
             {% for project in projects %}
             <div class="gallery-item" arial-label="{{ project.title }}">
                 {% if project.after_image %}
-                <img src="{{ project.after_image.url }}" alt="{{ project.after_alt_txt }}">
+                <img src="{{ project.after_image.url }}" alt="{{ project.after_alt_txt }}" loading="lazy" height="400" width="300">
                 {% else %}
                 <p>After picture is not available at the moment.</p>
                 {% endif %}
-                <div class="gallery-item__overlay">
-                    <span>{{ project.title }}</span>
-                    {% if item.service %}
-                    <small>{{ item.service.name }}</small>
-                    {% endif %}
-                </div>
             </div>
-            {% empty %}
-            <p class="empty-state">No projects not available right now, come back later.</p>
             {% endfor %}
         </div>
         <div class="section-cta">
@@ -174,6 +169,7 @@
         </div>
     </div>
 </section>
+{% endif %}
 
 <!----- Blog Posts Section ----->
 <section class="blog-posts-section">

@@ -18,7 +18,7 @@
                aria-pressed="{% if not active_service %}true{% else %}false{% endif %}">All</a>
             {% for service in restoration_services %}
             <a href="{% url 'gallery' %}?service={{ service.slug }}"
-                class="filter-button{% if active_service == service.slug %}active{% endif %}"
+                class="filter-button{% if active_service == service.slug %} active {% endif %}"
                 data-service="{{ service.slug }}"
                 aria-current="{% if active_service == service.slug %}true{% else %}false{% endif %}">
                 {{ service.name }}
@@ -29,38 +29,28 @@
         <!---------- Displays the before/after pictures ---------->
         <div class="gallery-grid" id="gallery-container">
             {% for project in projects %}
-            <div class="gallery-item gallery-item--before-after" aria-label="{{ project.title }}">
+            <div class="gallery-item gallery-item--before-after" aria-label="{{ project.title }}" data-service="{{ project.service.slug|default:'' }}">
                 <div class="before-after">
                     {% if project.before_image %}
-                    <div class="before-after-panel">
-                        <img src="{{ project.before_image.url }}" alt="{{ project.title }} -- Before Restoration">
-                        <span class="before-after-title">Before</span>
+                    <div class="before-after__panel">
+                        <img src="{{ project.before_image.url }}" alt="{{ project.before_alt_text }}" loading="lazy" width="400" height="300">
+                        <span class="before-after__title">Before</span>
                     </div>
                     {% endif %}
                     {% if project.after_image %}
-                    <div class="before-after-panel">
-                        <img src="{{ project.after_image.url }}" alt="{{ project.title }} -- After Restoration">
-                        <span class="before-after-title">After</span>
+                    <div class="before-after__panel">
+                        <img src="{{ project.after_image.url }}" alt="{{ project.after_alt_text }}" loading="lazy" width="400" height="300">
+                        <span class="before-after__title before-after__title--after">After</span>
                     </div>
                     {% endif %}
                     {% if not project.before_image and not project.after_image %}
                     <div class="gallery-placeholder" aria-hidden="true"><i class="bi bi-image"></i></div>
                     {% endif %}
                 </div>
-                <div class="gallery-caption sr-only">
+                <div class="gallery-item__caption visually-hidden">
                     <strong>{{ project.title }}</strong>
-                        {% if project.alt_text %}
-                        <p>{{ project.alt_text }}</p>
-                        {% endif %}
-                        {% if project.caption %}
-                        <p>{{ project.caption }}</p>
-                        {% endif %}
-                        {% if project.description %}
-                        <p>{{ project.description }}</p>
-                        {% endif %}
-                        {% if project.service %}
-                        <span>{{ project.service.name }}</span>
-                        {% endif %}
+                    {% if project.service %}<span>{{ project.service.name }}</span>{% endif %}
+                    {% if project.description %}<p>{{ project.description }}</p>{% endif %}
                 </div>
             </div>
             {% empty %}
