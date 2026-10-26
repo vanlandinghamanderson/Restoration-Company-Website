@@ -48,7 +48,7 @@
                 <h3>Get a Free Estimate</h3>
                 <p>Experiencing {{ service.name }}? Our StaDry team is ready to help.</p>
                 <div class="sidebar-cta_contact">
-                    <a href="{% url 'contact' %}?requested_service={{ service.slug }}" class="btn btn-primary btn--block">Request an Estimate</a>
+                    <a href="{% url 'contact' %}?requested_service={{ service.slug }}" class="btn btn--primary btn--block">Request an Estimate</a>
                     <a href="tel:{{ restoration_site_setting.phone_number }}" class="btn btn--outline btn--block">{{ restoration_site_setting.phone_number }}</a>
                 </div>
             </div>
