@@ -33,8 +33,8 @@
             <div class="gallery-grid gallery-grid--sm">
                 {% for project in projects %}
                 <div class="gallery-item">
-                    {% if project.after_image %}
-                    <img src="{{ project.after_image.url }}" alt="{{ project.after_alt_txt }}" loading="lazy" width="300" height="220">
+                    {% if project.image %}
+                    <img src="{{ project.image.url }}" alt="{{ project.alt_txt }}" loading="lazy" width="300" height="220">
                     {% endif %}
                     <div class="gallery-item__overlay"><span>{{ project.title }}</span></div>
                 </div>

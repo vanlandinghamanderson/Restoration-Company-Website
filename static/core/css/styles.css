@@ -965,45 +965,26 @@ section {
     aspect-ratio: 4 / 3;
 }
 
-.gallery-item--before-after {
+.gallery-item {
     aspect-ratio: unset; /*?*/
 }
 
-.before-after {
+.gallery {
     display: grid;
-    grid-template-columns: 1fr 1fr;
     height: auto;
 }
 
-.before-after__panel {
+.gallery__panel {
     position: relative;
     overflow: hidden;
     aspect-ratio: 4 / 3;
 }
 
-.before-after__panel img {
+.gallery__panel img {
     display: block;
     width: 100%;
     height: 100%;
     object-fit: cover;
-}
-
-.before-after__title {
-    position: absolute;
-    top: .5rem;
-    left: .5rem;
-    background: var(--color-danger);
-    color: #fff;
-    font-weight: 700;
-    font-size: .75rem;
-    padding: .125rem .5rem;
-    border-radius: var(--radius-sm);
-    text-transform: uppercase;
-    letter-spacing: .05rem;
-}
-
-.before-after__title--after {
-    background: var(--color-success);
 }
 
 .filter-bar {

@@ -206,10 +206,8 @@ class Team(models.Model):
 class Project(models.Model):
     service = models.ForeignKey(Service, on_delete=models.SET_NULL, null=True, blank=True)
     title = models.CharField(max_length=200, blank=True)
-    before_image = models.ImageField(upload_to='restoration_projects/before/')
-    before_alt_text = models.CharField(max_length=250, blank=True)
-    after_image = models.ImageField(upload_to='restoration_projects/after/')
-    after_alt_txt = models.CharField(max_length=250, blank=True)
+    image = models.ImageField(upload_to='projects/')
+    alt_text = models.CharField(max_length=250, blank=True)
     caption = models.TextField(blank=True)
     description = models.TextField(blank=True)
     created_at = models.DateTimeField(auto_now_add=True)

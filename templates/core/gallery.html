@@ -30,20 +30,13 @@
         <div class="gallery-grid" id="gallery-container">
             {% for project in projects %}
             <div class="gallery-item gallery-item--before-after" aria-label="{{ project.title }}" data-service="{{ project.service.slug|default:'' }}">
-                <div class="before-after">
-                    {% if project.before_image %}
-                    <div class="before-after__panel">
-                        <img src="{{ project.before_image.url }}" alt="{{ project.before_alt_text }}" loading="lazy" width="400" height="300">
-                        <span class="before-after__title">Before</span>
+                <div class="gallery">
+                    {% if project.image %}
+                    <div class="gallery__panel">
+                        <img src="{{ project.image.url }}" alt="{{ project.alt_text }}" loading="lazy" width="400" height="300">
                     </div>
                     {% endif %}
-                    {% if project.after_image %}
-                    <div class="before-after__panel">
-                        <img src="{{ project.after_image.url }}" alt="{{ project.after_alt_text }}" loading="lazy" width="400" height="300">
-                        <span class="before-after__title before-after__title--after">After</span>
-                    </div>
-                    {% endif %}
-                    {% if not project.before_image and not project.after_image %}
+                    {% if not project.image %}
                     <div class="gallery-placeholder" aria-hidden="true"><i class="bi bi-image"></i></div>
                     {% endif %}
                 </div>

@@ -152,10 +152,10 @@
         <div class="gallery-grid">
             {% for project in projects %}
             <div class="gallery-item" arial-label="{{ project.title }}">
-                {% if project.after_image %}
-                <img src="{{ project.after_image.url }}" alt="{{ project.after_alt_txt }}" loading="lazy" height="400" width="300">
+                {% if project.image %}
+                <img src="{{ project.image.url }}" alt="{{ project.alt_txt }}" loading="lazy" height="400" width="300">
                 {% else %}
-                <p>After picture is not available at the moment.</p>
+                <p>Picture is not available at the moment.</p>
                 {% endif %}
             </div>
             {% endfor %}
