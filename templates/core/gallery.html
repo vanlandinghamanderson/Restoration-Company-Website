@@ -29,27 +29,22 @@
         <!---------- Displays the before/after pictures ---------->
         <div class="gallery-grid" id="gallery-container">
             {% for project in projects %}
-            <div class="gallery-item gallery-item--before-after" aria-label="{{ project.title }}" data-service="{{ project.service.slug|default:'' }}">
-                <div class="gallery">
-                    {% if project.image %}
-                    <div class="gallery__panel">
-                        <img src="{{ project.image.url }}" alt="{{ project.alt_text }}" loading="lazy" width="400" height="300">
-                    </div>
-                    {% endif %}
-                    {% if not project.image %}
-                    <div class="gallery-placeholder" aria-hidden="true"><i class="bi bi-image"></i></div>
-                    {% endif %}
-                </div>
+            <div class="gallery-item" aria-label="{{ project.title }}" data-service="{{ project.service.slug|default:'' }}">
+                {% if project.image %}
+                <img src="{{ project.image.url }}" alt="{{ project.alt_text }}" loading="lazy" width="400" height="300">
+                {% else %}
+                <div class="gallery-placeholder" aria-hidden="true"><i class="bi bi-image"></i></div>
+                {% endif %}
                 <div class="gallery-item__caption visually-hidden">
                     <strong>{{ project.title }}</strong>
                     {% if project.service %}<span>{{ project.service.name }}</span>{% endif %}
                     {% if project.description %}<p>{{ project.description }}</p>{% endif %}
                 </div>
-            </div>
-            {% empty %}
-            <p class="empty-state">Gallery photos coming soon...<a href="{% url 'contact' %}"></a></p>
-            {% endfor %}
+            </div>  
         </div>
+        {% empty %}
+        <p class="empty-state">Gallery photos coming soon...<a href="{% url 'contact' %}"></a></p>
+        {% endfor %}
     </div>
 </section>
 <section class="cta-banner">

@@ -960,7 +960,7 @@ section {
 
 .gallery-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 260px), 1fr));
     gap: 1.5rem;
 }
 
@@ -978,35 +978,16 @@ section {
     border-radius: var(--radius-lg);
     overflow: hidden;
     background: var(--color-surface);
-}
-
-.gallery-item img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.gallery .gallery-item img {
-    display: block;
-    height: auto;
-    aspect-ratio: 4 / 3;
-}
-
-.gallery-item {
-    aspect-ratio: unset; /*?*/
-}
-
-.gallery {
-    display: grid;
-    height: auto;
+    aspect-ratio: 4/3;
 }
 
 .gallery__panel {
     position: relative;
-    overflow: hidden;
-    aspect-ratio: 4 / 3;
+    width: 100%;
+    height: 100%;
 }
 
+.gallery-item > img,
 .gallery__panel img {
     display: block;
     width: 100%;

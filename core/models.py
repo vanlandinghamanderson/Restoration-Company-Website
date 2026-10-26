@@ -7,7 +7,6 @@ from django.core.exceptions import ValidationError
 from imagekit.models import ImageSpecField
 from imagekit.processors import ResizeToFill
 
-
 # Video for the Carousel
 class CarouselBackground(models.Model):
     title = models.CharField(max_length=100)
