@@ -5,6 +5,7 @@
     --color-accent: #008FFF;
     --color-accent-dark: #0089f2;
     --color-danger: #c0392b;
+    --color-ink: #091624;
     --color-success: #2d8a4e;
     --color-surface: #f4f7fb;
     --color-muted: #5a6272;
@@ -874,16 +875,32 @@ section {
 
 /* ---------- FOOTER SECTION ---------- */
 .site-footer {
-    background-color: rgb(9 22 36);
-    color: white;
-    padding: 4rem 0;
+    background: var(--color-ink);
+    color: #fff;
+    padding-top: 4rem;
+}
+
+.footer-contact address {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+    margin-bottom: 1.25rem;
+}
+
+.footer-contact address i {
+    color: #fff;
+    font-size: 1rem;
+}
+
+.footer-contact address a {
+    color: #fff;
 }
 
 .footer_grid {
     display: grid;
     grid-template-columns: 2fr 1fr 1fr 1fr 2fr;
     gap: 2rem;
-    padding-bottom: 4rem;
+    padding-bottom: 3rem;
 }
 
 .footer-logo {

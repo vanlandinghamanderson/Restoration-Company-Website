@@ -98,24 +98,22 @@
                 <address>
                     {% if restoration_site_setting.phone_number %}
                         <p class="footer-phone">
-                            <i class="bi bi-telephone"></i>
+                            <i class="bi bi-telephone-fill"></i>
                             <a href="tel:{{ restoration_site_setting.phone_number }}">{{ restoration_site_setting.phone_number }}</a>
                         </p>
                     {% endif %}
                     {% if restoration_site_setting.email %}
                         <p class="footer-email">
-                            <i class="bi bi-envelope"></i>
+                            <i class="bi bi-envelope-fill"></i>
                             <a href="mailto:{{ restoration_site_setting.email }}">{{ restoration_site_setting.email }}</a>
                         </p>
                     {% endif %}
                     {% if restoration_site_setting.address %}
                         <p class="footer-address">
-                            <i class="bi bi-geo-alt"></i>
-                            {{ restoration_site_setting.address }}
+                            <i class="bi bi-geo-alt-fill"></i>
+                            <p>{{ restoration_site_setting.address }}</p>
                             {% if restoration_site_setting.city and restoration_site_setting.state and restoration_site_setting.zip_code %}
-                            </p>
-                            <p class="footer_city_to_zip">{{ restoration_site_setting.city }}, {{ restoration_site_setting.state }} {{ restoration_site_setting.zip_code }}</p>
-                            </p>
+                            <p>{{ restoration_site_setting.city }}, {{ restoration_site_setting.state }} {{ restoration_site_setting.zip_code }}</p>
                         {% endif %}
                         </p>
                     {% endif %}
