@@ -80,7 +80,7 @@ aside {
 
 .btn-primary {
     background-color: var(--color-accent);
-    color: fff;
+    color: #fff;
 }
 
 .btn-white {
@@ -659,7 +659,7 @@ section {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 2rem;
+    gap: 1rem;
 }
 
 .cta-banner__actions {

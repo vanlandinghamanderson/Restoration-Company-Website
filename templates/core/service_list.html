@@ -10,12 +10,13 @@
 <section>
     <div class="container">
         <div class="services-grid">
-            {% for service in restoration_services %}
+            {% for service in services %}
             <article class="service-card">
                 <img src="{{ service.image_card.url }}" alt="{{ service.name }}" class="service-card__image" loading="lazy" width="800" height="450">
                 <h3>{{ service.name }}</h3>
                 <p>{{ service.short_description }}</p>
                 <a href="{% url 'contact' %}?requested_service={{ service.slug }}" class="btn btn-primary" aria-label="Request {{ service.name }}">Request This Service</a>
+                <a href="{{ service.get_absolute_url }}" class="btn btn--outline">Read More</a>
             </article>
             {% empty %}
             <p class="empty-state">Services will be available soon...</p>
@@ -25,12 +26,12 @@
 
 <!----- Call To Action Banner Section ----->
 <section class="cta-banner">
-    <div class="container cta-banner_inner">
+    <div class="container cta-banner__inner">
         <div>
             <h2 class="section-title">Not Sure Which Service You Are Looking For?</h2>
             <p class="section-subtitle">Our team will take care of the damage and recommend the right solution - free inspection.</p>
         </div>
-        <a href="{% url 'contact' %}" class="btn btn--primary btn--lg">Get a Free Quote</a>        
+        <a href="{% url 'contact' %}" class="btn btn-primary btn--lg">Get a Free Quote</a>        
     </div>
 </section>
 {% endblock %}
