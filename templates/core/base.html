@@ -61,13 +61,27 @@
                 <p>Restoration services serving Wilson and surrounding areas throughout eastern NC since 2009.
                     Water damage, mold, and fire restoration. 
                 </p>
+                <div class="footer-brand__map">
+                    {% if google_maps_api_key and restoration_site_setting.address %}
+                    <iframe
+                        loading="lazy"
+                        allowfullscreen
+                        referrerpolicy="trict-origin-when-cross-origin"
+                        title="Map shown in StaDry location"
+                        src="https://www.google.com/maps/embed/v1/place?key={{ google_maps_api_key }}&q={{ restoration_site_setting.address|urlencode }}"></iframe>
+                    </iframe>
+                    {% endif %}
+                </div>
+                <address>
+                    <p><i class="bi bi-geo-alt-fill"></i>{{ restoration_site_setting.address }}, {{ restoration_site_setting.city }}, {{ restoration_site_setting.state }} {{ restoration_site_setting.zip_code }}</p>
+                </address>
             </div>
             <div class="footer-link">
                 <h3>Services</h3>
                 {% if restoration_services %}
                 <ul>
                     {% for service in restoration_services %}
-                    <li>{{ service.name }}</li>
+                    <li><a href="{{ service.get_absolute_url }}">{{ service.name }}</a></li>
                     {% endfor %}
                 {% else %}
                     <p>Services are not available...</p>
@@ -94,30 +108,29 @@
                 {% endif %}
             </div>
             <div class="footer-contact">
-                <h3>Contact</h3>
-                <address>
-                    {% if restoration_site_setting.phone_number %}
-                        <p class="footer-phone">
-                            <i class="bi bi-telephone-fill"></i>
-                            <a href="tel:{{ restoration_site_setting.phone_number }}">{{ restoration_site_setting.phone_number }}</a>
-                        </p>
-                    {% endif %}
-                    {% if restoration_site_setting.email %}
-                        <p class="footer-email">
-                            <i class="bi bi-envelope-fill"></i>
-                            <a href="mailto:{{ restoration_site_setting.email }}">{{ restoration_site_setting.email }}</a>
-                        </p>
-                    {% endif %}
-                    {% if restoration_site_setting.address %}
-                        <p class="footer-address">
-                            <i class="bi bi-geo-alt-fill"></i>
-                            <p>{{ restoration_site_setting.address }}</p>
-                            {% if restoration_site_setting.city and restoration_site_setting.state and restoration_site_setting.zip_code %}
-                            <p>{{ restoration_site_setting.city }}, {{ restoration_site_setting.state }} {{ restoration_site_setting.zip_code }}</p>
+                <div class="footer-contact__info">
+                    <h3>Contact Information</h3>
+                    <address>
+                        <p><i class="bi bi-telephone-fill"></i>{{ restoration_site_setting.phone_number }}</p>
+                        <p><i class="bi bi-envelope-fill"></i>{{ restoration_site_setting.email }}</p>
+                    </address>
+                </div>
+                <div class="footer-contact__hours">
+                    <h3>Hours of Operation</h3>
+                    {% with hours=restoration_site_setting.grouped_hours %}
+                    {% if hours %}
+                    <div class="contact-business-hours">
+                        {% for hour in hours %}
+                        {% if hour.is_closed %}
+                        <div><span>{{ hour.label }}:</span> Closed</div>
+                        {% else %}
+                        <div><span>{{ hour.label}}:</span> {{ hour.open_time|time:"g:i A" }}-{{ hour.close_time|time:"g:i A" }}</div>
                         {% endif %}
-                        </p>
+                        {% endfor %}
+                    </div>
                     {% endif %}
-                </address>
+                    {% endwith %}
+                </div>
             </div>
         </div>
         <div class="footer_bottom">

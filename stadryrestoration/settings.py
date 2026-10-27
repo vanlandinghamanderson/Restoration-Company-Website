@@ -76,6 +76,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'core.context_processors.site_globals',
+            
             ],
             'libraries': {
                 'markdown_extras': 'core.templatetags.markdown_extras',
@@ -123,6 +124,12 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # Internationalization
 # https://docs.djangoproject.com/en/6.0/topics/i18n/
+'''
+Step 1: Create a new project, and copy the API key
+Step 2: Add the Google API Key to your .env file
+'''
+GOOGLE_MAPS_API_KEY = os.environ.get("GOOGLE_MAPS_API_KEY")
+
 
 LANGUAGE_CODE = 'en-us'
 

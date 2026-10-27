@@ -880,20 +880,36 @@ section {
     padding-top: 4rem;
 }
 
-.footer-contact address {
+.footer-contact {
     display: flex;
     flex-direction: column;
-    gap: .5rem;
-    margin-bottom: 1.25rem;
+    gap: 1rem;
 }
 
-.footer-contact address i {
+.footer-contact__info {
+    font-size: 1.5rem;
+}
+
+.footer-contact__info address {
+    gap: .625rem;
+}
+
+.footer-contact__info address p {
+    margin: 0;
+    font-size: 1rem;
+    display: flex;
+    justify-self: flex-start;
+    align-items: center;
+    gap: .25rem;
+    font-size: .875rem;
+}
+.footer-contact__info address, i {
     color: #fff;
     font-size: 1rem;
 }
 
-.footer-contact address a {
-    color: #fff;
+.footer-contact__hours, .contact-business-hours, div {
+    font-size: 1rem;
 }
 
 .footer_grid {
@@ -916,6 +932,23 @@ section {
 .footer-brand p, .footer-link p{
     font-size: .875rem;
     line-height: 1.75;
+    gap: 1rem;
+}
+
+.footer-brand__map {
+    display: flex;
+}
+
+.footer-brand__map iframe {
+    width: 100%;
+    height: 150;
+    border: 0;
+    border-radius: var(--radius-sm);
+}
+
+.footer-brand__map, address, p {
+    display: flex;
+    gap: .25rem;
 }
 
 .footer-link h3 {
@@ -949,18 +982,7 @@ section {
 .footer-contact address {
     display: flex;
     flex-direction: column;
-    gap: .4rem;
-}
-
-.footer-contact p {
-    font-size: .875rem;
-    margin-bottom: 0.5rem;
-    text-decoration: none;
-}
-
-.footer-contact p, a {
-    color: white;
-    text-decoration: none;
+    gap: .25rem;
 }
 
 .footer_bottom {

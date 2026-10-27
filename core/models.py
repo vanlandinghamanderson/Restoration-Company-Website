@@ -218,11 +218,8 @@ class Project(models.Model):
     def __str__(self):
         return self.title or f"{self.service.name} gallery item"
 
-    def get_before_alt(self):
-        return self.before_alt_text or f"{self.service.name} before restoration damage"
-
-    def get_after_alt(self):
-        return self.after_alt_txt or f"{self.service.name} after restoration damage"
+    def get_alt_text(self):
+        return self.alt_text or f"{self.service.name} restoration project"
 
 class Post(models.Model):
     title = models.CharField(max_length=300)

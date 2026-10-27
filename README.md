@@ -51,6 +51,7 @@ This powerful full-stack restoration web application is called "StaDry Restorati
    DB_PASS=your-password
    DB_HOST=your-localhost
    DB_PORT=your-portnunber
+   GOOGLE_API_KEY=your_api_key
 ```
 7. Run migrations:
 ```bash
