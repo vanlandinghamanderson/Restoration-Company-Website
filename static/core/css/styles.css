@@ -19,6 +19,15 @@
 
     --shadow-md: 0 4px 16px rgba(0, 0, 0, .10);
 
+    --white-glow: 0 0 8px rgba(255, 255, 255, 0.8);
+}
+* {
+    margin: 0;
+    padding: 0;
+}
+
+ul, ol {
+    list-style: none;
 }
 
 html {
@@ -33,6 +42,7 @@ body {
     background: #f8fafc;
     padding: 0;
     line-height: 1.65;
+    font-style: var(--font-body);
 }
 
 html, body {
@@ -40,7 +50,7 @@ html, body {
     margin: 0;
 }
 
-a, span, h1, h2, h3, h4 {
+h1, h2, h3, h4 {
     font-family: var(--font-heading);
     font-weight: 700;
 }
@@ -52,10 +62,6 @@ h3 {
 
 li {
     list-style-type: none;
-}
-
-a, p {
-    font-family: var(--font-body);
 }
 
 .empty-state {
@@ -874,53 +880,19 @@ section {
     transition: transform .5s ease;
 }
 
-/* ---------- FOOTER SECTION ---------- */
-.site-footer {
-    background: var(--color-ink);
-    color: #fff;
-    padding-top: 4rem;
-}
+/* ---------- Footer ---------- */
+.site-footer { background: var(--color-ink); color: #fff; padding-top: 4rem; }
 
-.footer-contact {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-}
+.site-footer h3 { font-size: 1rem; font-weight: 600; margin-bottom: 1rem; }
 
-.footer-contact__info {
-    font-size: 1.5rem;
-}
-
-.footer-contact__info address {
-    gap: .625rem;
-}
-
-.footer-contact__info address p {
-    margin: 0;
-    font-size: 1rem;
-    display: flex;
-    justify-self: flex-start;
-    align-items: center;
-    gap: .25rem;
-    font-size: .875rem;
-}
-.footer-contact__info address, i {
-    color: #fff;
-    font-size: 1rem;
-}
-
-.footer-contact__hours, .contact-business-hours, div {
-    font-size: 1rem;
-}
-
-.footer_grid {
+.site-footer__grid {
     display: grid;
     grid-template-columns: 2fr 1fr 1fr 1fr 2fr;
-    gap: 2rem;
+    gap: 3rem;
     padding-bottom: 3rem;
 }
 
-.footer-logo {
+.site-footer__brand-logo {
     display: flex;
     font-size: 1.5rem;
     font-weight: 700;
@@ -930,70 +902,116 @@ section {
     font-family: var(--font-heading);
 }
 
-.footer-brand p, .footer-link p{
-    font-size: .875rem;
-    line-height: 1.75;
-    gap: 1rem;
+.site-footer__brand p {
+    font-size: 1rem;
+    line-height: 1.6;
 }
 
-.footer-brand__map {
+.site-footer__brand-map {
     display: flex;
+    flex-direction: column;
+    gap: .625rem;
 }
 
-.footer-brand__map iframe {
+.site-footer__brand-map iframe {
     width: 100%;
     height: 150;
     border: 0;
     border-radius: var(--radius-sm);
 }
 
-.footer-brand__map, address, p {
+.site-footer__brand-address {
     display: flex;
-    gap: .25rem;
+    gap: .625rem;
 }
 
-.footer-link h3 {
+.site-footer__brand-address p {
+    display: flex;
+    gap: .625rem;
     font-size: 1rem;
-    font-weight: 600;
-    margin-bottom: 1rem;
 }
 
-.footer-link a {
-    color: white;
+.site-footer__link ul {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+    padding-left: 0;
+}
+
+.site-footer__link a {
+    color: #fff;
+    font-size: .9rem;
     text-decoration: none;
-    font-size: .875rem;
 }
 
+.site-footer__link p {
+    font-size: .9rem;
+    line-height: 1.75;
+    margin: 0;
+}
 
-.footer-link ul {
-    list-style-type: none;
-    padding: 0;
-    font-size: .875rem;
+.site-footer__contact {
     display: flex;
     flex-direction: column;
-    gap: .4rem;
+    gap: 1rem;
 }
 
-.footer-contact h3 {
+.site-footer__contact-info {
+    font-size: .9rem;
+}
+
+.site-footer__contact-info address {
+    display: flex;
+    flex-direction: column;
+    gap: .625rem;
+}
+
+
+.site-footer__contact-info address p {
+    margin: 0;
     font-size: 1rem;
-    font-weight: 600;
-    margin-bottom: 1rem;
-}
-
-.footer-contact address {
     display: flex;
-    flex-direction: column;
-    gap: .25rem;
+    justify-self: flex-start;
+    align-items: center;
+    gap: .625rem;
+    font-size: .9rem;
+    color: #fff;
 }
 
-.footer_bottom {
+.site-footer__contact-info address a {
+    text-decoration: none;
+    color: #fff;
+}
+
+.site-footer__contact-info address, i {
+    color: var(--color-accent);
+    font-size: .9rem;
+}
+
+.site-footer__contact-hours p {
+    display: flex;
+    gap: .625rem;
+    font-size: .9rem;
+}
+.site-footer__contact-hours span {
+    font-weight: 700;
+}
+
+.site-footer__bottom {
     border-top: 1px solid rgba(255, 255, 255, .1);
     padding: 1.25rem 0;
 }
 
-.footer_bottom p {
+.site-footer__bottom p {
     font-size: .85rem;
     color: rgba(255, 255, 255, .6);
+}
+
+.site-footer__services li:hover, .site-footer__nav li:hover,
+.site-footer__contact-info address p:hover {
+    color: white;
+    font-weight: 600;
+    text-shadow: var(--white-glow);
 }
 
 /* ---------- GALLERY ---------- */
@@ -1321,17 +1339,6 @@ section {
     display: block;
     font-size: .85rem;
     text-transform: uppercase;
-}
-
-.contact-business-hours {
-    margin-top: 1rem;
-    display: flex;
-    flex-direction: column;
-    gap: .5rem;
-}
-
-.contact-business-hours span {
-    font-weight: 600;
 }
 
 .emergency-call-card {

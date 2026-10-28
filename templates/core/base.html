@@ -53,15 +53,15 @@
 
     <!-- Footer Section -->
     <footer class="site-footer">
-        <div class="footer_grid container">
-            <div class="footer-brand">
+        <div class="site-footer__grid container">
+            <div class="site-footer__brand">
                 {% if restoration_site_setting.company_name %}
-                    <a href="/" class="footer-logo">{{ restoration_site_setting.company_name }}</a>
+                    <a href="/" class="site-footer__brand-logo">{{ restoration_site_setting.company_name }}</a>
                 {% endif %}
                 <p>Restoration services serving Wilson and surrounding areas throughout eastern NC since 2009.
                     Water damage, mold, and fire restoration. 
                 </p>
-                <div class="footer-brand__map">
+                <div class="site-footer__brand-map">
                     {% if google_maps_api_key and restoration_site_setting.address %}
                     <iframe
                         loading="lazy"
@@ -71,12 +71,12 @@
                         src="https://www.google.com/maps/embed/v1/place?key={{ google_maps_api_key }}&q={{ restoration_site_setting.address|urlencode }}"></iframe>
                     </iframe>
                     {% endif %}
+                    <address class="site-footer__brand-address">
+                        <p><i class="bi bi-geo-alt-fill"></i>{{ restoration_site_setting.address }}, {{ restoration_site_setting.city }}, {{ restoration_site_setting.state }} {{ restoration_site_setting.zip_code }}</p>
+                    </address>
                 </div>
-                <address>
-                    <p><i class="bi bi-geo-alt-fill"></i>{{ restoration_site_setting.address }}, {{ restoration_site_setting.city }}, {{ restoration_site_setting.state }} {{ restoration_site_setting.zip_code }}</p>
-                </address>
             </div>
-            <div class="footer-link">
+            <div class="site-footer__link site-footer__services">
                 <h3>Services</h3>
                 {% if restoration_services %}
                 <ul>
@@ -88,7 +88,7 @@
                 </ul>
                 {% endif %}
             </div>
-            <div class="footer-link">
+            <div class="site-footer__link site-footer__nav">
                 <h3>Company</h3>
                 <ul>
                     <li><a href="{% url 'about' %}">About</a></li>
@@ -97,34 +97,34 @@
                     <li><a href="{% url 'blog_list' %}">Blogs</a></li>
                 </ul>
             </div>
-            <div class="footer-link">
+            <div class="site-footer__link site-footer__service-areas">
                 <h3>Service Areas</h3>
                 {% if restoration_service_areas %}
                 <ul>
                     {% for area in restoration_service_areas %}
-                    <li>{{ area.city }}, {{ area.state }}</li>
+                    <li><p>{{ area.city }}, {{ area.state }}</p></li>
                     {% endfor %}
                 </ul>
                 {% endif %}
             </div>
-            <div class="footer-contact">
-                <div class="footer-contact__info">
+            <div class="site-footer__contact">
+                <div class="site-footer__contact-info">
                     <h3>Contact Information</h3>
                     <address>
-                        <p><i class="bi bi-telephone-fill"></i>{{ restoration_site_setting.phone_number }}</p>
-                        <p><i class="bi bi-envelope-fill"></i>{{ restoration_site_setting.email }}</p>
+                        <p><i class="bi bi-telephone-fill"></i><a href="tel:{{ restoration_site_setting.phone_number }}">{{ restoration_site_setting.phone_number }}</a></p>
+                        <p><i class="bi bi-envelope-fill"></i><a href="mailto:{{ restoration_site_setting.email }}">{{ restoration_site_setting.email }}</a></p>
                     </address>
                 </div>
-                <div class="footer-contact__hours">
+                <div class="site-footer__contact-hours">
                     <h3>Hours of Operation</h3>
                     {% with hours=restoration_site_setting.grouped_hours %}
                     {% if hours %}
-                    <div class="contact-business-hours">
+                    <div>
                         {% for hour in hours %}
                         {% if hour.is_closed %}
-                        <div><span>{{ hour.label }}:</span> Closed</div>
+                        <p><span>{{ hour.label }}:</span> Closed</p>
                         {% else %}
-                        <div><span>{{ hour.label}}:</span> {{ hour.open_time|time:"g:i A" }}-{{ hour.close_time|time:"g:i A" }}</div>
+                        <p><span>{{ hour.label}}:</span> {{ hour.open_time|time:"g:i A" }}-{{ hour.close_time|time:"g:i A" }}</p>
                         {% endif %}
                         {% endfor %}
                     </div>
@@ -133,7 +133,7 @@
                 </div>
             </div>
         </div>
-        <div class="footer_bottom">
+        <div class="site-footer__bottom">
             <div class="container">
                 <p>&copy 2026 {{ restoration_site_setting.company_name }}. All Rights Reserved.</p>
             </div>
