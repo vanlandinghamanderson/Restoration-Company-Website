@@ -29,16 +29,24 @@
             </div>
 
             {% if projects %}
-            <h2>Our Projects for {{ service.name }}</h2>
-            <div class="gallery-grid gallery-grid--sm">
-                {% for project in projects %}
-                <div class="gallery-item">
-                    {% if project.image %}
-                    <img src="{{ project.image.url }}" alt="{{ project.alt_txt }}" loading="lazy" width="300" height="220">
-                    {% endif %}
-                    <div class="gallery-item__overlay"><span>{{ project.title }}</span></div>
+            <div class="two-main__projects">
+                <h2>Our Projects</h2>
+                <div class="gallery-section__grid gallery-section__grid-sm">
+                    {% for project in projects %}
+                    <div class="gallery-section__item">
+                        {% if project.image %}
+                        <img src="{{ project.image.url }}" alt="{{ project.alt_txt }}" loading="lazy" width="300" height="220">
+                        {% endif %}
+                        <div class="gallery-item__overlay"><span>{{ project.title }}</span></div>
+                    </div>
+                    {% endfor %}
                 </div>
-                {% endfor %}
+
+                {% if projects|length >= 3 %}
+                <div class="two-main__projects-cta">
+                    <a href="{% url 'gallery' %}" class="btn btn--secondary">View More</a>
+                </div>
+                {% endif %}
             </div>
             {% endif %}
 

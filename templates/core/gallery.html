@@ -27,24 +27,19 @@
         </nav>
 
         <!---------- Displays the before/after pictures ---------->
-        <div class="gallery-grid" id="gallery-container">
+        <div class="gallery-section__grid gallery-section__grid-lg" id="gallery-container">
             {% for project in projects %}
-            <div class="gallery-item" aria-label="{{ project.title }}" data-service="{{ project.service.slug|default:'' }}">
+            <div class="gallery-section__item" aria-label="{{ project.title }}">
                 {% if project.image %}
                 <img src="{{ project.image.url }}" alt="{{ project.alt_text }}" loading="lazy" width="400" height="300">
                 {% else %}
                 <div class="gallery-placeholder" aria-hidden="true"><i class="bi bi-image"></i></div>
                 {% endif %}
-                <div class="gallery-item__caption visually-hidden">
-                    <strong>{{ project.title }}</strong>
-                    {% if project.service %}<span>{{ project.service.name }}</span>{% endif %}
-                    {% if project.description %}<p>{{ project.description }}</p>{% endif %}
-                </div>
-            </div>  
+            </div>
+            {% empty %}
+            <p class="empty-state">Gallery photos coming soon...<a href="{% url 'contact' %}"></a></p>
+            {% endfor %}
         </div>
-        {% empty %}
-        <p class="empty-state">Gallery photos coming soon...<a href="{% url 'contact' %}"></a></p>
-        {% endfor %}
     </div>
 </section>
 <section class="cta-banner">
