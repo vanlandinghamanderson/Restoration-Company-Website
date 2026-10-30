@@ -12,7 +12,7 @@
 <section>
     <div class="container two-col">
         <div class="two-col__main">
-            <h2 class="section-title">Reach Out Today!</h2>
+            <h2 class="section-title main-col__title">Send Us A Message</h2>
             <!-- SCRIPT -->
             <form method="POST" action="{% url 'contact' %}" novalidate aria-label="Contact form" id="contact-app">
                 {% csrf_token %}
@@ -68,7 +68,7 @@
                         <i class="bi bi-geo-alt-fill" aria-hidden="true"></i>
                         <div>
                             <strong>Address:</strong>
-                            <p>{{ restoration_site_setting.address }},{{ restoration_site_setting.city }}, {{ restoration_site_setting.state }} {{ restoration_site_setting.zip_code }}</p>
+                            <p>{{ restoration_site_setting.address }}, {{ restoration_site_setting.city }}, {{ restoration_site_setting.state }} {{ restoration_site_setting.zip_code }}</p>
                         </div>
                     </li>
                     <li>
@@ -77,7 +77,7 @@
                             <strong>Hours of Operation: </strong>
                             {% with hours=restoration_site_setting.grouped_hours %}
                                 {% if hours %}
-                                <div class="contact-business-hours">
+                                <div class="contact-info-card__hours">
                                     {% for hour in hours %}
                                     {% if hour.is_closed %}
                                     <div><span>{{ hour.label }}:</span> Closed</div>
@@ -96,10 +96,10 @@
                 <i class="bi bi-cloud-lightning-rain-fill"></i>
                 <h3>Emergency? Call Now.</h3>
                 <p>If you recently had a problem in your home? Don't wait.</p>
-                <div class="emergency-call-button">
-                    <i class="bi bi-telephone-fill" aria-hidden="true"></i>
-                    <a href="tel:{{ restoration_site_setting.phone_number }}">{{ restoration_site_setting.phone_number }}</a>
-                </div>
+                <a href="tel:{{ restoration_site_setting.phone_number }}" class="btn btn--white btn--lg btn--block">
+                    <i class="bi bi-telephone-fill"></i>
+                    {{ restoration_site_setting.phone_number }}
+                </a>
             </div>
         </aside>
 
