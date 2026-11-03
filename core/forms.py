@@ -1,6 +1,6 @@
 from django import forms
 from django.forms import ModelForm
-from .models import Customer
+from .models import Customer, Service
 
 class CustomerForm(ModelForm):
     class Meta:
@@ -17,3 +17,11 @@ class CustomerForm(ModelForm):
                 'rows': 5
             }),
         }
+
+    # It retreives the active services for the requested_service field,
+    # phone_number, and requested_service required
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['requested_service'].queryset = Service.objects.filter(is_active=True)
+        self.fields['phone_number'].required = True
+        self.fields['requested_service'].required = True

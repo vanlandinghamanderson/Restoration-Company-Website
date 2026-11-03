@@ -131,77 +131,103 @@ function galleryFilter() {
 
 function initContactForm() {
     const form = document.getElementById('contact-app');
-
     if (!form || !window.CONTACT_API_URL) return;
 
-    const submitBtn = form.querySelector('button[type="submit"]');
     const successAlert = form.querySelector('[data-contact-success]');
     const errorAlert = form.querySelector('[data-contact-error]');
     const fields = form.querySelector('[data-contact-fields]');
+    const submitButton = form.querySelector('button[type="submit"]');
 
-    if (successAlert) successAlert.hidden = true;
-    if (errorAlert) {
-        errorAlert.hidden = true;
-        errorAlert.textContent = '';
-    }
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
 
-    form.querySelectorAll('[data-field-errors]').forEach((el) => {
-        el.hidden = true;
-        el.innerHTML = '';
-    });
+        if (errorAlert) { errorAlert.hidden = true; errorAlert.textContent = ''; }
+        form.querySelectorAll('[data-field-errors]').forEach(el => {
+            el.hidden = true;
+            el.innerHTML = '';
+        });
 
-    form.addEventListener('submit', async (event) => {
-        event.preventDefault();
+        const requiredFields = Array.from(form.querySelectorAll('[required]'));
+        const selectedService = form.querySelector('[name="requested_service"]');
+        const selectedServiceOption = selectedService && selectedService.selectedOptions[0];
+        const emptyFields = requiredFields.filter((field) => {
+            if (field === selectedService) return !selectedServiceOption || !selectedServiceOption.value;
+            return !field.value.trim();
+        });
 
-        if (!submitBtn) return;
-        submitBtn.disabled = true;
-
-        if (errorAlert) {
-            errorAlert.hidden = true;
-            errorAlert.textContent = '';
-        }
-
-        try {
-            const response = await fetch(window.CONTACT_API_URL, {
-                method: 'POST',
-                body: new FormData(form),
-                headers: {
-                    'X-CSRFToken': form.querySelector('[name="csrfmiddlewaretoken"]').value,
-                },
-            });
-
-            const data = await response.json();
-
-            if (response.ok && data.ok) {
-                if (successAlert) successAlert.hidden = false;
-                if (fields) fields.hidden = true;
-                form.reset();
+        if (emptyFields.length) {
+            const formFields = Array.from(form.querySelectorAll('input:not([type="hidden"]), select, textarea'));
+            const allFieldsBlank = formFields.every(field => !field.value.trim());
+            if (allFieldsBlank) {
+                if (errorAlert) {
+                    errorAlert.textContent = 'Please fill in all fields.';
+                    errorAlert.hidden = false;
+                }
+                emptyFields[0].focus();
                 return;
             }
 
-            const errors = data.errors || {};
-            Object.keys(errors).forEach((name) => {
-                if (name === '__all__') {
-                    if (errorAlert) {
-                        errorAlert.textContent = errors.__all__[0];
-                        errorAlert.hidden = false;
-                    }
-                    return;
-                }
+            emptyFields.forEach((field) => {
+                const errorList = Array.from(form.querySelectorAll('[data-field-errors]')).find(list =>
+                    list.dataset.fieldErrors === field.name);
+                if (!errorList) return;
 
-                const list = form.querySelector(`[data-field-errors="${name}"]`);
-                if (list) {
-                    list.innerHTML = errors[name].map((msg) => `<li>${msg}</li>`).join('');
-                    list.hidden = false;
-                }
+                const label = field.labels && field.labels[0];
+                const fieldName = label
+                    ? label.textContent.replace('*', '').trim()
+                    : field.name;
+
+                const error = document.createElement('li');
+                error.textContent = field === selectedService
+                    ? `${fieldName} must be selected.`
+                    : `${fieldName} is required.`;
+                errorList.appendChild(error);
+                errorList.hidden = false;
             });
-        } catch (err) {
+            emptyFields[0].focus();
+            return;
+        }
+
+        if (!form.checkValidity()) {
+            form.reportValidity();
+            return;
+        }
+        submitButton.disabled = true;
+        try {
+            const response = await fetch(window.CONTACT_API_URL, {
+                method: 'POST',
+                body: new FormData(form)
+            });
+            const data = await response.json();
+            if (data.ok) {
+                if (successAlert) successAlert.hidden = false;
+                if (fields) fields.hidden = true;
+                form.reset();
+            } else {
+                const errors = data.errors || {};
+                Object.entries(errors).forEach(([name]) => {
+                    if (name === '__all__') {
+                        if (errorAlert) {
+                            errorAlert.textContent = errors.__all__[0];
+                            errorAlert.hidden = false;
+                        }
+                        return;
+                    }
+
+                    const list = form.querySelector(`[data-field-errors="${name}"]`);
+                    if (list) {
+                        list.innerHTML = errors[name].map(msg => `<li>${msg}</li>`).join('');
+                        list.hidden = false;
+                    }
+                });
+                submitButton.disabled = false;
+            }
+        } catch (error) {
             if (errorAlert) {
-                errorAlert.textContent = 'Something went wrong. Please try again or call us directly.';
+                errorAlert.textContent = 'An unexpected error occurred. Please try again later.';
                 errorAlert.hidden = false;
             }
-        } finally {
-            submitBtn.disabled = false;
+            submitButton.disabled = false;
         }
     });
 }

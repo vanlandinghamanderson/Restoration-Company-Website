@@ -14,36 +14,34 @@
         <div class="two-col__main">
             <h2 class="section-title main-col__title">Send Us A Message</h2>
             <!-- SCRIPT -->
+            <script>window.CONTACT_API_URL = "{% url 'contact_api' %}";</script>
             <form method="POST" action="{% url 'contact' %}" novalidate aria-label="Contact form" id="contact-app">
                 {% csrf_token %}
                 <div class="alert alert--success" role="alert" data-contact-success hidden>Your message has been sent! We will reach out to you as soon as we can.</div>
-                <div class="alert alert--error" role="alert" data-contact-error hidden>There was an error sending your message. Please try again later.</div>
-                
+                <div class="alert alert--error" role="alert" data-contact-error hidden>Please fill in all fields.</div>
+
                 {# Add the fields #}
                 <div data-contact-fields>
                     {% for field in form %}
                     <div class="form-group">
                         <label for="{{ field.id_for_label }}">
-                            {{ field.label}}
+                            {{ field.label }}
                             {% if field.field.required %}<span class="required" aria-label="required">*</span>{% endif %}
                         </label>
-                        {{ field}}
+                        {{ field }}
                         {% if field.errors %}
-                        <ul class="field-errors" role="alert" data-field-errors="{{ field.name }}">
+                        <ul class="field-errors" role="alert">
                             {% for error in field.errors %}
                             <li>{{ error }}</li>
                             {% endfor %}
                         </ul>
                         {% endif %}
+                        <ul class="field-errors" role="alert" data-field-errors="{{ field.name }}" hidden></ul>
                     </div>
                     {% endfor %}
                 </div>
                 <button type="submit" class="btn btn--primary btn--lg">Submit Message</button>
             </form>
-
-            <script>
-                window.CONTACT_API_URL = "{% url 'contact_api' %}";
-            </script>
         </div>
 
         <aside class="two-col__sidebar contact-sidebar">

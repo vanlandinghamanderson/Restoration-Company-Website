@@ -84,6 +84,33 @@ img {
     text-align: center;
     margin-bottom: 2rem;
 }
+/* ---------- Alert ---------- */
+.alert {
+    padding: 1rem 1.25rem;
+    border-radius: var(--radius-sm);
+    font-weight: 500;
+    margin-top: .5rem;
+}
+
+.alert--success {
+    background: #d1fae5;
+    color: var(--color-success);
+}
+
+.alert--error {
+    background: #ffa4a4;
+    color: var(--color-danger);
+}
+
+/* ---------- Field Errors ---------- */
+.field-errors {
+    margin-top: .5rem;
+}
+
+.field-errors li {
+    font-size: 1rem;
+    color: var(--color-danger);
+}
 /* Buttons */
 
 .btn {
