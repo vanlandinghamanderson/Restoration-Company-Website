@@ -6,6 +6,12 @@ class CustomerForm(ModelForm):
     class Meta:
         model = Customer
         fields = ['full_name', 'email', 'phone_number', 'requested_service', 'message']
+        # It capaitalizes the first letter of each field label and adds placeholders to the form fields for better user experience.
+        labels = {
+            'full_name': 'Full Name',
+            'phone_number': 'Phone Number',
+            'requested_service': 'Requested Service',
+        }
         widgets = {
             'full_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Please Enter Your Name...'}),
             'email': forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'Please Enter Your Email...'}),

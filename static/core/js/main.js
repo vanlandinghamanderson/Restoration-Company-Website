@@ -128,25 +128,46 @@ function galleryFilter() {
     applyFilter(currentSlug());
 
 }
-
+/**
+ * Initializes the contact form functionality.
+ * @returns {void}
+ */
 function initContactForm() {
+
+    // Retrieve the contact form element by its ID
     const form = document.getElementById('contact-app');
+    // If the form doesn't exist or the CONTACT_API_URL is not defined, exit the function
     if (!form || !window.CONTACT_API_URL) return;
 
+    /**
+     * successAlert: It retrieves the element that displays a success message after the form is submitted successfully.
+     * errorAlert: It retrieves the element that displays an error message if the form submission fails.
+     * fields: It retrieves the container that holds the form fields.
+     * submitButton: It retrieves the submit button of the form.
+     */
     const successAlert = form.querySelector('[data-contact-success]');
     const errorAlert = form.querySelector('[data-contact-error]');
     const fields = form.querySelector('[data-contact-fields]');
     const submitButton = form.querySelector('button[type="submit"]');
 
+
+    // Add an event listener for the form submission
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
 
+        // This handles the error messages and resets the form state before validation
         if (errorAlert) { errorAlert.hidden = true; errorAlert.textContent = ''; }
         form.querySelectorAll('[data-field-errors]').forEach(el => {
             el.hidden = true;
             el.innerHTML = '';
         });
-
+        
+        /**
+         * requiredFields: It collects all the form fields that are marked as required.
+         * selectedService: It retrieves the select element for the requested service.
+         * selectedServiceOption: It retrieves the currently selected option in the requested service select element.
+         * emptyFields: It filters out the required fields that are empty or not filled in by the user.
+         */
         const requiredFields = Array.from(form.querySelectorAll('[required]'));
         const selectedService = form.querySelector('[name="requested_service"]');
         const selectedServiceOption = selectedService && selectedService.selectedOptions[0];
@@ -155,6 +176,7 @@ function initContactForm() {
             return !field.value.trim();
         });
 
+        // If there are empty required fields, display error messages and focus on the first empty field
         if (emptyFields.length) {
             const formFields = Array.from(form.querySelectorAll('input:not([type="hidden"]), select, textarea'));
             const allFieldsBlank = formFields.every(field => !field.value.trim());
@@ -167,6 +189,7 @@ function initContactForm() {
                 return;
             }
 
+            // Scans through the empty fields and displays error messages for each one
             emptyFields.forEach((field) => {
                 const errorList = Array.from(form.querySelectorAll('[data-field-errors]')).find(list =>
                     list.dataset.fieldErrors === field.name);
@@ -188,11 +211,19 @@ function initContactForm() {
             return;
         }
 
+        // If the form is not valid according to HTML5 validation, report the validity and exit
         if (!form.checkValidity()) {
             form.reportValidity();
             return;
         }
         submitButton.disabled = true;
+
+        /**
+         * Attempts to submit the form data to the server using the Fetch API. If the submission is successful, 
+         * it displays a success message and hides the form fields. If there are validation errors returned from the server, 
+         * it displays those errors next to the corresponding fields. If an unexpected error occurs during submission, 
+         * it displays a generic error message.
+         */
         try {
             const response = await fetch(window.CONTACT_API_URL, {
                 method: 'POST',
