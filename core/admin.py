@@ -4,6 +4,7 @@ from .models import CarouselBackground, Customer, Post, SiteSetting, Service, Ce
 # Carousel Background Admin
 @admin.register(CarouselBackground)
 class CarouselBackgroundAdmin(admin.ModelAdmin):
+    fields = ('title', 'description', 'image', 'video', 'order', 'is_active')
     list_display = ('title', 'caption', 'order', 'is_active')
     list_filter = ('is_active',)
     search_fields = ('title', 'caption')

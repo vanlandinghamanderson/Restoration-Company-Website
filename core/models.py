@@ -11,8 +11,9 @@ from imagekit.processors import ResizeToFill
 class CarouselBackground(models.Model):
     title = models.CharField(max_length=100)
     caption = models.CharField(max_length=200)
-    description = models.TextField(default='')
-    video_file = models.FileField(upload_to='carousel_videos/')
+    description = models.TextField(default='', blank=True)
+    video = models.FileField(upload_to='carousel/video/', blank=True, null=True)
+    image = models.ImageField(upload_to='carousel/', blank=True, null=True)
     order = models.PositiveIntegerField(default=0)
     is_active = models.BooleanField(default=True)
 

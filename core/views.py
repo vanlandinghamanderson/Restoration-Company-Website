@@ -4,18 +4,20 @@ from .forms import CustomerForm
 from django.contrib import messages as message
 from django.views.decorators.http import require_POST
 from django.http import JsonResponse
+# This lets you build more complex database filters, especially with boolean combinations
+from django.db.models import Q 
 
 
 
 # Home Page
 def index(request):
-    restoration_carousel_background = CarouselBackground.objects.filter(is_active=True).order_by('order')
+    carousel_background = CarouselBackground.objects.exclude(Q(image='') & Q(video=''))
     reviews = Review.objects.filter(is_active=True)
     restoration_certifications = Certification.objects.filter(is_active=True)
     projects = Project.objects.filter(is_published=True)[:3] #Slices 3
     posts = Post.objects.filter(is_published=True)[:3] #Slices 3
     return render(request, 'core/index.html', {
-        'restoration_carousel_background': restoration_carousel_background,
+        'carousel_background': carousel_background,
         'reviews': reviews,
         'restoration_certifications': restoration_certifications,
         'projects': projects,

@@ -253,7 +253,7 @@ img {
     color: white;
 }
 
-/* ---------- HERO SECTION ---------- */
+/* ---------- Header ---------- */
 .hero {
     position: relative;
     height: 100vh;
@@ -265,13 +265,13 @@ img {
     color: white;
 }
 
-.hero-video-carousel {
+.hero__carousel {
     position: absolute;
     inset: 0;
     z-index: 0;
 }
 
-.hero-video-slide {
+.hero__carousel-slide {
     position: absolute;
     inset: 0;
     width: 100%;
@@ -281,20 +281,23 @@ img {
     transition: opacity 1.2s ease-in-out;
 }
 
-.hero-video-slide.active {
-    opacity: 1;
+.hero__carousel-slide.active { opacity: 1; }
+
+.hero__media-slide {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
 }
 
-.hero-overlay {
+.hero__overlay {
     position: absolute;
     inset: 0;
     background-color: rgba(0, 0, 0, 0.5);
     z-index: 1;
 }
 
-/*---------- HERO CONTENT ----------*/
-
-.hero-content {
+.hero__content {
     position: relative;
     z-index: 2;
     margin: 0 auto;
@@ -303,36 +306,69 @@ img {
     animation: fadeInUp 2s ease forwards;
 }
 
-.hero-content h1 {
+.hero__content h1 {
+    color: #fff;
     font-size: clamp(2.2rem, 5vw, 3.6rem);
     line-height: 1.35;
     max-width: 780px;
     font-weight: 700;
 }
 
-.hero-subtitle {
+.hero__content-subtitle {
     margin-top: 20px;
     font-size: 1.15rem;
     max-width: 560px;
     color: white;
 }
 
-.hero-buttons {
+
+.hero__content-buttons {
     margin-top: 32px;
     display: flex;
     gap: 10px;
     flex-wrap: wrap;
 }
 
-.hero-buttons a {
+.hero__content-buttons a {
     display: flex;
     align-items: center;
     gap: 1rem
 }
 
-.hero-buttons i {
+.hero__content-buttons i {
     color: #fff;
     font-size: 1rem;
+}
+
+.hero__content-trust {
+    margin-top: 20px;
+    display: flex;
+    gap: 1.15rem;
+    font-size: .80rem;
+}
+
+.hero__content-trust i {
+    margin-right: .3rem;
+    color: white;
+}
+
+.hero__caption {
+    position: absolute;
+    padding-top: .75rem;
+    padding-bottom: .75rem;
+    background-color: rgb(20 46 73);
+    bottom: 0;
+    display: flex;
+    gap: 1.15rem;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.hero__caption i {
+    margin-right: .3rem;
+    color: green;
 }
 
 .contact_button {
@@ -388,37 +424,6 @@ img {
     height: 3px;
     background: white;
     border-radius: 2px;
-}
-
-.hero-trust {
-    margin-top: 20px;
-    display: flex;
-    gap: 1.15rem;
-    font-size: .80rem;
-}
-
-.hero-trust i {
-    margin-right: .3rem;
-    color: white;
-}
-
-.hero-caption {
-    position: absolute;
-    padding-top: .75rem;
-    padding-bottom: .75rem;
-    background-color: rgb(20 46 73);
-    bottom: 0;
-    display: flex;
-    gap: 1.15rem;
-    width: 100%;
-    align-items: center;
-    justify-content: center;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-}
-
-.hero-caption i {
-    margin-right: .3rem;
-    color: green;
 }
 
 /*---------- HOVER EFFECT - HERO SECTION ----------*/

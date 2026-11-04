@@ -6,45 +6,64 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function heroCarousel() {
-    const slides = Array.from(document.querySelectorAll('.hero-video-slide'));
 
-    if (slides.length <= 1) return;
+    // Retrieves the slides by its ID
+    const slides = document.querySelectorAll('#heroCarousel .hero__carousel-slide');
 
-    const interval = 6000; // 6 seconds
-    let currentSlide = 0;
+    // Checks to see if the length is 0, then it retunrs
+    if (slides.length === 0) return;
+
+    /**
+     * 
+     */
+    const IMAGE_TIME = 6000;
+    let current = 0;
     let timer = null;
 
-    function goToSlide(index) {
-        if (!slides.length) return;
+    function showSlide(index) {
 
-        const previousSlide = slides[currentSlide];
-        if (previousSlide) {
-            previousSlide.classList.remove('active');
+        // Hides the old slide and stops it video
+        slides[current].classList.remove('active');
+        const oldVideo = slides[current].querySelector('video');
+        if (oldVideo) {
+            oldVideo.pause();
+            oldVideo.onended = null;
         }
 
-        currentSlide = (index + slides.length) % slides.length;
+        // Shows the next slide
+        current = index;
+        const slide = slides[current];
+        slide.classList.add('active');
 
-        const nextSlide = slides[currentSlide];
-        if (nextSlide) {
-            nextSlide.classList.add('active');
-        }
+        clearTimeout(timer);
 
-        if (nextSlide && nextSlide.tagName === 'VIDEO') {
-            nextSlide.currentTime = 0;
-            nextSlide.play().catch(() => {});
+        const video = slide.querySelector('video');
+
+        if (video) {
+            // VIDEO: play it, go the next slide when it end
+            video.loop = slides.length === 1; // loop only if it is the only slide
+            video.currentTime = 0;
+            video.play().catch(() => {
+                // If the browser blocks playback, falls back to timing stage
+                timer = setTimeout(nextSlide, IMAGE_TIME);
+            });
+            video.onended = nextSlide;
+        } else {
+            // PICTURE: It waits 6 seconds, then goes to the next picture
+            if (slides.length > 1) {
+                timer = setTimeout(nextSlide, IMAGE_TIME);
+            }
         }
     }
 
-    function next() {
-            goToSlide(currentSlide + 1);
-    }
-    
-    function startAutoPlay() {
-        clearInterval(timer);
-        timer = setInterval(next, interval);
+    function nextSlide() {
+        showSlide((current + 1) % slides.length);
     }
 
-    startAutoPlay();
+    // Starts with the first slide
+    slides[0].classList.remove('active');
+    current = 0;
+    showSlide(0);
 }
 
 function navBarToggle() {
