@@ -13,36 +13,45 @@
 </head>
 <body>
     <header class="site-header">
-        <div class="container header_inner">
-            <a href="/" class="logo">{{ restoration_site_setting.company_name}}</a>
-            <nav class="main-nav">
-                <a href="{% url 'service_list' %}">Services</a>
+        <div class="container site-header__inner">
+            <a href="/" class="site-header__logo">{{ restoration_site_setting.company_name}}</a>
+            <nav class="site-header__main-nav">
+                <div class="site-header__service-dropdown">
+                    <a href="{% url 'service_list' %}">Services</a>
+                    <div class="site-header__service-dropdown__content">
+                        {% for service in restoration_services %}
+                        <a href="{{ service.get_absolute_url }}">{{ service.name }}</a>
+                        {% empty %}
+                        <p class="empty-state">No services available at the moment.</p>
+                        {% endfor %}
+                    </div>
+                </div>
                 <a href="{% url 'gallery' %}">Gallery</a>
                 <a href="{% url 'blog_list' %}">Blogs</a>
                 <a href="{% url 'about' %}">About</a>
                 <a href="{% url 'contact' %}">Contact</a>
-                <div class="nav-social">
-                    <a href=" tel:{{ restoration_site_setting.phone_number }}" class="social-link">
+                <div class="site-header__nav-social">
+                    <a href=" tel:{{ restoration_site_setting.phone_number }}" class="site-header__social-link">
                         <i class="bi bi-telephone"></i>
                     </a>
-                    <a href=" mailto:{{ restoration_site_setting.email }}" class="social-link">
+                    <a href=" mailto:{{ restoration_site_setting.email }}" class="site-header__social-link">
                         <i class="bi bi-envelope"></i>
                     </a>
-                    <a href="{{ restoration_site_setting.instagram_url }}" class="social-link">
+                    <a href="{{ restoration_site_setting.instagram_url }}" class="site-header__social-link">
                         <i class="bi bi-instagram"></i>
                     </a>
-                    <a href="{{ restoration_site_setting.facebook_url }}" class="social-link">
+                    <a href="{{ restoration_site_setting.facebook_url }}" class="site-header__social-link">
                         <i class="bi bi-facebook"></i>
                     </a>
-                    <a href="{{ restoration_site_setting.twitter_url }}" class="social-link">
+                    <a href="{{ restoration_site_setting.twitter_url }}" class="site-header__social-link">
                         <i class="bi bi-twitter-x"></i>
                     </a>
-                    <a href="{{ restoration_site_setting.linkedin_url }}" class="social-link">
+                    <a href="{{ restoration_site_setting.linkedin_url }}" class="site-header__social-link">
                         <i class="bi bi-linkedin"></i>
                     </a>
                 </div>
             </nav>
-            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+            <button class="site-header__nav-toggle" id="navToggle" aria-label="Toggle navigation">
                 <span></span>
                 <span></span>
                 <span></span>
@@ -50,7 +59,10 @@
         </div>
     </header>
     
-    {% block content %}{% endblock %}
+    <!-- Main Content Section -->
+    <main id="main-content" role="main">
+        {% block content %}{% endblock %}
+    </main>
 
     <!-- Footer Section -->
     <footer class="site-footer">

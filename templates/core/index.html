@@ -173,6 +173,7 @@
 {% endif %}
 
 <!----- Blog Posts Section ----->
+{% if posts %}
 <section class="blog-posts-section">
     <div class="container">
         <span class="section-label">Resources</span>
@@ -198,8 +199,6 @@
                     </footer>
                 </div>
             </article>
-            {% empty %}
-            <p class="empty-state">No blog posts avaliable.</p>
             {% endfor %}
         </div>
         <div class="section-cta">
@@ -207,6 +206,7 @@
         </div>
     </div>
 </section>
+{% endif %}
 
 <!----- Call To Action Banner Section ----->
 <section class="cta-banner">

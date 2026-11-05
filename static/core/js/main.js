@@ -1,9 +1,13 @@
 document.addEventListener('DOMContentLoaded', () => {
+    serviceDropdown();
     heroCarousel();
     navBarToggle();
     galleryFilter();
     initContactForm();
 });
+
+function serviceDropdown() {
+}
 
 function heroCarousel() {
 
@@ -68,7 +72,7 @@ function heroCarousel() {
 
 function navBarToggle() {
     const navToggle = document.getElementById('navToggle');
-    const navMenu = document.querySelector('.main-nav');
+    const navMenu = document.querySelector('.site-header__main-nav');
 
     if (!navToggle || !navMenu) return;
 
