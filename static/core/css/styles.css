@@ -8,7 +8,7 @@
     --color-ink: #091624;
     --color-success: #2d8a4e;
     --color-surface: #f4f7fb;
-    --color-muted: #5a6272;
+    --color-muted: #8c99b1;
     --color-line: #dde3ed;
     --color-primary: rgb(20 46 73);
     --color-primary-dark: rgb(16, 36, 58);
@@ -122,6 +122,8 @@ img {
     font-size: .95rem;
     white-space: nowrap;
     cursor: pointer;
+    justify-content: center;
+    align-items: center;
 }
 
 .btn--block {
@@ -152,6 +154,10 @@ img {
 
 .btn--white {
     background: #fff;
+    color: var(--color-primary);
+}
+
+.btn--white i {
     color: var(--color-primary);
 }
 
@@ -248,6 +254,7 @@ img {
 
 /* Dropdown Services Menu */
 .site-header__service-dropdown__content {
+    display: none;
     position: absolute;
     top: 100%;
     left: 0;
@@ -279,11 +286,14 @@ img {
     padding: var(--radius-sm);
 }
 
+/* Shows the Services from the menu on hover */
 .site-header__service-dropdown:hover, .site-header__service-dropdown__content {
     opacity: 1;
     visibility: visible;
     transform: translateY(0);
 }
+
+
 
 .site-header__nav-social {
     padding-left: 15px;
@@ -403,7 +413,7 @@ img {
     margin-top: 20px;
     font-size: 1.15rem;
     max-width: 560px;
-    color: white;
+    color: var(--color-muted);
 }
 
 
@@ -429,12 +439,13 @@ img {
     margin-top: 20px;
     display: flex;
     gap: 1.15rem;
-    font-size: .80rem;
+    font-size: .9rem;
+    color: var(--color-muted);
 }
 
 .hero__content-trust i {
     margin-right: .3rem;
-    color: white;
+    color: var(--color-accent);
 }
 
 .hero__caption {
@@ -507,9 +518,55 @@ section {
     padding-right: 1.5rem;
 }
 
+/* ---------- Services Section ---------- */
+
 .services {
-    background-color: #f8fafc;
+    background: none;
 }
+
+.services__grid {
+    margin-top: 4rem;
+    margin-bottom: 4rem;
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.service__card {
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-md);
+    display: flex;
+    flex-direction: column;
+    gap: .75rem;
+    align-items: center;
+    padding: 2rem 1.5rem;
+    text-align: center;
+}
+
+
+.service__card-image {
+    width: calc(100% + 2rem);
+    max-width: none;
+    height: auto;
+    margin: 0 -1rem;
+    object-fit: cover;
+    aspect-ratio: 16 / 9;
+}
+
+.service__card h3 {
+    font-style: 'Poppins', sans-serif;
+    margin-bottom: 8px;
+    font-size: 1.15rem;
+    font-weight: 700;
+}
+
+.service__card p {
+    font-style: 'Inter', sans-serif;
+    margin-top: auto;
+    color: var(--color-muted);
+}
+
+
 
 .section-title {
     font-size: 2rem;
@@ -528,6 +585,7 @@ section {
     max-height: 600px;
     margin-left: auto;
     margin-right: auto;
+    color: var(--color-muted);
 }
 
 .section-label {
@@ -540,60 +598,6 @@ section {
     margin-bottom: 1rem;
 }
 
-.services-grid {
-    margin-top: 4rem;
-    margin-bottom: 4rem;
-    display: grid;
-    gap: 20px;
-    grid-template-columns: repeat(4, 1fr);
-}
-
-.service-card {
-    background: #f8fafc;
-    border: 1px solid var(--color-line);
-    border-radius: var(--radius-md);
-    display: flex;
-    flex-direction: column;
-    gap: .75rem;
-    align-items: center;
-    padding: 2rem 1.5rem;
-    text-align: center;
-}
-
-.service-card h3 {
-    font-style: 'Poppins', sans-serif;
-    margin-bottom: 8px;
-    font-size: 1.15rem;
-    font-weight: 700;
-}
-
-.service-card__image {
-    width: calc(100% + 2rem);
-    max-width: none;
-    height: auto;
-    margin: 0 -1rem;
-    object-fit: cover;
-    aspect-ratio: 16 / 9;
-}
-
-.service-card_btn {
-    width: 100%;
-    justify-content: center;
-}
-
-.service-card p {
-    font-style: 'Inter', sans-serif;
-    margin-top: auto;
-}
-
-.service_icon {
-    font-size: 2rem;
-    border: #0f172a 2px solid;
-    border-radius: .5rem;
-    padding: .25rem .5rem;
-    color: #008FFF;
-}
-
 .section-cta {
     text-align: center;
     margin-top: 2.5rem;
@@ -601,6 +605,12 @@ section {
 
 .section-cta__text {
     margin-bottom: 2.5rem;
+    color: var(--color-muted);
+}
+
+/* ---------- Blog Section ---------- */
+.blogs {
+    background: var(--color-surface);
 }
 /*---------- VIEW SERVICES BUTTON - HOMEPAGE ---------- */
 .view-more-services {
@@ -623,6 +633,8 @@ section {
     box-shadow: 0 0 25px rgba(255, 255, 255, 0.8), 0 0 50px rgb(255, 255, 255);
     text-shadow: 0 0 15px #008FFF;
 }
+
+
 
 /*---------- REQUEST BUTTON - SERVICE PAGE ----------*/
 .request-button {
@@ -647,7 +659,7 @@ section {
 
 /* ----- Reason Section ----- */
 .reasons {
-    background-color: white;
+    background-color: var(--color-surface);
 }
 
 .reason_inner {
@@ -669,6 +681,7 @@ section {
 .reason-text p {
     margin-top: 18px;
     line-height: 1.75;
+    color: var(--color-muted);
 }
 
 .reasons_list {
@@ -690,12 +703,11 @@ section {
     color: teal;
 }
 
-/* ----- REVIEW SECTION ----- */
-.reviews {
-    background-color: #f8fafc;
-}
+/* ---------- Review ---------- */
 
-.review-grid {
+.review {}
+
+.review__grid {
     margin-top: 48px;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -706,10 +718,11 @@ section {
 .review-card {
     background-color: white;
     border-radius: 12px;
-    padding: 24px;
+    padding: 20px;
     text-align: left;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.8);
-    width: 40vh;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    width: clamp(280px, 90%, 360px);
+    box-sizing: border-box;
 }
 
 .review-card footer {
@@ -737,7 +750,7 @@ section {
 
 /* ----- STEP PROCESS SECTION ----- */
 .step-process {
-    background-color: white;
+    background-color: var(--color-surface);
 }
 
 .step-process-grid {
@@ -776,7 +789,8 @@ section {
 }
 
 .step-subtitle {
-    font-size: .875rem;
+    font-size: .9rem;
+    color: var(--color-muted);
 }
 
 /* ----- CALL TO ACTION BANNER ----- */
@@ -805,8 +819,9 @@ section {
 }
 
 .cta-banner p {
-    color: white;
+    color: var(--color-muted);
     text-align: left;
+    font-size: 1.1rem;
 }
 
 .cta-buttons {
@@ -839,6 +854,8 @@ section {
 .cta-contact {
     background-color: rgb(20 46 73);
 }
+
+
 
 /* ---------- HOVER EFFECT - CTA BUTTONS ---------- */
 .cta-phone:hover {
@@ -994,8 +1011,9 @@ section {
     font-family: var(--font-heading);
 }
 .site-footer__brand p {
-    font-size: 1rem;
+    font-size: .9rem;
     line-height: 1.6;
+    color: var(--color-muted);
 }
 .site-footer__brand-map {
     display: flex;
@@ -1015,18 +1033,21 @@ section {
 .site-footer__brand-address p {
     display: flex;
     gap: .625rem;
-    font-size: 1rem;
+    font-size: .9rem;
+    align-items: center;
 }
 .site-footer__link ul {
     display: flex;
     flex-direction: column;
     gap: .5rem;
     padding-left: 0;
+    color: var(--color-muted);
 }
 .site-footer__link a {
     color: #fff;
     font-size: .9rem;
     text-decoration: none;
+    color: var(--color-muted);
 }
 .site-footer__link p {
     font-size: .9rem;
@@ -1048,29 +1069,35 @@ section {
 }
 .site-footer__contact-info address p {
     margin: 0;
-    font-size: 1rem;
     display: flex;
     justify-self: flex-start;
     align-items: center;
     gap: .625rem;
     font-size: .9rem;
-    color: #fff;
 }
 .site-footer__contact-info address a {
     text-decoration: none;
-    color: #fff;
+    color: var(--color-muted);
 }
 .site-footer__contact-info address, i {
     color: var(--color-accent);
+    font-size: .9rem;
+}
+.site-footer__contact-hours li {
+    display: flex;
+    gap: .625rem;
+    align-items: center;
+}
+
+.site-footer__contact-hours span {
+    font-weight: 700;
     font-size: .9rem;
 }
 .site-footer__contact-hours p {
     display: flex;
     gap: .625rem;
     font-size: .9rem;
-}
-.site-footer__contact-hours span {
-    font-weight: 700;
+    color: var(--color-muted);
 }
 .site-footer__bottom {
     border-top: 1px solid rgba(255, 255, 255, .1);
@@ -1094,17 +1121,17 @@ section {
 
 .gallery-section__grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 1rem;
 }
 
 .gallery-section__grid-lg {
     gap: 1.5rem;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
 }
 
 .gallery-section__grid-sm {
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
 }
 
 .gallery-section__item {

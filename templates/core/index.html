@@ -52,10 +52,10 @@
         <span class="section-label">What We Offer...</span>
         <h2 class="section-title">Our Restoration Services</h2>
         <p class="section-subtitle">We handle water damage, mold, and fire -- from emergency response to full rebuild.</p>
-        <div class="services-grid">
+        <div class="services__grid">
             {% for service in restoration_services %}
-            <article class="service-card">
-                <img src="{{ service.image_card.url }}" alt="{{ service.name }}" class="service-card__image" loading="lazy" width="800" height="450">
+            <article class="service__card">
+                <img src="{{ service.image_card.url }}" alt="{{ service.name }}" class="service__card-image" loading="lazy" width="800" height="450">
                 <h3>{{ service.name }}</h3>
                 <p>{{ service.short_description }}</p>
                 <a href="{{ service.get_absolute_url }}" class="btn btn--outline btn--block">Read More</a>
@@ -94,15 +94,16 @@
 </section>
 
 <!----- Review Section ----->
-
-<section class="reviews">
+{% if reviews %}
+<section class="review">
     <div class="container">
         <span class="section-label">What Did Our Customers Say</span>
         <h2 class="section-title">Trusted By Homeowners in North Carolina</h2>
-        <div class="review-grid">{% for review in reviews %}
+        <div class="review__grid">
+            {% for review in reviews %}
             <article class="review-card">
                 <div class="review-stars">
-                    {% for i in "12345" %}{% if forloop.counter <= review.rating %}★{% else %}☆{% endif %} {% endfor %}
+                {% for i in "12345" %}{% if forloop.counter <= review.rating %}★{% else %}☆{% endif %} {% endfor %}
                 </div>
                 <blockquote itemprop="review-body">{{ review.quote }}</blockquote>
                 <footer>
@@ -115,12 +116,11 @@
                     {% endif %}
                 </footer>
             </article>
-            {% empty %}
-            <p class="empty-state">No reviews available...</p>
             {% endfor %}
         </div>
     </div>
 </section>
+{% endif %}
 
 <!----- Step Process Section ----->
 <section class="step-process">
@@ -158,7 +158,7 @@
             {% for project in projects %}
             <div class="gallery-section__item" arial-label="{{ project.title }}">
                 {% if project.image %}
-                <img src="{{ project.image.url }}" alt="{{ project.alt_txt }}" loading="lazy" height="400" width="300">
+                <img src="{{ project.image.url }}" alt="{{ project.alt_txt }}" loading="lazy" height="200" width="100">
                 {% else %}
                 <p>Picture is not available at the moment.</p>
                 {% endif %}
@@ -174,7 +174,7 @@
 
 <!----- Blog Posts Section ----->
 {% if posts %}
-<section class="blog-posts-section">
+<section class="blogs">
     <div class="container">
         <span class="section-label">Resources</span>
         <h2 class="section-title">Restoration Tips &amp; Guides</h2>
@@ -217,7 +217,8 @@
         </div>
         <div class="cta-banner__actions">
             <a href="{% url 'contact' %}" class="btn btn--primary btn--lg">Request a Free Estimate</a>
-            <a href="tel:{{ restoration_site_setting.phone_number }}" class="btn btn--white btn--lg">{{ restoration_site_setting.phone_number }}</a>
+            <a href="tel:{{ restoration_site_setting.phone_number }}" class="btn btn--white btn--lg">
+                <i class="bi bi-telephone-fill"></i>{{ restoration_site_setting.phone_number }}</a>
         </div>
     </div>
 </section>

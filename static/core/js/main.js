@@ -7,6 +7,16 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function serviceDropdown() {
+
+    const serviceMenu = document.getElementById('servicesMenu');
+    const serviceToggler = document.querySelector('.site-header__service-dropdown > a');
+
+    if (!serviceMenu || !serviceToggler) return;
+
+    serviceToggler.addEventListener('click', (event) => {
+        event.preventDefault();
+        serviceMenu.classList.toggle('open');
+    });
 }
 
 function heroCarousel() {

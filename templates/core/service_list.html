@@ -9,10 +9,10 @@
 </section>
 <section>
     <div class="container">
-        <div class="services-grid">
+        <div class="services__grid">
             {% for service in services %}
-            <article class="service-card">
-                <img src="{{ service.image_card.url }}" alt="{{ service.name }}" class="service-card__image" loading="lazy" width="800" height="450">
+            <article class="service__card">
+                <img src="{{ service.image_card.url }}" alt="{{ service.name }}" class="service__card-image" loading="lazy" width="800" height="450">
                 <h3>{{ service.name }}</h3>
                 <p>{{ service.short_description }}</p>
                 <a href="{% url 'contact' %}?requested_service={{ service.slug }}" class="btn btn--primary btn--block" aria-label="Request {{ service.name }}">Request This Service</a>

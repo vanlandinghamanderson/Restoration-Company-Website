@@ -18,7 +18,7 @@
             <nav class="site-header__main-nav">
                 <div class="site-header__service-dropdown">
                     <a href="{% url 'service_list' %}">Services</a>
-                    <div class="site-header__service-dropdown__content">
+                    <div class="site-header__service-dropdown__content" id="servicesMenu">
                         {% for service in restoration_services %}
                         <a href="{{ service.get_absolute_url }}">{{ service.name }}</a>
                         {% empty %}
@@ -132,15 +132,21 @@
                     <h3>Hours of Operation</h3>
                     {% with hours=restoration_site_setting.grouped_hours %}
                     {% if hours %}
-                    <div>
+                    <ul>
                         {% for hour in hours %}
                         {% if hour.is_closed %}
-                        <p><span>{{ hour.label }}:</span> Closed</p>
+                        <li>
+                            <span>{{ hour.label }}:</span> 
+                            <p>Closed</p>
+                        </li>
                         {% else %}
-                        <p><span>{{ hour.label}}:</span> {{ hour.open_time|time:"g:i A" }}-{{ hour.close_time|time:"g:i A" }}</p>
+                        <li>
+                            <span>{{ hour.label}}: </span> 
+                            <p>{{ hour.open_time|time:"g:i A" }}-{{ hour.close_time|time:"g:i A" }}</p>
+                        </li>
                         {% endif %}
                         {% endfor %}
-                    </div>
+                    </ul>
                     {% endif %}
                     {% endwith %}
                 </div>
