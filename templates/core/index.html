@@ -22,7 +22,7 @@
     </div>
 
     <div class="hero__content">
-        <h1>Professional Restoration You Can <span class="highlight">Trust.</span></h1>
+        <h1>Professional Restoration You Can <span class="hero__content-highlight">Trust</span></h1>
         <p class="hero__content-subtitle">Keeping Wilson & Surrounding Areas Dry Since 2009.</p>
         <div class="hero__content-buttons">
             <a href="{% url 'contact' %}" class="btn btn--primary btn--lg">Get a Free Quote</a>
@@ -31,12 +31,12 @@
             </a>
         </div>
         <div class="hero__content-trust">
-            <span><i class="bi bi-award"></i>2022 Reader's Choice</span>
-            <span><i class="bi bi-award"></i>BBB Accredited</span>
-            <span><i class="bi bi-briefcase"></i>17 Years Experience</span>
+            <span><i class="bi bi-award-fill"></i>2022 Reader's Choice</span>
+            <span><i class="bi bi-award-fill"></i>BBB Accredited</span>
+            <span><i class="bi bi-briefcase-fill"></i>17 Years Experience</span>
             <span><i class="bi bi-shield-shaded"></i>Licensed & Insured</span>
-            <span><i class="bi bi-reply"></i>Quick Response</span>
-            <span><i class="bi bi-clipboard-check"></i>Free Assessment</span>
+            <span><i class="bi bi-reply-fill"></i>Quick Response</span>
+            <span><i class="bi bi-clipboard-check-fill"></i>Free Assessment</span>
         </div>
     </div>
     <div class="hero__caption">
@@ -49,9 +49,11 @@
 <!----- Services Section ----->
 <section class="services" id="services" >
     <div class="container">
-        <span class="section-label">What We Offer...</span>
-        <h2 class="section-title">Our Restoration Services</h2>
-        <p class="section-subtitle">We handle water damage, mold, and fire -- from emergency response to full rebuild.</p>
+        <div class="section__header">
+            <span class="section__header-label">What We Offer...</span>
+            <h2 class="section__header-title">Our Restoration Services</h2>
+            <p class="section__header-subtitle">We handle water damage, mold, and fire -- from emergency response to full rebuild.</p>
+        </div>
         <div class="services__grid">
             {% for service in restoration_services %}
             <article class="service__card">
@@ -64,21 +66,21 @@
             <p class="empty-state">Services coming soon.</p>
             {% endfor %}
         </div>
-    <div class="section-cta">
-        <p class="section-cta__text">Don't see the service you need? Visit our service page to request one.</p>
+    <div class="section__cta">
+        <p class="section__cta-text">Don't see the service you need? Visit our service page to request one.</p>
         <a href="{% url 'service_list' %}" class="btn btn--primary">Request a Service</a>
     </div>
 
 </section>
 
 <!----- Reasons Section ----->
-<section class="reasons">
-    <div class="container">
-        <div class="reason-text">
-            <span class="section-label">Why {{ restoration_site_setting.company_name }}?</span>
-            <h2 class="reason-title">Eastern North Carolina's Trusted Restoration Team Since 2009</h2>
-            <p>Full-service restoration for Eastern North Carolina, with fast response and clear updates every step of the way.</p>
-            <ul class="reasons_list">
+<section class="reason">
+    <div class="container reason__grid">
+        <div class="reason__content">
+            <span class="section__header-label">Why {{ restoration_site_setting.company_name }}?</span>
+            <h2 class="section__header-title">Eastern North Carolina's Trusted Restoration Team Since 2009</h2>
+            <p class="section__header-subtitle">Full-service restoration for Eastern North Carolina, with fast response and clear updates every step of the way.</p>
+            <ul class="reasons__list">
                 <li><i class="bi bi-check-circle-fill"></i>2022 Reader's Choice in Wilson Times</li>
                 <li><i class="bi bi-check-circle-fill"></i>BBB Accredited</li>
                 <li><i class="bi bi-check-circle-fill"></i>17 Years Experience</li>
@@ -86,10 +88,10 @@
                 <li><i class="bi bi-check-circle-fill"></i>Free Damage Assessment</li>
             </ul>
         </div>
-        <div class="section-cta">
-            <p class="section-cta__text">Wanna learn more about the team? Visit our about page.</p>
-            <a href="{% url 'about' %}" class="btn btn--primary">Our Story</a>
-        </div>
+    </div>
+    <div class="section__cta">
+        <p class="section__cta-text">Wanna learn more about the team? Visit our about page.</p>
+        <a href="{% url 'about' %}" class="btn btn--primary">Our Story</a>
     </div>
 </section>
 
@@ -97,8 +99,10 @@
 {% if reviews %}
 <section class="review">
     <div class="container">
-        <span class="section-label">What Did Our Customers Say</span>
-        <h2 class="section-title">Trusted By Homeowners in North Carolina</h2>
+        <div class="section__header">
+            <span class="section__header-label">What Did Our Customers Say</span>
+            <h2 class="section__header-title">Trusted By Homeowners in North Carolina</h2>
+        </div>
         <div class="review__grid">
             {% for review in reviews %}
             <article class="review-card">
@@ -125,8 +129,10 @@
 <!----- Step Process Section ----->
 <section class="step-process">
     <div class="container">
-        <span class="section-label">How It Works</span>
-        <h2 class="section-title">Simple 3 - Step Recovery Process</h2>
+        <div class="section__header">
+            <span class="section__header-label">How It Works!</span>
+            <h2 class="section__header-title">Simple 3 - Step Recovery Process</h2>
+        </div>
         <div class="step-process-grid">
             <div class="step-card">
                 <div class="circle-step">1</div>
@@ -151,21 +157,24 @@
 {% if projects %}
 <section class="gallery-section">
     <div class="container">
-        <span class="section-label">Our Work</span>
-        <h2 class="section-title">Our Completed Projects</h2>
-        <p class="section-subtitle">Real projects, real results. See what StaDry can do for your property.</p>
+        <div class="section__header">
+            <span class="section__header-label">Our Work</span>
+            <h2 class="section__header-title">Our Completed Projects</h2>
+            <p class="section__header-subtitle">Real projects, real results. See what StaDry can do for your property.</p>
+        </div>
+        
         <div class="gallery-section__grid">
-            {% for project in projects %}
+            {% for project in projects|slice:":3" %}
             <div class="gallery-section__item" arial-label="{{ project.title }}">
                 {% if project.image %}
-                <img src="{{ project.image.url }}" alt="{{ project.alt_txt }}" loading="lazy" height="200" width="100">
+                <img src="{{ project.image.url }}" alt="{{ project.alt_txt }}" loading="lazy" height="400" width="300">
                 {% else %}
                 <p>Picture is not available at the moment.</p>
                 {% endif %}
             </div>
             {% endfor %}
         </div>
-        <div class="section-cta">
+        <div class="section__cta">
             <a href="{% url 'gallery' %}" class="btn btn--secondary">View All Gallery</a>
         </div>
     </div>
@@ -212,8 +221,8 @@
 <section class="cta-banner">
     <div class="container cta-banner__inner">
         <div>
-            <h2 class="section-title">Connect with StaDry!</h2>
-            <p class="section-subtitle">We know property damage is stressful. Let us take care of the restoration so you can focus on what matters. Free assessment, no obligation.</p>
+            <h2>Connect with StaDry!</h2>
+            <p>We know property damage is stressful. Let us take care of the restoration so you can focus on what matters. Free assessment, no obligation.</p>
         </div>
         <div class="cta-banner__actions">
             <a href="{% url 'contact' %}" class="btn btn--primary btn--lg">Request a Free Estimate</a>
