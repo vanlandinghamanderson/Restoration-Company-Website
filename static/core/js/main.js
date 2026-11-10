@@ -1,21 +1,78 @@
 document.addEventListener('DOMContentLoaded', () => {
-    serviceDropdown();
+    navigation();
     heroCarousel();
-    navBarToggle();
     galleryFilter();
     initContactForm();
 });
 
-function serviceDropdown() {
+function navigation() {
+    const nav = document.getElementById('mainNav');
+    const navToggle = document.getElementById('navToggle');
+    const serviceDropdowns = document.querySelectorAll('.site-header__service-dropdown');
 
-    const serviceMenu = document.getElementById('servicesMenu');
-    const serviceToggler = document.querySelector('.site-header__service-dropdown > a');
+    // True on Phones/Tablets, or when the hamburger menu is showing
+    function isMobile() {
+        return window.matchMedia('(hover: none), (max-width: 900px)').matches;
+    }
 
-    if (!serviceMenu || !serviceToggler) return;
+    function closeDropdowns() {
+        serviceDropdowns.forEach(function (dropdown) {
+            dropdown.classList.remove('open');
+        });
+    }
 
-    serviceToggler.addEventListener('click', (event) => {
-        event.preventDefault();
-        serviceMenu.classList.toggle('open');
+    // === Hamburger Button: Show or Hide the whole nav on small screens
+    navToggle.addEventListener('click', function () {
+        const isOpen = nav.classList.toggle('open');
+        navToggle.setAttribute('aria-expanded', String(isOpen));
+        if (!isOpen) closeDropdowns();
+    });
+
+    // === Services: first tap opens the menu, second tap goes to the page
+    serviceDropdowns.forEach(function (dropdown) {
+        const link = dropdown.querySelector('.nav-link');
+
+        link.addEventListener('click', function (e) {
+            if (!isMobile()) return; // desktop: hovers opens, click goes to the page
+
+            if (!dropdown.classList.contains('open')) {
+                e.preventDefault();
+                closeDropdowns();
+                dropdown.classList.add('open');
+            }
+        });
+    });
+
+    // === Click or tap outside the header closes everything
+    document.addEventListener('click', function (e) {
+        if (!e.target.closest('.site-header')) {
+            closeDropdowns();
+            nav.classList.remove('open');
+            navToggle.setAttribute('aria-expanded', 'false');
+        }
+    });
+
+    // === Escape key closes everything
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            closeDropdowns();
+            if (nav.classList.contains('open')) {
+                nav.classList.remove('open');
+                navToggle.setAttribute('aria-expanded', 'false');
+                navToggle.focus();
+            } else if (document.activeElement) {
+                document.activeElement.blur();
+            }
+        }
+    });
+
+    // === Rests when the window resized back to desktop
+    window.addEventListener('resize', function() {
+        if (!window.matchMedia('(max-width: 900px)').matches) {
+            nav.classList.remove('open');
+            navToggle.setAttribute('aria-expanded', 'false');
+            closeDropdowns();
+        }
     });
 }
 
@@ -78,21 +135,6 @@ function heroCarousel() {
     slides[0].classList.remove('active');
     current = 0;
     showSlide(0);
-}
-
-function navBarToggle() {
-    const navToggle = document.getElementById('navToggle');
-    const navMenu = document.querySelector('.site-header__main-nav');
-
-    if (!navToggle || !navMenu) return;
-
-    navToggle.addEventListener('click', () => {
-        navMenu.classList.toggle('open');
-    });
-
-    navMenu.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', () => navMenu.classList.remove('open'));
-    });
 }
 
 function galleryFilter() {

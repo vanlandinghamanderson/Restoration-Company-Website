@@ -15,21 +15,20 @@
     <header class="site-header">
         <div class="container site-header__inner">
             <a href="/" class="site-header__logo">{{ restoration_site_setting.company_name}}</a>
-            <nav class="site-header__main-nav">
+            <nav class="site-header__main-nav" id="mainNav" aria-label="Main naivation">
                 <div class="site-header__service-dropdown">
-                    <a href="{% url 'service_list' %}">Services</a>
-                    <div class="site-header__service-dropdown__content" id="servicesMenu">
+                    <a class="nav-link" href="{% url 'service_list' %}">Services</a>
+                    <div class="site-header__service-dropdown__content">
                         {% for service in restoration_services %}
-                        <a href="{{ service.get_absolute_url }}">{{ service.name }}</a>
-                        {% empty %}
-                        <p class="empty-state">No services available at the moment.</p>
+                        <a class="dropdown-link" href="{{ service.get_absolute_url }}">{{ service.name }}</a>
                         {% endfor %}
+                        <a class="all-service-link" href="{% url 'service_list' %}">All Services</a>
                     </div>
                 </div>
-                <a href="{% url 'gallery' %}">Gallery</a>
-                <a href="{% url 'blog_list' %}">Blogs</a>
-                <a href="{% url 'about' %}">About</a>
-                <a href="{% url 'contact' %}">Contact</a>
+                <a class="nav-link" href="{% url 'gallery' %}">Gallery</a>
+                <a class="nav-link" href="{% url 'blog_list' %}">Blogs</a>
+                <a class="nav-link" href="{% url 'about' %}">About</a>
+                <a class="nav-link" href="{% url 'contact' %}">Contact</a>
                 <div class="site-header__nav-social">
                     <a href=" tel:{{ restoration_site_setting.phone_number }}" class="site-header__social-link">
                         <i class="bi bi-telephone"></i>
@@ -51,7 +50,7 @@
                     </a>
                 </div>
             </nav>
-            <button class="site-header__nav-toggle" id="navToggle" aria-label="Toggle navigation">
+            <button class="site-header__nav-toggle" id="navToggle" type="button" aria-label="Toggle navigation" aria-controls="mainNav" aria-expanded="false">
                 <span></span>
                 <span></span>
                 <span></span>
