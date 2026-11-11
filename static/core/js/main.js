@@ -6,72 +6,93 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function navigation() {
+    /**
+     * Retrieves the elements for the navigation
+     */
     const nav = document.getElementById('mainNav');
     const navToggle = document.getElementById('navToggle');
     const serviceDropdowns = document.querySelectorAll('.site-header__service-dropdown');
 
-    // True on Phones/Tablets, or when the hamburger menu is showing
+    /**
+     * Helper Function
+     */
+
     function isMobile() {
-        return window.matchMedia('(hover: none), (max-width: 900px)').matches;
+        return window.matchMedia('(hover: none), (max-width: 938px)').matches;
     }
 
     function closeDropdowns() {
         serviceDropdowns.forEach(function (dropdown) {
             dropdown.classList.remove('open');
+            dropdown.querySelector('.nav-link').setAttribute('aria-expanded', 'false');
         });
     }
 
-    // === Hamburger Button: Show or Hide the whole nav on small screens
-    navToggle.addEventListener('click', function () {
+    function closeNav() {
+        nav.classList.remove('open');
+        navToggle.setAttribute('aria-expanded', 'false');
+        closeDropdowns();
+    }
+
+    /**
+     * Hamburger: Show/Hide the Whole Menu
+     */
+    navToggle.addEventListener('click', function() {
         const isOpen = nav.classList.toggle('open');
         navToggle.setAttribute('aria-expanded', String(isOpen));
         if (!isOpen) closeDropdowns();
     });
 
-    // === Services: first tap opens the menu, second tap goes to the page
+    /**
+     * Services: First tap ones, Second tap goes to the page
+     */
     serviceDropdowns.forEach(function (dropdown) {
         const link = dropdown.querySelector('.nav-link');
+        link.setAttribute('aria-haspopup', 'true');
+        link.setAttribute('aria-expanded', 'false');
 
-        link.addEventListener('click', function (e) {
-            if (!isMobile()) return; // desktop: hovers opens, click goes to the page
+        link.addEventListener('click', function (event) {
+            if (!isMobile()) return;
 
             if (!dropdown.classList.contains('open')) {
-                e.preventDefault();
+                event.preventDefault();
                 closeDropdowns();
                 dropdown.classList.add('open');
+                link.setAttribute('aria-expanded', 'true');
             }
         });
     });
 
-    // === Click or tap outside the header closes everything
-    document.addEventListener('click', function (e) {
-        if (!e.target.closest('.site-header')) {
-            closeDropdowns();
-            nav.classList.remove('open');
-            navToggle.setAttribute('aria-expanded', 'false');
+    /**
+     * Taps outside of the header closes everything
+     */
+    document.addEventListener('click', function(event) {
+        if (!event.target.closet('.site-header')) {
+            closeNav();
         }
     });
 
-    // === Escape key closes everything
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape') {
+    /**
+     * Escape Key closes everything
+     */
+    document.addEventListener('keydown', function (event) {
+        if (event.key !== 'Escape') return;
+
+        if (nav.classList.contains('open')) {
+            closeNav();
+            navToggle.focus();
+        } else {
             closeDropdowns();
-            if (nav.classList.contains('open')) {
-                nav.classList.remove('open');
-                navToggle.setAttribute('aria-expanded', 'false');
-                navToggle.focus();
-            } else if (document.activeElement) {
-                document.activeElement.blur();
-            }
+            if (document.activeElement) document.activeElement.blur();
         }
     });
 
-    // === Rests when the window resized back to desktop
-    window.addEventListener('resize', function() {
-        if (!window.matchMedia('(max-width: 900px)').matches) {
-            nav.classList.remove('open');
-            navToggle.setAttribute('aria-expanded', 'false');
-            closeDropdowns();
+    /**
+     * Reset when resized back to desktop
+     */
+    window.addEventListener('resize', function () {
+        if (!window.matchMedia('(max-width: 938px').matches) {
+            closeNav();
         }
     });
 }

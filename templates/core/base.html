@@ -15,14 +15,16 @@
     <header class="site-header">
         <div class="container site-header__inner">
             <a href="/" class="site-header__logo">{{ restoration_site_setting.company_name}}</a>
-            <nav class="site-header__main-nav" id="mainNav" aria-label="Main naivation">
+    
+            <nav class="site-header__main-nav" id="mainNav" aria-label="Main">
+                
                 <div class="site-header__service-dropdown">
                     <a class="nav-link" href="{% url 'service_list' %}">Services</a>
                     <div class="site-header__service-dropdown__content">
                         {% for service in restoration_services %}
                         <a class="dropdown-link" href="{{ service.get_absolute_url }}">{{ service.name }}</a>
                         {% endfor %}
-                        <a class="all-service-link" href="{% url 'service_list' %}">All Services</a>
+                        <a class="dropdown-link all-service-link" href="{% url 'service_list' %}">All Services</a>
                     </div>
                 </div>
                 <a class="nav-link" href="{% url 'gallery' %}">Gallery</a>
@@ -50,7 +52,8 @@
                     </a>
                 </div>
             </nav>
-            <button class="site-header__nav-toggle" id="navToggle" type="button" aria-label="Toggle navigation" aria-controls="mainNav" aria-expanded="false">
+            <button class="site-header__nav-toggle" id="navToggle" type="button" 
+                aria-label="Toggle navigation" aria-controls="mainNav" aria-expanded="false">
                 <span></span>
                 <span></span>
                 <span></span>
