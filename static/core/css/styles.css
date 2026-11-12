@@ -1638,5 +1638,21 @@ section {
         flex-wrap: wrap;
         margin-bottom: .5rem;
     }
+}
 
+@media (max-width: 1150px) {
+    .two-col {
+        grid-template-columns: 1fr;
+    }
+
+    .two-col_sidebar {
+        order: -1;
+    }
+
+    .two-col__main img {
+        margin: auto;
+        max-width: 100%;
+        height: 250px;
+        object-fit: cover;
+    }
 }
