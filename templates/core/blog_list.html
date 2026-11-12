@@ -14,7 +14,7 @@
         <!---------- Filter Bar for the Blogs ---------->
         <nav class="filter-bar" aria-label="Filter blogs by service">
             <a href="{% url 'blog_list' %}" class="filter-button{% if not active_service %} active {% endif %}">All</a>
-            {% for service in restoration_services %}
+            {% for service in services %}
             <a href="{% url 'blog_list' %}?service={{ service.slug }}"
                 class="filter-button{% if active_service == service.slug %} active {% endif %}"
                 aria-pressed="{% if active_service == service.slug %}true{% else %}false{% endif %}">
@@ -25,25 +25,25 @@
 
         <!---------- Displays the blogs ---------->
         <div class="blog-grid">
-            {% for restoration_post in restoration_posts %}
+            {% for post in posts %}
             <article class="blog-card">
                 <div class="blog-card__inner">
-                    {% if restoration_post.related_service %}
-                    <span class="blog-card_tag">{{ restoration_post.related_service.name }}</span>
+                    {% if post.related_service %}
+                    <span class="blog-card_tag">{{ post.related_service.name }}</span>
                     {% endif %}
                     <h2 itemprop="blog-card_headline">
                         <a href="{{ restoration_post.get_absolute_url }}">
-                            {{ restoration_post.title }}
+                            {{ post.title }}
                         </a>
                     </h2>
-                    <p item="blog-card_desc">{{ restoration_post.excerpt }}</p>
+                    <p item="blog-card_desc">{{ post.excerpt }}</p>
                     <footer class="blog-card_meta">
-                        <span itemprop="author">{{ restoration_post.author }}</span>
-                        {% if restoration_post.published_at %}
+                        <span itemprop="author">{{ post.author }}</span>
+                        {% if post.published_at %}
                         <time itemprop="datePublished" datetime="{{ post.published_at | date:'c'}}">{{ post.published_at|date:"M j, Y" }}</time>
                         {% endif %}
                     </footer>
-                    <a href="{{ restoration_post.get_absolute_url }}" class="btn read__button" aria-label="Read {{ post.title }}">Read Article</a>
+                    <a href="{{ post.get_absolute_url }}" class="btn read__button" aria-label="Read {{ post.title }}">Read Article</a>
                 </div>
             </article>
             {% empty %}

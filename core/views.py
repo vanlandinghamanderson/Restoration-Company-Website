@@ -109,15 +109,15 @@ def service_detail(request, slug):
 # Blog List Page
 def blog_list(request):
     service_filter = request.GET.get('service')
-    restoration_posts = Post.objects.all()
-    restoration_services = Service.objects.filter(is_active=True)
+    posts = Post.objects.filter(is_published=True)
+    services = Service.objects.filter(is_active=True)
     active_service = None
     if service_filter:
-        restoration_posts = restoration_posts.filter(related_service__slug=service_filter)
+        posts = posts.filter(related_service__slug=service_filter)
         active_service = service_filter
     return render(request, 'core/blog_list.html', {
-        'restoration_posts': restoration_posts,
-        'restoration_services': restoration_services,
+        'posts': posts,
+        'services': services,
         'active_service': active_service,
     })
 
