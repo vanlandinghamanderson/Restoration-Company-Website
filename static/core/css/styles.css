@@ -994,14 +994,15 @@ section {
     align-items: center;
 }
 
-.value-item, i {
-    font-size: 1.5rem;
+.value-item i {
+    font-size: 1.75rem;
     color: var(--color-primary);
 }
 
 .value-item p {
     text-align: center;
-    font-size: medium;
+    font-size: .9rem;
+    color: var(--color-muted);
 }
 
 .about-us {
@@ -1033,6 +1034,7 @@ section {
     border-radius: 50%;
     object-fit: cover;
     object-position: center; 
+    margin: auto;
 }
 
 .team-card h3 {

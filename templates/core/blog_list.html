@@ -46,8 +46,6 @@
                     <a href="{{ post.get_absolute_url }}" class="btn read__button" aria-label="Read {{ post.title }}">Read Article</a>
                 </div>
             </article>
-            {% empty %}
-            <p class="empty-state">No blogs available. Come back later!</p>
             {% endfor %}
         </div>
     </div>

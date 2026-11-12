@@ -78,6 +78,7 @@
             </div>
     </section>
 
+    {% if reviews %}
     <section>
         <div class="review">
             <div class="container about-section">
@@ -99,11 +100,10 @@
                         {% endif %}
                     </footer>
                 </article>
-                {% empty %}
-                <p class="empty-state">No reviews available...</p>
                 {% endfor %}
             </div>
         </div>
     </section>
+    {% endif %}
 
 {% endblock %}
