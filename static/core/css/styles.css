@@ -35,6 +35,9 @@ a {
     text-decoration: none;
 }
 
+p {
+    margin-bottom: 1rem;
+}
 ul, ol {
     list-style: none;
     padding-left: 0px;
@@ -545,7 +548,7 @@ Menu */
 .hero__content-subtitle {
     font-size: 1.15rem;
     max-width: 600px;
-    color: var(--color-muted);
+    color: rgba (0, 0, 0, .85);
     text-shadow: var(--shadow-md);
     margin-bottom: 2rem;
 }
@@ -681,16 +684,12 @@ section {
 }
 
 .service__card h3 {
-    font-family: var(--font-heading);
-    margin-bottom: 8px;
     font-size: 1.15rem;
-    font-weight: 700;
 }
 
 .service__card p {
-    font-family: var(--font-body);
-    margin-top: auto;
     color: var(--color-muted);
+    flex-grow: 1;
 }
 
 
