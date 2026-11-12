@@ -24,10 +24,6 @@
     --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
     --shadow-md: 2px 4px 16px rgba(0, 0, 0, 0.10);
     --shadow-lg: 4px 8px 32px rgba(0, 0, 0, 0.12);
-
-    --white-glow-sm: 0 0 2px rgba(255, 255, 255, 0.9);
-    --white-glow-md: 0 0 4px rgba(255, 255, 255, 0.9);
-    --white-glow-lg: 0 0 6px rgba(255, 255, 255, 0.9);
 }
 *,
 *::before,
@@ -143,7 +139,7 @@ img {
 }
 .btn--block { width: 100%; justify-content: center; }
 .btn--lg { padding: .85rem 2rem; font-size: 1.05rem; }
-.btn--lg:hover { text-shadow: var(--white-glow-lg); box-shadow: var(--shadow-lg); }
+.btn--lg:hover { text-shadow: var(--white-glow); box-shadow: var(--shadow-lg); }
 .btn--primary { background-color: var(--color-accent); color: #fff; }
 .btn--primary:hover { 
     background: var(--color-accent-dark); 
@@ -161,7 +157,7 @@ img {
 .btn--secondary:hover { 
     background-color: var(--color-primary-dark); 
     transform: translateY(-1px); 
-    text-shadow: var(--white-glow-md);
+    text-shadow: var(--white-glow);
     box-shadow: var(--shadow-md);
     color: #fff;
 }
@@ -274,7 +270,7 @@ img {
 }
 
 .nav-link:hover {
-    text-shadow: var(--white-glow-sm);
+    text-shadow: var(--white-glow);
 }
 
   /* narrow screen WITH a mouse: hover also opens it */
@@ -386,7 +382,7 @@ Menu */
 .dropdown-link:focus {
     color: #fff;
     box-shadow: var(--shadow-md);
-    text-shadow: var(--white-glow-md);
+    text-shadow: var(--white-glow);
     outline: none;
 }
 
@@ -399,7 +395,7 @@ Menu */
     .dropdown-link:hover, .dropdown-link:focus-visible {
         background: var(--color-primary-dark);
         color: #fff;
-        text-shadow: var(--white-glow-sm);
+        text-shadow: var(--white-glow);
     }
 }
 
@@ -418,7 +414,7 @@ Menu */
     color: #fff;
     transform: translateY(-1px);
     box-shadow: var(--shadow-md);
-    text-shadow: var(--white-glow-md);
+    text-shadow: var(--white-glow);
 }
 /* show the menu: mouse hover, keyboard Tab, or tap (class added by JS) */
 .site-header__service-dropdown:hover .site-header__service-dropdown__content,
@@ -940,7 +936,7 @@ section {
 
 /**/
 .page-hero {
-    background-color: var(--color-primary);
+    background-color: var(--color-primary-dark);
     color: white;
     padding: 150px 0 60px;
     text-align: center;
@@ -948,6 +944,11 @@ section {
 
 .page-hero h1 {
     color: #fff;
+}
+
+.page-hero p {
+    font-size: 1.1rem;
+    color: var(--color-muted);
 }
 
 .page-hero_icon i {
@@ -1570,7 +1571,7 @@ section {
         top: 75px;
         left: 0;
         right: -15px;
-        background: rgba(26, 58, 92, 0.98);
+        background: var(--color-primary);
         flex-direction: column;
         align-items: stretch;
         padding: 24px 20px 28px;
