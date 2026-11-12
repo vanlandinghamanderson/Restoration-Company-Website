@@ -91,7 +91,7 @@ function navigation() {
      * Reset when resized back to desktop
      */
     window.addEventListener('resize', function () {
-        if (!window.matchMedia('(max-width: 938px').matches) {
+        if (!window.matchMedia('(max-width: 1050px').matches) {
             closeNav();
         }
     });

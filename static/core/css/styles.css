@@ -25,9 +25,9 @@
     --shadow-md: 2px 4px 16px rgba(0, 0, 0, 0.10);
     --shadow-lg: 4px 8px 32px rgba(0, 0, 0, 0.12);
 
-    --white-glow-sm: 8px 12px 32px rgba(255, 255, 255, 0.08);
-    --white-glow-md: 12px 16px 64px rgba(255, 255, 255, 0.10);
-    --white-glow-lg: 16px 20px 128px rgba(255, 255, 255, 0.12);
+    --white-glow-sm: 0 0 2px rgba(255, 255, 255, 0.9);
+    --white-glow-md: 0 0 4px rgba(255, 255, 255, 0.9);
+    --white-glow-lg: 0 0 6px rgba(255, 255, 255, 0.9);
 }
 *,
 *::before,
@@ -139,6 +139,7 @@ img {
     cursor: pointer;
     justify-content: center;
     align-items: center;
+    margin-top: auto;
 }
 .btn--block { width: 100%; justify-content: center; }
 .btn--lg { padding: .85rem 2rem; font-size: 1.05rem; }
@@ -231,7 +232,7 @@ img {
 
 /* ---------- Header ---------- */
 .site-header {
-    position: sticky;
+    position: fixed;
     top: 0;
     left: 0;
     right: 0;
@@ -270,6 +271,9 @@ img {
 }
 .nav-link:hover, .nav-link:focus-visible, .site-header__service-dropdown {
     color: #fff;
+}
+
+.nav-link:hover {
     text-shadow: var(--white-glow-sm);
 }
 
@@ -287,10 +291,21 @@ img {
 
 /* Small arrow after "Services */
 .site-header__service-dropdown > .nav-link::after {
+    content: " \25BE";
+    display: inline-block; /* The arrow doesn't work with out it*/
+    margin-left: .5rem;
     font-size: .8em;
+    transition: transform .3s;
 }
 
-/* Dropdown Services Menu */
+/* Rotates the arrow while hovering Services */
+.site-header__service-dropdown:hover > .nav-link::after,
+.site-header__service-dropdown:focus-within > .nav-link::after,
+.site-header__service-dropdown.open > .nav-link::after {
+    transform: rotate(180deg);
+}
+/* Dropdown Services 
+Menu */
 .site-header__service-dropdown__content {
     position: absolute;
     top: 100%;
@@ -299,7 +314,7 @@ img {
     min-width: 220px;
     display: flex;
     flex-direction: column;
-    background: var(--color-primary);
+    background: var(--color-primary-dark);
     border-radius: var(--radius-sm);
     box-shadow: var(--shadow-lg);
     
@@ -319,12 +334,13 @@ img {
     transform: translateY(0);
 }
 
-@media (max-width: 938px) {
+@media (max-width: 1050px) {
     
     /* --- THE STRETCH: Servides dropdown goes full-width */
     .site-header__service-dropdown > .nav-link::after {
+        content: " ▾";
         color: #fff;
-        float: right;
+        float: center;
         transition: transform .3s;
     }
     .site-header__service-dropdown__content {
@@ -360,7 +376,7 @@ img {
 /* Links inside the Service menu */
 .dropdown-link {
     display: block;
-    padding: .5rem 1rem;
+    padding: 12px 20px 12px 20px;
     color: var(--color-muted);
     text-decoration: none;
     white-space: nowrap;
@@ -374,7 +390,7 @@ img {
     outline: none;
 }
 
-@media (max-width: 938px) {
+@media (max-width: 1050px) {
     .dropdown-link {
         color: #fff;
         text-align: center;
@@ -389,8 +405,13 @@ img {
 
 .all-service-link {
     border-top: solid 1px var(--color-line);
-    padding-bottom: 2rem;
-    padding-top: .5rem;
+    padding-bottom: 1rem;
+    padding-top: 1rem;
+}
+
+/* The border-top won't move when you hover it */
+.all-service-link, .all-service-link:hover {
+    transform: none !important;
 }
 
 .all-service-link:hover, .all-service-link:focus {
@@ -1527,7 +1548,7 @@ section {
 
 
 /***** Mobile *****/
-@media (max-width: 938px) {
+@media (max-width: 1050px) {
     .site-header__inner {
         position: relative;
     }
