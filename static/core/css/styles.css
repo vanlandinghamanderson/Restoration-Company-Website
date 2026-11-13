@@ -24,6 +24,8 @@
     --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
     --shadow-md: 2px 4px 16px rgba(0, 0, 0, 0.10);
     --shadow-lg: 4px 8px 32px rgba(0, 0, 0, 0.12);
+
+    --transition: 220ms ease;
 }
 *,
 *::before,
@@ -213,8 +215,24 @@ img {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 5rem;
+    gap: 2rem;
 }
+@media (max-width: 1150px) {
+    .cta-banner__actions {
+        flex-direction: column;
+    }
+}
+@media (max-width: 852px) {
+    .cta-banner__inner {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .gallery-section__grid {
+        grid-template-columns: minmax(0, 330px);
+    }
+}
+
 .cta-banner h2 {
     color: #fff;
     margin-bottom: .5rem;
@@ -307,21 +325,18 @@ img {
 Menu */
 .site-header__service-dropdown__content {
     position: absolute;
-    top: 100%;
     left: 0;
-    z-index: 100;
-    min-width: 220px;
-    display: flex;
-    flex-direction: column;
+    top: 100%;
     background: var(--color-primary-dark);
-    border-radius: var(--radius-sm);
+    border-radius: var(--radius-md);
     box-shadow: var(--shadow-lg);
-    
-    /* hidden by default */
+    min-width: 200px;
+    padding: .5rem 0;
     opacity: 0;
-    transform: translateY(8px);
     visibility: hidden;
-    transition: opacity .2s, transform .2s, visibility .2s;
+    transform: translateY(-.5rem);
+    transition: all var(--transition);
+    z-index: 100;
 }
 
 /* SHOW on when you hover over Services */
@@ -351,22 +366,18 @@ Menu */
         border-radius: var(--radius-sm);
         box-shadow: none;
         background: var(--color-primary-dark);
-        color: var(--color-muted);
-
+        color: var(--color-surface);
         opacity: 1;
         visibility: visible;
         transform: none;
         max-height: 0;
         overflow: hidden;
+        text-align: center;
         transition: max-height .3s ease;
     }
 
     .site-header__service-dropdown.open .site-header__service-dropdown__content {
         max-height: 300px; /* Slides open */
-    }
-
-    .dropdown-link {
-        padding: 12px 20px 12px 40px;
     }
 }
 
@@ -375,50 +386,42 @@ Menu */
 /* Links inside the Service menu */
 .dropdown-link {
     display: block;
-    padding: 12px 20px 12px 20px;
-    color: var(--color-muted);
-    text-decoration: none;
+    padding: .55rem 1.25rem;
+    font-size: .875rem;
+    color: var(---color-surface);
     white-space: nowrap;
 }
 
 .dropdown-link:hover,
 .dropdown-link:focus {
-    color: #fff;
-    box-shadow: var(--shadow-md);
-    text-shadow: var(--white-glow);
-    outline: none;
-}
-
-@media (max-width: 1050px) {
-    .dropdown-link {
-        color: #fff;
-        text-align: center;
-        padding: 12px 20px 12px 40px; /* Idented under services */
-    }
-    .dropdown-link:hover, .dropdown-link:focus-visible {
-        background: var(--color-primary-dark);
-        color: #fff;
-        text-shadow: var(--white-glow);
-    }
+    background: var(--color-surface);
+    color: var(--color-primary-dark);
+    font-weight: 600;
 }
 
 .all-service-link {
-    border-top: solid 1px var(--color-line);
-    padding-bottom: 1rem;
-    padding-top: 1rem;
+    border-top: 1px solid var(--color-line);
 }
 
+.nav-link, .all-service-link {
+    margin-top: .5rem;
+    padding-top: .5rem;
+}
+
+@media (max-width: 1050px) {
+
+}
 /* The border-top won't move when you hover it */
 .all-service-link, .all-service-link:hover {
     transform: none !important;
 }
 
 .all-service-link:hover, .all-service-link:focus {
-    color: #fff;
-    transform: translateY(-1px);
-    box-shadow: var(--shadow-md);
-    text-shadow: var(--white-glow);
+    background: var(--color-surface);
+    color: var(--color-primary-dark);
+    font-weight: 600;
 }
+
 /* show the menu: mouse hover, keyboard Tab, or tap (class added by JS) */
 .site-header__service-dropdown:hover .site-header__service-dropdown__content,
 .site-header__service-dropdown:focus-within .site-header__service-dropdown__content,
@@ -662,6 +665,41 @@ section {
     grid-template-columns: repeat(4, 1fr);
 }
 
+/* 1023px and narrower: 3 columns */
+@media (max-width: 1150px) {
+    .services__grid { grid-template-columns: repeat(2, 1fr); }
+    .service__card p {
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;   /* number of lines to show */
+        line-clamp: 2;
+        overflow: hidden;
+        line-height: 1.5;
+        max-height: 3em;
+        margin-top: 0;
+    }
+}
+@media (max-width: 852px) {
+    .cta-banner__inner {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+/* When you shrink until 640px, the grid displays only 1 card per row */
+@media (max-width: 640px) {
+    .services__grid {
+        grid-template-columns: 1fr;
+    }
+    .gallery-section__grid {
+        grid-template-columns: minmax(0, 330px);
+    }
+
+    .gallery-section__grid > :nth-child(n + 2) {
+        display: none;
+    } 
+}
+
 .service__card {
     border: 1px solid var(--color-line);
     border-radius: var(--radius-md);
@@ -691,7 +729,6 @@ section {
     color: var(--color-muted);
     flex-grow: 1;
 }
-
 
 
 .main-col__title {
@@ -841,6 +878,10 @@ section {
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 2rem;
     margin-top: 2.5rem;
+}
+
+@media (max-width: 640px) {
+    .step-process-grid { grid-template-columns: 1fr;}
 }
 
 .step-card {
@@ -1624,20 +1665,12 @@ section {
         font-size: .75rem;
         gap: .8rem;
     }
-    .services__grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-    .service__card p {
-        display: none;
-    }
-
 }
 
 @media (max-width: 1013px) {
     .hero__content {
-        padding: 0rem 6rem;
-        flex-wrap: wrap;
-        margin-bottom: .5rem;
+        padding: 0rem 4rem;
+        margin: auto;
     }
 }
 
@@ -1654,6 +1687,15 @@ section {
         margin: auto;
         max-width: 100%;
         height: 250px;
-        object-fit: cover;
+         object-fit: cover;
+    }
+
+    .gallery-section__grid {
+        grid-template-columns: repeat(2, 330px);
+    }
+
+    /* Hides the 3rd card in another row*/
+    .gallery-section__grid > :nth-child(n + 3) {
+        display: none;
     }
 }
