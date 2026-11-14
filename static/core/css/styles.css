@@ -249,11 +249,11 @@ img {
 
 /* ---------- Header ---------- */
 .site-header {
-    position: fixed;
+    position: sticky;
     top: 0;
     left: 0;
     right: 0;
-    z-index: 1000;
+    z-index: 100;
     background: var(--color-primary);
     color: #fff;
 }
@@ -403,11 +403,6 @@ Menu */
     border-top: 1px solid var(--color-line);
 }
 
-.nav-link, .all-service-link {
-    margin-top: .5rem;
-    padding-top: .5rem;
-}
-
 @media (max-width: 1050px) {
 
 }
@@ -484,6 +479,37 @@ Menu */
     background: white;
     border-radius: 2px;
 }
+
+/* ----------- Breadcrumb ----------- */
+.site-breadcrumb {
+    background: var(--color-surface);
+    border-bottom: 1px solid var(--color-line);
+    padding: 1rem 0;
+    font-size: .85rem;
+}
+
+.site-breadcrumb__inner {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .25rem;
+    align-items: center;
+    color: var(--color-muted);
+    margin: 0;
+}
+
+.site-breadcrumb__inner a {
+    color: var(--color-primary);
+}
+
+.site-breadcrumb__inner .sep {
+    color: var(--color-line);
+}
+
+.site-breadcrumb__inner [aria-current="page"] {
+    color: var(--color-ink);
+    font-weight: 500;
+}
+
 
 /* ---------- Hero Section ---------- */
 
@@ -665,6 +691,7 @@ section {
     grid-template-columns: repeat(4, 1fr);
 }
 
+
 /* 1023px and narrower: 3 columns */
 @media (max-width: 1150px) {
     .services__grid { grid-template-columns: repeat(2, 1fr); }
@@ -698,6 +725,10 @@ section {
     .gallery-section__grid > :nth-child(n + 2) {
         display: none;
     } 
+    .site-footer__grid {
+        display: flex;
+        flex-direction: column;
+    }
 }
 
 .service__card {
@@ -978,7 +1009,7 @@ section {
 .page-hero {
     background-color: var(--color-primary-dark);
     color: white;
-    padding: 150px 0 60px;
+    padding: 4rem 0;
     text-align: center;
 }
 

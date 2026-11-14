@@ -60,7 +60,28 @@
             </button>
         </div>
     </header>
-    
+
+    <!-- Breadcrumbs -->
+    {% if breadcrumbs %}
+    <nav class="site-breadcrumb" aria-label="Breadcrumb">
+        <div class="container">
+            <ol class="site-breadcrumb__inner" itemscope itemtype="ttps://schema.org/BreadcrumbList">
+                {% for label, url in breadcrumbs %}
+                <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                    {% if url %}
+                    <a itemprop="item" href="{{ url }}"><span itemprop="name">{{ label }}</span></a>
+                    {% else %}
+                    <span itemprop="name" aria-current="page">{{ label }}</span>
+                    {% endif %}
+                    <meta itemprop="position" content="{{ forloop.counter}}">
+                    {% if not forloop.last %}<span class="sep" aria-hidden="true">/</span>{% endif %}
+                </li>
+                {% endfor %}
+            </ol>
+        </div>
+    </nav>
+    {% endif %}
+
     <!-- Main Content Section -->
     <main id="main-content" role="main">
         {% block content %}{% endblock %}

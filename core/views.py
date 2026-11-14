@@ -37,6 +37,7 @@ def gallery(request):
         'projects':projects,
         'services': services,
         'active_service':active_service,
+        'breadcrumbs': [('Home', '/'), ('Gallery', None)],
     })
 
 # About Us Page
@@ -48,6 +49,7 @@ def about(request):
         'certifications': certifications,
         'teams': teams,
         'reviews': reviews,
+        'breadcrumbs': [('Home', '/'), ('About', None)],
     })
                   
 
@@ -77,7 +79,9 @@ def contact(request):
     else: 
         form = CustomerForm(initial=_contact_initial(request.GET.get('requested_service')))
     return render(request, 'core/contact.html', {
-        'form': form})
+        'form': form,
+        'breadcrumbs': [('Home', '/'), ('Contact', None)],
+    })
 
 # Contact API
 # '@required_POST' means only accept submissions (GET gets a 405)
@@ -96,6 +100,7 @@ def service_list(request):
     services = Service.objects.filter(is_active=True)
     return render(request, 'core/service_list.html', {
         'services': services,
+        'breadcrumbs': [('Home', '/'), ('Services', None)]
     })
 
 def service_detail(request, slug):
@@ -104,6 +109,7 @@ def service_detail(request, slug):
     return render(request, 'core/service_detail.html', {
         'service': service,
         'projects': projects,
+        'breadcrumbs': [('Home', '/'), ('Services', '/services/'), (service.name, None)],
     })
 
 # Blog List Page
@@ -119,6 +125,7 @@ def blog_list(request):
         'posts': posts,
         'services': services,
         'active_service': active_service,
+        'breadcrumbs': [('Home', '/'), ('Blogs', None)],
     })
 
 # Blog Detail Page
@@ -142,5 +149,6 @@ def blog_detail(request, slug):
         'restoration_post': post,
         'restoration_related_posts': related_posts,
         'page_title': post.title,
+        'breadcrumbs': [('Home', '/'), ('Blogs', '/blogs/'), (post.title, None)],
     })
 
