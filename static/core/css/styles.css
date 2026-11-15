@@ -1325,7 +1325,6 @@ section {
     display: flex;
     gap: .625rem;
     align-items: center;
-    line-height: 0;
 }
 
 .site-footer__contact-hours span {
@@ -1337,6 +1336,7 @@ section {
     gap: .625rem;
     font-size: .9rem;
     color: var(--color-muted);
+    margin: 0;
 }
 .site-footer__bottom {
     border-top: 1px solid rgba(255, 255, 255, .1);
