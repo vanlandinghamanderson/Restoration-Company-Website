@@ -758,10 +758,6 @@ section {
     .gallery-section__grid > :nth-child(n + 2) {
         display: none;
     } 
-    .site-footer__grid {
-        display: flex;
-        flex-direction: column;
-    }
 }
 
 .service__card {
@@ -1241,6 +1237,7 @@ section {
     gap: 3rem;
     padding-bottom: 3rem;
 }
+
 .site-footer__brand-logo {
     display: flex;
     font-size: 1.5rem;
@@ -1261,9 +1258,10 @@ section {
     gap: .625rem;
 }
 .site-footer__brand-map iframe {
+    display: block;
     width: 100%;
-    height: 150px;
     border: 0;
+    aspect-ratio: 4 / 3;
     border-radius: var(--radius-sm);
 }
 .site-footer__brand-address {
@@ -1353,6 +1351,20 @@ section {
     color: white;
     font-weight: 600;
     text-shadow: var(--white-glow);
+}
+
+.site-footer__grid > * {
+    min-width: 0;
+}
+
+@media (max-width: 640px) {
+    .site-footer__grid { grid-template-columns: 1fr 1fr; }
+    .site-footer__brand { grid-column: 1 / -1; }
+    .site-footer__brand-address { display: none; }
+    .site-footer__contact { display: contents; }
+    .site-footer__contact-hours { grid-column: 1 / -1; }
+    .site-footer__contact-hours h3 { text-align: center;}
+    .site-footer__contact-hours li { justify-content: center; }
 }
 
 /* ---------- Gallery ---------- */
