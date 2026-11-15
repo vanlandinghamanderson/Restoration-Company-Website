@@ -16,10 +16,6 @@
 <section>
     <div class="container two-col">
         <main class="two-col__main prose">
-            {% if service.image %}
-            <img src="{{ service.image.url }}" alt="{{ service.name }}" width="750" height="400">
-            {% endif %}
-
             <div class="prose">
                 {% if service.description %}
                 <p>{{ service.description|linebreaks }}</p>
