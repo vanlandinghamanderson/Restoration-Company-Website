@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     navigation();
     heroCarousel();
+    mobileServiceCarousel();
     galleryFilter();
     initContactForm();
 });
@@ -157,6 +158,55 @@ function heroCarousel() {
     current = 0;
     showSlide(0);
 }
+
+function mobileServiceCarousel() {
+    const carousel = document.getElementById('service__carousel');
+    if (!carousel) return;
+
+    const section = carousel.closest('.services');
+    if (!section) return;
+
+    const cards = Array.from(carousel.querySelectorAll('.service__card'));
+    const dots = Array.from(section.querySelectorAll('.service__carousel-dot'));
+    const prevButton = section.querySelector('[data-carousel-prev]');
+    const nextButton = section.querySelector('[data-carousel-next]');
+
+    if (!cards.length) return;
+    if (cards.length <= 1) return;
+
+    let index = 0;
+    let timer = null;
+
+    function goTo(i) {
+        index = (i + cards.length) % cards.length;
+        cards.forEach((card, n) => card.classList.toggle('active', n === index));
+        dots.forEach((dot, n) => {
+            dot.classList.toggle('active', n === index);
+            dot.setAttribute('aria-selected', n === index ? 'true' : 'false');
+        });
+    }
+
+    function next() { goTo(index + 1); }
+    function prev() { goTo(index - 1); }
+    function restart() {
+        clearInterval(timer);
+        timer = setInterval(next, 6000);
+    }
+
+    prevButton && prevButton.addEventListener('click', () => { prev(); restart(); });
+    nextButton && nextButton.addEventListener('click', () => { next(); restart(); });
+
+    dots.forEach((dot, n) => {
+        dot.addEventListener('click', () => {
+            goTo(n);
+            restart();
+        });
+    });
+
+    goTo(0);
+    restart();
+}
+
 
 function galleryFilter() {
     
