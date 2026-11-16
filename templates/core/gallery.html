@@ -16,7 +16,7 @@
                class="filter-button{% if not active_service %} active {% endif %}"
                data-service="all"
                aria-pressed="{% if not active_service %}true{% else %}false{% endif %}">All</a>
-            {% for service in restoration_services %}
+            {% for service in services %}
             <a href="{% url 'gallery' %}?service={{ service.slug }}"
                 class="filter-button{% if active_service == service.slug %} active {% endif %}"
                 data-service="{{ service.slug }}"

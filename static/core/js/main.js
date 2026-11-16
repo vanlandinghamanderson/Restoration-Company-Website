@@ -12,7 +12,7 @@ function navigation() {
      */
     const nav = document.getElementById('mainNav');
     const navToggle = document.getElementById('navToggle');
-    const serviceDropdowns = document.querySelectorAll('.site-header__service-dropdown');
+    const serviceDropdowns = document.querySelectorAll('.header__dropdown');
 
     /**
      * Helper Function
@@ -48,7 +48,7 @@ function navigation() {
      * Services: First tap ones, Second tap goes to the page
      */
     serviceDropdowns.forEach(function (dropdown) {
-        const link = dropdown.querySelector('.nav-link');
+        const link = dropdown.querySelector('.header__nav-link');
         link.setAttribute('aria-haspopup', 'true');
         link.setAttribute('aria-expanded', 'false');
 
@@ -68,7 +68,7 @@ function navigation() {
      * Taps outside of the header closes everything
      */
     document.addEventListener('click', function(event) {
-        if (!event.target.closet('.site-header')) {
+        if (!event.target.closest('.header')) {
             closeNav();
         }
     });
@@ -184,6 +184,15 @@ function mobileServiceCarousel() {
             dot.classList.toggle('active', n === index);
             dot.setAttribute('aria-selected', n === index ? 'true' : 'false');
         });
+
+        if (window.matchMedia('(max-width: 640px)').matches) {
+            const carouselLeft = carousel.getBoundingClientRect().left;
+            const cardLeft = cards[index].getBoundingClientRect().left;
+            carousel.scrollTo({
+                left: carousel.scrollLeft + cardLeft - carouselLeft,
+                behavior: 'smooth'
+            });
+        }
     }
 
     function next() { goTo(index + 1); }

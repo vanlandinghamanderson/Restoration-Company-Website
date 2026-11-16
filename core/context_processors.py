@@ -3,9 +3,12 @@ from .models import SiteSetting, Service, ServiceArea
 from django.conf import settings
 
 def site_globals(request):
+    site_setting = SiteSetting.objects.prefetch_related('business_hours').first()
+    services = Service.objects.filter(is_active=True)
+    service_areas = ServiceArea.objects.all()
     return {
-        'restoration_services': Service.objects.filter(is_active=True),
-        'restoration_service_areas': ServiceArea.objects.all(),
-        'restoration_site_setting': SiteSetting.objects.prefetch_related('business_hours').first(),
+        'services': services,
+        'service_areas': service_areas,
+        'site_setting': site_setting,
         'google_maps_api_key': settings.GOOGLE_MAPS_API_KEY,
     }

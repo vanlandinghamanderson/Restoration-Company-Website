@@ -6,14 +6,14 @@
 <article itemscope itemtype="https://schema.org/BlogPosting">
     <section class="page-hero">
         <div class="container page-hero_inner">
-            {% if restoration_post.related_service %}
-            <span class="page-hero_tag">{{ restoration_post.related_service.name }}</span>
+            {% if post.related_service %}
+            <span class="page-hero_tag">{{ post.related_service.name }}</span>
             {% endif %}
-            <h1 itemprop="blog-title_headline">{{ restoration_post.title }}</h1>
+            <h1 itemprop="blog-title_headline">{{ post.title }}</h1>
             <div class="blog-article_meta">
-                <span itemprop="blog_author">{{ restoration_post.author }}</span>
-                {% if restoration_post.published_at %}
-                <time itemprop="datePublished" datetime="{{ restoration_post.published_at|date:'c' }}">{{ restoration_post.published_at|date:"F j, Y"}}</time>
+                <span itemprop="blog_author">{{ post.author }}</span>
+                {% if post.published_at %}
+                <time itemprop="datePublished" datetime="{{ post.published_at|date:'c' }}">{{ post.published_at|date:"F j, Y"}}</time>
                 {% endif %}
             </div>
         </div>
@@ -21,7 +21,7 @@
     <section>
         <div class="container two-col">
             <div class="two-col__main prose" itemprop="articleBody">
-                {{ restoration_post.content|markdown }}
+                {{ post.content|markdown }}
             </div>
 
             <aside class="two-col_sidebar">
@@ -30,7 +30,7 @@
                     <p>Reach Out to Us Today!</p>
                     <div class="sidebar-cta_buttons">
                         <a href="{% url 'contact' %}" class="btn contact-button">Free Estimate</a>
-                        <a href="tel:{{ restoration_site_setting.phone_number }}"  class="btn call-button">
+                        <a href="tel:{{ site_setting.phone_number }}"  class="btn call-button">
                             <i class="bi bi-telephone-fill" aria-hidden="true"></i>Call Us
                         </a>
                     </div>

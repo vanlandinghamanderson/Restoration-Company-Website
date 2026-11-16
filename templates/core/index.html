@@ -55,7 +55,7 @@
             <p class="section__header-subtitle">We handle water damage, mold, and fire -- from emergency response to full rebuild.</p>
         </div>
         <div class="services__grid services__carousel-track" id="service__carousel">
-            {% for service in restoration_services %}
+            {% for service in services %}
             <article class="service__card">
                 <img src="{{ service.image_card.url }}" alt="{{ service.name }}" class="service__card-image" loading="lazy" width="800" height="450">
                 <h3>{{ service.name }}</h3>
@@ -66,13 +66,13 @@
             <p class="empty-state">Services coming soon.</p>
         {% endfor %}
         </div>
-        {% if restoration_services|length > 1 %}
+        {% if services|length > 1 %}
         <div class="service__control-actions">
             <button type="button" class="service__carousel-arrow" aria-label="Previous service" data-carousel-prev>
                 <i class="bi bi-arrow-left-circle-fill" aria-hidden="true"></i>
             </button>
             <div class="service__carousel-dots" role="tablist" aria-label="Choose a service">
-                {% for service in restoration_services %}
+                {% for service in services %}
                 <button type="button" class="service__carousel-dot{% if forloop.first %} active {% endif %}" aria-label="Show service {{ forloop.counter }}" aria-selected="{% if forloop.first %}true{% else %}false{% endif %}" role="tab"></button>
                 {% endfor %}
             </div>
@@ -92,7 +92,7 @@
 <section class="reason">
     <div class="container reason__grid">
         <div class="reason__content">
-            <span class="section__header-label">Why {{ restoration_site_setting.company_name }}</span>
+            <span class="section__header-label">Why {{ site_setting.company_name }}</span>
             <h2>Eastern North Carolina's Trusted Restoration Team Since 2009</h2>
             <p class="section__header-subtitle">Full-service restoration for Eastern North Carolina, with fast response and clear updates every step of the way.</p>
             <ul class="reasons__list">
@@ -248,8 +248,8 @@
             </div>
             <div class="cta-banner__actions">
                 <a href="{% url 'contact' %}" class="btn btn--primary btn--lg">Request a Free Estimate</a>
-                <a href="tel:{{ restoration_site_setting.phone_number }}" class="btn btn--white btn--lg">
-                    <i class="bi bi-telephone-fill"></i>{{ restoration_site_setting.phone_number }}
+                <a href="tel:{{ rsite_setting.phone_number }}" class="btn btn--white btn--lg">
+                    <i class="bi bi-telephone-fill"></i>{{ site_setting.phone_number }}
                 </a>
             </div>
         </div>

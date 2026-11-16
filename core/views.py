@@ -13,13 +13,13 @@ from django.db.models import Q
 def index(request):
     carousel_background = CarouselBackground.objects.exclude(Q(image='') & Q(video=''))
     reviews = Review.objects.filter(is_active=True)
-    restoration_certifications = Certification.objects.filter(is_active=True)
+    certifications = Certification.objects.filter(is_active=True)
     projects = Project.objects.filter(is_published=True)[:3] #Slices 3
     posts = Post.objects.filter(is_published=True)[:3] #Slices 3
     return render(request, 'core/index.html', {
         'carousel_background': carousel_background,
         'reviews': reviews,
-        'restoration_certifications': restoration_certifications,
+        'certifications': certifications,
         'projects': projects,
         'posts': posts, 
     })
@@ -146,8 +146,8 @@ def blog_detail(request, slug):
     ).exclude(pk=post.pk)[:3]
 
     return render(request, 'core/blog_detail.html', {
-        'restoration_post': post,
-        'restoration_related_posts': related_posts,
+        'post': post,
+        'related_posts': related_posts,
         'page_title': post.title,
         'breadcrumbs': [('Home', '/'), ('Blogs', '/blogs/'), (post.title, None)],
     })

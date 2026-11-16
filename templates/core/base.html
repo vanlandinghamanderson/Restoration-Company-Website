@@ -9,50 +9,36 @@
     <link rel="stylesheet" href="{% static 'core/css/styles.css' %}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-    <title>{% block title %}{{ restoration_site_setting.company_name }}{% endblock %}</title>
+    <title>{% block title %}{{ site_setting.company_name }}{% endblock %}</title>
 </head>
 <body>
-    <header class="site-header">
-        <div class="container site-header__inner">
-            <a href="/" class="site-header__logo">{{ restoration_site_setting.company_name}}</a>
-    
-            <nav class="site-header__main-nav" id="mainNav" aria-label="Main">
-                
-                <div class="site-header__service-dropdown">
-                    <a class="nav-link" href="{% url 'service_list' %}">Services</a>
-                    <div class="site-header__service-dropdown__content">
-                        {% for service in restoration_services %}
-                        <a class="dropdown-link" href="{{ service.get_absolute_url }}">{{ service.name }}</a>
+    <header class="header">
+        <div class="container header__inner">
+            <a href="/" class="header__logo">{{ site_setting.company_name}}</a>
+            <nav class="header__main-nav" id="mainNav" aria-label="Main">
+                <div class="header__dropdown">
+                    <a class="header__nav-link" href="{% url 'service_list' %}">Services</a>
+                    <div class="header__dropdown-content">
+                        {% for service in services %}
+                        <a class="header__dropdown-link" href="{{ service.get_absolute_url }}">{{ service.name }}</a>
                         {% endfor %}
-                        <a class="dropdown-link all-service-link" href="{% url 'service_list' %}">All Services</a>
+                        <a class="header__dropdown-link all-service-link" href="{% url 'service_list' %}">All Services</a>
                     </div>
                 </div>
-                <a class="nav-link" href="{% url 'gallery' %}">Gallery</a>
-                <a class="nav-link" href="{% url 'blog_list' %}">Blogs</a>
-                <a class="nav-link" href="{% url 'about' %}">About</a>
-                <a class="nav-link" href="{% url 'contact' %}">Contact</a>
-                <div class="site-header__nav-social">
-                    <a href=" tel:{{ restoration_site_setting.phone_number }}" class="site-header__social-link">
-                        <i class="bi bi-telephone"></i>
-                    </a>
-                    <a href=" mailto:{{ restoration_site_setting.email }}" class="site-header__social-link">
-                        <i class="bi bi-envelope"></i>
-                    </a>
-                    <a href="{{ restoration_site_setting.instagram_url }}" class="site-header__social-link">
-                        <i class="bi bi-instagram"></i>
-                    </a>
-                    <a href="{{ restoration_site_setting.facebook_url }}" class="site-header__social-link">
-                        <i class="bi bi-facebook"></i>
-                    </a>
-                    <a href="{{ restoration_site_setting.twitter_url }}" class="site-header__social-link">
-                        <i class="bi bi-twitter-x"></i>
-                    </a>
-                    <a href="{{ restoration_site_setting.linkedin_url }}" class="site-header__social-link">
-                        <i class="bi bi-linkedin"></i>
-                    </a>
+                <a class="header__nav-link" href="{% url 'gallery' %}">Gallery</a>
+                <a class="header__nav-link" href="{% url 'blog_list' %}">Blogs</a>
+                <a class="header__nav-link" href="{% url 'about' %}">About</a>
+                <a class="header__nav-link" href="{% url 'contact' %}">Contact</a>
+                <div class="header__social-nav">
+                    <a href=" tel:{{ site_setting.phone_number }}" class="header__social-link"><i class="bi bi-telephone"></i></a>
+                    <a href=" mailto:{{ site_setting.email }}" class="header__social-link"><i class="bi bi-envelope"></i></a>
+                    <a href="{{ site_setting.instagram_url }}" class="header__social-link"><i class="bi bi-instagram"></i></a>
+                    <a href="{{ site_setting.facebook_url }}" class="header__social-link"><i class="bi bi-facebook"></i></a>
+                    <a href="{{ site_setting.twitter_url }}" class="header__social-link"><i class="bi bi-twitter-x"></i></a>
+                    <a href="{{ site_setting.linkedin_url }}" class="header__social-link"><i class="bi bi-linkedin"></i></a>
                 </div>
             </nav>
-            <button class="site-header__nav-toggle" id="navToggle" type="button" 
+            <button class="header__nav-toggle" id="navToggle" type="button" 
                 aria-label="Toggle navigation" aria-controls="mainNav" aria-expanded="false">
                 <span></span>
                 <span></span>
@@ -91,38 +77,32 @@
     <footer class="site-footer">
         <div class="container site-footer__grid">
             <div class="site-footer__brand">
-                {% if restoration_site_setting.company_name %}
-                    <a href="/" class="site-footer__brand-logo">{{ restoration_site_setting.company_name }}</a>
-                {% endif %}
-                <p>Restoration services serving Wilson and surrounding areas throughout eastern NC since 2009.
-                    Water damage, mold, and fire restoration. 
-                </p>
+                <a href="/" class="site-footer__brand-logo">{{ site_setting.company_name }}</a>
+                <p>Restoration services serving Wilson and surrounding areas throughout eastern NC since 2009. Water damage, mold, and fire restoration.</p>
                 <div class="site-footer__brand-map">
-                    {% if google_maps_api_key and restoration_site_setting.address %}
+                    {% if google_maps_api_key and site_setting.address %}
                     <iframe
                         loading="lazy"
                         allowfullscreen
                         referrerpolicy="trict-origin-when-cross-origin"
                         title="Map shown in StaDry location"
-                        src="https://www.google.com/maps/embed/v1/place?key={{ google_maps_api_key }}&q={{ restoration_site_setting.address|urlencode }}"></iframe>
+                        src="https://www.google.com/maps/embed/v1/place?key={{ google_maps_api_key }}&q={{ site_setting.address|urlencode }}"></iframe>
                     </iframe>
                     {% endif %}
                     <address class="site-footer__brand-address">
-                        <p><i class="bi bi-geo-alt-fill"></i>{{ restoration_site_setting.address }}, {{ restoration_site_setting.city }}, {{ restoration_site_setting.state }} {{ restoration_site_setting.zip_code }}</p>
+                        <p><i class="bi bi-geo-alt-fill"></i>{{ site_setting.address }}, {{ site_setting.city }}, {{ site_setting.state }} {{ site_setting.zip_code }}</p>
                     </address>
                 </div>
             </div>
             <div class="site-footer__link site-footer__services">
                 <h3>Services</h3>
-                {% if restoration_services %}
+                {% for service in services %}
                 <ul>
-                    {% for service in restoration_services %}
                     <li><a href="{{ service.get_absolute_url }}">{{ service.name }}</a></li>
-                    {% endfor %}
-                {% else %}
-                    <p>Services are not available...</p>
+                {% empty %}
+                    <p class="empty-state">No Services Available...</p>
                 </ul>
-                {% endif %}
+                {% endfor %}
             </div>
             <div class="site-footer__link site-footer__nav">
                 <h3>Company</h3>
@@ -135,25 +115,25 @@
             </div>
             <div class="site-footer__link site-footer__service-areas">
                 <h3>Service Areas</h3>
-                {% if restoration_service_areas %}
+                {% for area in service_areas %}
                 <ul>
-                    {% for area in restoration_service_areas %}
                     <li><p>{{ area.city }}, {{ area.state }}</p></li>
-                    {% endfor %}
                 </ul>
-                {% endif %}
+                {% empty %}
+                    <p class="empty-state">No Service Areas avilable...</p>
+                {% endfor %}
             </div>
             <div class="site-footer__contact">
                 <div class="site-footer__contact-info">
                     <h3>Contact Information</h3>
                     <address>
-                        <p><i class="bi bi-telephone-fill"></i><a href="tel:{{ restoration_site_setting.phone_number }}">{{ restoration_site_setting.phone_number }}</a></p>
-                        <p><i class="bi bi-envelope-fill"></i><a href="mailto:{{ restoration_site_setting.email }}">{{ restoration_site_setting.email }}</a></p>
+                        <p><i class="bi bi-telephone-fill"></i><a href="tel:{{ site_setting.phone_number }}">{{ site_setting.phone_number }}</a></p>
+                        <p><i class="bi bi-envelope-fill"></i><a href="mailto:{{ site_setting.email }}">{{ site_setting.email }}</a></p>
                     </address>
                 </div>
                 <div class="site-footer__contact-hours">
                     <h3>Hours of Operation</h3>
-                    {% with hours=restoration_site_setting.grouped_hours %}
+                    {% with hours=site_setting.grouped_hours %}
                     {% if hours %}
                     <ul>
                         {% for hour in hours %}
@@ -177,7 +157,7 @@
         </div>
         <div class="site-footer__bottom">
             <div class="container">
-                <p>&copy 2026 {{ restoration_site_setting.company_name }}. All Rights Reserved.</p>
+                <p>&copy 2026 {{ site_setting.company_name }}. All Rights Reserved.</p>
             </div>
         </div>
     </footer>
