@@ -11,35 +11,21 @@
 <section>
     <div class="container two-col">
         <div class="two-main__col">
-            <div>
-                <h2 class="section-title" style="text-align: left;">Our Story</h2>
-                <p>At {{ site_setting.company_name }}, we're a trusted restoration contactor serving Wilson, Raleigh, Durham, Greenville, and other surrounding areas with integrity, professionalism, and quality craftmanship.</p>
-                <p>We specialize in water damage, fire damage, mold remediation restoration, and we also offer home remodeling. Our team is committed to building last relationships with local clients by delivering honest assessments, quality workmanship, and personalized service on every project. Contact us today to get started.</p>
-                <p>Need your roofing, siding, or painting done? Visit our roofing website & our siding and painting website.</p>
-            </div>
-            <div>
-                <h2 class="section-title" style="text-align: left">Our Certifications</h2>
-                <ul class="certification-list">
-                    {% for certification in certifications %}
-                    <li><i class="bi bi-award-fill"></i>{{ certification.title }}</li>
-                    {% empty %}
-                    <p class="empty-state">No rewards are listed right now.</p>
-                    {% endfor %}
-                </ul>
-            </div>
-        </div>
-        <aside class="two-col__sidebar">
-            <div class="sidebar-cta">
-                <h3>Ready to Work With Us?</h3>
-                <p>Contact us today for a free, no-pressure estimate.</p>
-                <a href="{% url 'contact' %}" class="btn btn--primary btn--block">Get A Free Quote</a>
-            </div>
-        </aside>
-    </div>
-</section>
-    <section>
-        <div class="container about-section">
-            <h2 class="section-title">Our Values</h2>
+            <h2>Our Story</h2>
+            <p>At {{ site_setting.company_name }}, we're a trusted restoration contactor serving Wilson, Raleigh, Durham, Greenville, and other surrounding areas with integrity, professionalism, and quality craftmanship.</p>
+            <p>We specialize in water damage, fire damage, mold remediation restoration, and we also offer home remodeling. Our team is committed to building last relationships with local clients by delivering honest assessments, quality workmanship, and personalized service on every project. Contact us today to get started.</p>
+            <p>Need your roofing, siding, or painting done? Visit our roofing website & our siding and painting website.</p>
+            
+            <h2>Our Certifications</h2>
+            <ul class="certification-list" aria-label="Certifications and memberships">
+                {% for certification in certifications %}
+                <li><i class="bi bi-award-fill" aria-hidden="true"></i>{{ certification.title }}</li>
+                {% empty %}
+                <p class="empty-state">No rewards are listed right now.</p>
+                {% endfor %}
+            </ul>
+
+            <h2>Our Values</h2>
             <div class="value-grid">
                 <div class="value-item">
                     <i class="bi bi-briefcase-fill"></i>
@@ -57,26 +43,29 @@
                     <p>We're honest with you, always. You'll get straight answers, no uneccessary work, and no inflated quotes.</p>
                 </div>
             </div>
-        </div>
-    </section>
-    <section>
-        <div class="about-us">
-            <div class="container about-section">
-                <h2 class="section-title">Meet Our Team</h2>
-                    <div class="team-grid">
-                        {% for team in teams %}
-                        <div class="team-card">
-                            <img src="{{ team.image.url }}" class="team_member-pic">
-                            <h3>{{ team.team_member }}</h3>
-                            <span>{{ team.occupation }}</span>
-                        </div>
-                        {% empty %}
-                        <p class="empty-state">No team member is available...</p>
-                        {% endfor %}
-                    </div>
+
+            <h2>Meet Our Team</h2>
+            <div class="team-grid">
+                {% for team in teams %}
+                <div class="team-card">
+                    <img src="{{ team.image.url }}" class="team_member-pic">
+                    <h3>{{ team.team_member }}</h3>
+                    <span>{{ team.occupation }}</span>
                 </div>
+                {% empty %}
+                <p class="empty-state">No team member is available at the moment.</p>
+                {% endfor %}
             </div>
-    </section>
+        </div>
+        <aside class="two-col__sidebar">
+            <div class="sidebar-cta">
+                <h3>Ready to Work With Us?</h3>
+                <p>Contact us today for a free, no-pressure estimate.</p>
+                <a href="{% url 'contact' %}" class="btn btn--primary btn--block">Get A Free Quote</a>
+            </div>
+        </aside>
+    </div>
+</section>
 
     {% if reviews %}
     <section>

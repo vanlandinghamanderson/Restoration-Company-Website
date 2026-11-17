@@ -364,12 +364,6 @@ img {
 .header__nav-link:focus-visible, 
 .header__nav-link:hover { text-shadow: var(--white-glow); }
 
-/* ---------- Media 640px for Header ---------- */
-@media (max-width: 640px) {
-
-    
-}
-
 
 
 
@@ -1082,35 +1076,9 @@ section {
 .certification-list li i {
     color: var(--color-accent);
 }
-/**/
-.value-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
-    margin-top: 1rem;
-}
 
-.value-item {
-    background-color: var(--color-surface);
-    padding: 1.5rem;
-    border: 1px solid var(--color-line);
-    border-radius: var(--radius-md);
-    display: flex;
-    gap: .25rem;
-    flex-direction: column;
-    align-items: center;
-}
 
-.value-item i {
-    font-size: 1.75rem;
-    color: var(--color-primary);
-}
 
-.value-item p {
-    text-align: center;
-    font-size: .9rem;
-    color: var(--color-muted);
-}
 
 .about-us {
     margin-top: 2.5rem;
@@ -1120,49 +1088,9 @@ section {
     margin-bottom: 2rem;
 }
 
-.team-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
-    animation: fadeInUp 2s ease forwards; 
-}
 
-.team-card {
-    background-color: var(--color-surface);
-    padding: 32px 24px;
-    text-align: center;
-    border-radius: var(--radius-md);
-    border: 1px solid var(--color-line);
-}
 
-.team_member-pic {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    object-fit: cover;
-    object-position: center; 
-    margin: auto;
-}
 
-.team-card h3 {
-    margin-top: 1rem;
-}
-
-.team-card span {
-    text-transform: uppercase;
-    color: var(--color-accent);
-    margin-top: 4px;
-    font-weight: 700;
-    font-size: 0.8rem;
-    margin-bottom: 1rem;
-}
-
-/* ---------- HOVER EFFECT FOR TEAM CARD ---------- */
-.team-card:hover {
-    transform: scale(1.1);
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.8);
-    transition: transform .5s ease;
-}
 
 /* ---------- Footer ---------- */
 .site-footer { background: var(--color-ink); color: #fff; padding-top: 4rem; }
@@ -1347,7 +1275,79 @@ section {
     margin-top: 2rem;
 }
 
-/* ---------- End of Gallery Section -------- */
+/* ---------- About Us Page -------- */
+.about-section { margin-top: -5rem; }
+.value-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 1rem;
+}
+.value-item {
+    background-color: var(--color-surface);
+    padding: 1.5rem;
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-md);
+    display: flex;
+    gap: .25rem;
+    flex-direction: column;
+    align-items: center;
+}
+
+.value-item i {
+    font-size: 1.75rem;
+    color: var(--color-primary);
+}
+.value-item p {
+    text-align: center;
+    font-size: .9rem;
+    color: var(--color-muted);
+}
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    animation: fadeInUp 2s ease forwards; 
+}
+@media (max-width: 985px) {
+    .team-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 745px) {
+    .team-grid { grid-template-columns: 1fr; }
+}
+.team-card {
+    background-color: var(--color-surface);
+    padding: 24px 16px;
+    text-align: center;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--color-line);
+    max-width: 280px;          /* optional: stops it getting too wide */
+    margin: 0 auto;  
+    height: 100%;
+    width: 100%;
+}
+
+.team_member-pic {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center; 
+    margin: auto;
+}
+.team-card h3 { margin-top: 1rem; }
+.team-card span {
+    text-transform: uppercase;
+    color: var(--color-accent);
+    margin-top: 4px;
+    font-weight: 700;
+    font-size: 0.8rem;
+    margin-bottom: 1rem;
+}
+
+
+
+
 .gallery__panel {
     position: relative;
     width: 100%;
@@ -1470,9 +1470,7 @@ section {
     color: white;
 }
 
-.about-section {
-    margin-top: -5rem;
-}
+
 
 /* ---------- BLOG DETAIL PAGE ---------- */
 .blog-article_meta {
@@ -1486,6 +1484,10 @@ section {
     gap: 3rem;
     align-items: start;
     grid-template-columns: 1fr 340px;
+}
+
+.two-main__col h2 {
+    margin-top: 3rem;
 }
 
 .two-main__col p {
@@ -1767,12 +1769,7 @@ section {
     }
 }
 
-@media (max-width: 1150px) {
-    .two-col {
-        grid-template-columns: 1fr;
-    }
-
-    .two-col_sidebar {
-        order: -1;
-    }
+@media (max-width: 1100px) {
+    .two-col { grid-template-columns: 1fr; }
+    .two-col__sidebar { order: -1; }
 }
