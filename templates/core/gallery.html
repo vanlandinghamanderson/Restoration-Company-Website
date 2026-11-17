@@ -27,19 +27,25 @@
         </nav>
 
         <!---------- Displays the before/after pictures ---------->
-        <div class="gallery-section__grid gallery-section__grid-lg" id="gallery-container">
+        <div class="gallery-section__grid" id="gallery-container">
             {% for project in projects %}
-            <div class="gallery-section__item" aria-label="{{ project.title }}">
+            <figure class="gallery-section__item js-gallery-item" aria-label="{{ project.title }}">
                 {% if project.image %}
-                <img src="{{ project.image.url }}" alt="{{ project.alt_text }}" loading="lazy" width="400" height="300">
+                <img src="{{ project.image.url }}" alt="{{ project.alt_text }}" loading="lazy" width="1200" height="900">
                 {% else %}
-                <div class="gallery-placeholder" aria-hidden="true"><i class="bi bi-image"></i></div>
+                <div class="gallery-section__placeholder" aria-hidden="true"><i class="bi bi-image"></i></div>
                 {% endif %}
-            </div>
+            </figure>
             {% empty %}
             <p class="empty-state">Gallery photos coming soon...<a href="{% url 'contact' %}"></a></p>
             {% endfor %}
         </div>
+
+        {% if projects|length > 3 %}
+        <div class="gallery-section__actions" id="view-more-wrap">
+            <button id="view-more-btn" type="button" class="btn btn--secondary"></button>
+        </div>
+        {% endif %}
     </div>
 </section>
 <section class="cta-banner">

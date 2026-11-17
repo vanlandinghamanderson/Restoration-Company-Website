@@ -707,17 +707,6 @@ section {
     }
 }
 
-/* When you shrink until 640px, the grid displays only 1 card per row */
-@media (max-width: 640px) {
-    .gallery-section__grid {
-        grid-template-columns: repeat(1, 330px);
-    }
-
-    .gallery-section__grid > :nth-child(n + 2) {
-        display: none;
-    } 
-}
-
 .service__card {
     border: 1px solid var(--color-line);
     border-radius: var(--radius-md);
@@ -1316,51 +1305,49 @@ section {
 }
 
 /* ---------- Gallery ---------- */
-.gallery-section {
-    justify-content: center;
-}
 
 .gallery-section__grid {
     display: grid;
-    grid-template-columns: repeat(3, 330px); /* Each item is 330px wide */
+    grid-template-columns: repeat(3, 1fr); /* Each item is 330px wide */
     gap: 1rem;
     justify-content: center;
 }
-
-@media (max-width: 640px) {
-    .gallery-section__grid {
-        grid-template-columns: repeat(1, 330px);
-    }
-    .gallery-section__item img {
-        width: 100%;        /* fill the column */
-        height: auto;       /* keep the proportions */
-        display: block;     /* removes the small gap under images */
-    }
-}
-
-.gallery-section__grid-lg {
-    gap: 1.5rem;
-    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-}
-
-.gallery-section__grid-sm {
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-}
-
+@media (max-width: 1070px) { .gallery-section__grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 720px) { .gallery-section__grid { grid-template-columns: 1fr; } }
 .gallery-section__item {
-    position: relative;
-    border-radius: var(--radius-sm);
+    margin: 0;
+    border-radius: var(--radius-md);
     overflow: hidden;
     background: var(--color-surface);
-    aspect-ratio: 4/3;
+    aspect-ratio: 4 / 3;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, .08);
 }
-
 .gallery-section__item img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: center;
+    display: block;
+    transition: transform .4s ease;
+}
+.gallery-section__placeholder {
+    display: grid;
+    place-items: center;
+    height: 100%;
+    font-size: 2rem;
+    color: #fff;
+}
+/* Hids the items */
+.gallery-section__item.is-hidden { display: none; }
+/* Fade-in when reveleaed */
+.gallery-section__item.is-revealed { animation: fadeInUp .4s ease-in both; }
+.gallery-section__actions {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
 }
 
+/* ---------- End of Gallery Section -------- */
 .gallery__panel {
     position: relative;
     width: 100%;
@@ -1787,9 +1774,5 @@ section {
 
     .two-col_sidebar {
         order: -1;
-    }
-    /* Hides the 3rd card in another row*/
-    .gallery-section__grid > :nth-child(n + 3) {
-        display: none;
     }
 }

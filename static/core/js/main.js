@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     heroCarousel();
     mobileServiceCarousel();
     galleryFilter();
+    showGallery();
     initContactForm();
 });
 
@@ -283,6 +284,59 @@ function galleryFilter() {
     applyFilter(currentSlug());
 
 }
+
+function showGallery() {
+    var STEP = 3;
+    const gallery = document.getElementById('gallery-container');
+    const items = gallery ? gallery.querySelectorAll('.js-gallery-item') : [];
+    const button = document.getElementById('view-more-btn');
+    if (!button || items.length <= STEP) return;
+
+    const narrow = window.matchMedia('(max-width: 1070px)');
+    const small = window.matchMedia('(max-width: 720px)');
+    const getStep = () => {
+        if (small.matches) return 1;
+        if (narrow.matches) return 2;
+        return 3; // Wider
+    };
+
+    let step = getStep();
+    let shown = step;
+
+    function render() {
+        for (let i = 0; i < items.length; i++) {
+            items[i].style.display = (i < shown) ? '' : 'none';
+        }
+        const allShown = shown >= items.length;
+        button.textContent = allShown ? 'View Less': 'View More';
+        button.setAttribute('aria-expanded', allShown);
+
+        // Hide the button if everything fits in the first row
+        button.style.display = (item.length <= step) ? 'none' : '';
+    }
+
+    button.addEventListener('click', () => {
+        if (shown >= items.length) {
+            shown = step;
+            render();
+            gallery.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        } else {
+            shown = Math.min(shown + step, items.length);
+            render();
+        }
+    });
+
+    const onResize = () => {
+        step = getStep();
+        shown = step;
+        render();
+    };
+    narrow.addEventListener('change', onResize);
+    small.addEventListener('change', onResize);
+
+    render();
+}
+
 /**
  * Initializes the contact form functionality.
  * @returns {void}
