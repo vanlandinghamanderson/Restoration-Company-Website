@@ -1770,4 +1770,8 @@ section {
 @media (max-width: 1100px) {
     .two-col { grid-template-columns: minmax(0, 1fr); }
     .two-col__sidebar { order: -1; }
+    .contact__control-action {
+        display: flex;
+        justify-content: center;
+    }
 }
