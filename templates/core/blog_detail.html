@@ -21,7 +21,9 @@
     <section>
         <div class="container two-col">
             <div class="two-col__main" itemprop="articleBody">
-                {{ post.content|markdown }}
+                <div class="prose">
+                    {{ post.content|markdown }}
+                </div>
             </div>
 
             <aside class="two-col__sidebar">
