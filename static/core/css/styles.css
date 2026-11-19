@@ -1040,7 +1040,6 @@ section {
 
  p {
     font-size: 1.1rem;
-    color: var(--color-muted);
 }
 
 .page-hero_icon i {
@@ -1321,7 +1320,7 @@ section {
 }
 .value-item p {
     text-align: center;
-    font-size: .9rem;
+    font-size: .92rem;
     color: var(--color-muted);
 }
 @media (max-width: 640px) {
