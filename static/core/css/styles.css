@@ -1338,15 +1338,9 @@ section {
     font-size: 0.8rem;
     margin-bottom: 1rem;
 }
-/*@media (max-width: 985px) {
-    .team-grid { grid-template-columns: repeat(2, 1fr); }
-}*/
 @media (max-width: 745px) {
     .team-grid { grid-template-columns: repeat(2, 1fr); }
 }
-
-
-
 
 .gallery__panel {
     position: relative;
@@ -1494,6 +1488,7 @@ section {
 .two-main__col h2 {
     margin-top: 1rem;
     margin-bottom: 1rem;
+    text-align: left;
 }
 
 .two-main__col p {
