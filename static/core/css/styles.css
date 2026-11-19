@@ -1154,6 +1154,9 @@ section {
     font-size: .9rem;
     align-items: center;
 }
+.site-footer__brand-address p i {
+    color: var(--color-accent);
+}
 .site-footer__link ul {
     display: flex;
     flex-direction: column;
@@ -1192,6 +1195,9 @@ section {
     align-items: center;
     gap: .625rem;
     font-size: .9rem;
+}
+.site-footer__contact-info address p i {
+    color: var(--color-accent);
 }
 .site-footer__contact-info address a {
     text-decoration: none;
