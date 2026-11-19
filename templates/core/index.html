@@ -206,22 +206,24 @@
 {% if posts %}
 <section class="blogs">
     <div class="container">
-        <span class="section-label">Resources</span>
-        <h2 class="section-title">Restoration Tips &amp; Guides</h2>
-        <div class="blog-grid">
+        <div class="section__header">
+            <span class="section__header-label">Resources</span>
+            <h2 class="section__header-title">Restoration Tips &amp; Guides</h2>
+        </div>
+        <div class="blog-grid blog-grid-full">
             {% for post in posts %}
             <article class="blog-card">
                 <div class="blog-card__inner">
                     {% if post.related_service %}
-                    <span class="blog-card_tag">{{ post.related_service }}</span>
+                    <span class="blog-card__tag">{{ post.related_service }}</span>
                     {% endif %}
-                    <h2 itemprop="blog-card_headline">
+                    <h3 itemprop="blog-card__headline">
                         <a href="{{ post.get_absolute_url }}">
                             {{ post.title }}
                         </a>
-                    </h2>
-                    <p item="blog-card_desc">{{ post.excerpt }}</p>
-                    <footer class="blog-card_meta">
+                    </h3>
+                    <p item="blog-card__desc">{{ post.excerpt }}</p>
+                    <footer class="blog-card__meta">
                         <span itemprop="author">{{ post.author }}</span>
                         {% if post.published_at %}
                         <time itemprop="datePublished" datetime="{{ post.published_at | date:'c'}}">{{ post.published_at|date:"M j, Y" }}</time>
@@ -231,7 +233,7 @@
             </article>
             {% endfor %}
         </div>
-        <div class="section-cta">
+        <div class="section__cta">
             <a href="{% url 'blog_list' %}" class="btn btn--secondary">View All Articles</a>
         </div>
     </div>

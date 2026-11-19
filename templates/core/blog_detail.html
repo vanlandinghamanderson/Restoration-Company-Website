@@ -5,17 +5,17 @@
 {% block content %}
 <article itemscope itemtype="https://schema.org/BlogPosting">
     <section class="page-hero">
-        <div class="container page-hero_inner">
+        <div class="container page-hero__inner">
             {% if post.related_service %}
-            <span class="page-hero_tag">{{ post.related_service.name }}</span>
+            <a href="{{ post.related_service.get_absolute_url }}" class="page-hero__tag">{{post.related_service.name }}</a>
             {% endif %}
-            <h1 itemprop="blog-title_headline">{{ post.title }}</h1>
-            <div class="blog-article_meta">
+            <h1 itemprop="blog-title__headline">{{ post.title }}</h1>
+            <p class="page-hero__article-meta">
                 <span itemprop="blog_author">{{ post.author }}</span>
                 {% if post.published_at %}
                 <time itemprop="datePublished" datetime="{{ post.published_at|date:'c' }}">{{ post.published_at|date:"F j, Y"}}</time>
                 {% endif %}
-            </div>
+            </p>
         </div>
     </section>
     <section>
@@ -24,16 +24,14 @@
                 {{ post.content|markdown }}
             </div>
 
-            <aside class="two-col_sidebar">
+            <aside class="two-col__sidebar">
                 <div class="sidebar-cta">
-                    <h1>Need Some Restoration Help?</h1>
+                    <h3>Need Some Restoration Help?</h1>
                     <p>Reach Out to Us Today!</p>
-                    <div class="sidebar-cta_buttons">
-                        <a href="{% url 'contact' %}" class="btn contact-button">Free Estimate</a>
-                        <a href="tel:{{ site_setting.phone_number }}"  class="btn call-button">
-                            <i class="bi bi-telephone-fill" aria-hidden="true"></i>Call Us
-                        </a>
-                    </div>
+                    <a href="{% url 'contact' %}" class="btn btn--primary btn--block">Free Estimate</a>
+                    <a href="tel:{{ site_setting.phone_number }}"  class="btn btn--outline btn--block">
+                        <i class="bi bi-telephone-fill" aria-hidden="true"></i>Call Us
+                    </a>
                 </div>
             </aside>
     </section>

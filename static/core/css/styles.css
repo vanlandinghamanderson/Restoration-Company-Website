@@ -125,7 +125,11 @@ img {
     color: #fff;
     transform: translateY(-1px);
     box-shadow: var(--shadow-md);
-}
+}*/
+.btn--outline:hover i,
+.btn--outline:focus-visible i {
+    color: #fff;
+} /* Makes the icon the same as the outline hover */
 .btn--white:hover { background: var(--color-surface); transform: translateY(-1px); box-shadow: var(--shadow-md); }
 
 /* ---------- Section ---------- */
@@ -1032,11 +1036,9 @@ section {
     text-align: center;
 }
 
-.page-hero h1 {
-    color: #fff;
-}
 
-.page-hero p {
+
+ p {
     font-size: 1.1rem;
     color: var(--color-muted);
 }
@@ -1047,6 +1049,30 @@ section {
     margin-bottom: 1rem;
 }
 
+.page-hero__tag {
+    display: inline-block;
+    background: rgba(255, 255, 255, .15);
+    color: #fff;
+    padding: .25rem .75rem;
+    border-radius: 9999px;
+    font-size: .7rem;
+    font-weight: 700;
+    margin-bottom: .75rem;
+    text-transform: uppercase;
+    letter-spacing: .05em;
+}
+.page-hero h1 {
+    color: #fff;
+}
+.page-hero__article-meta {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    font-size: .875rem;
+    color: var(--color-muted);
+    margin-top: .75rem;
+    flex-wrap: wrap;
+}
 /* ---------- ABOUT US SECTION ---------- */
 
 .certification-list {
@@ -1415,63 +1441,66 @@ section {
 /* ---------- BLOG LIST PAGE ---------- */
 .blog-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
     gap: 2rem;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+}
+.blog-grid--full {
+    grid-template-columns: repeat(auto-fit, min(300px, 100%));
     justify-content: center;
 }
-
+/* ---------- Blog Card ---------- */
 .blog-card {
     background-color: #fff;
-    border-radius: 12px;
+    border-radius: var(--radius-lg);
     border: 1px solid #dde3ed;
     overflow: hidden;
-    width: 40vh;
 }
 .blog-card__inner {
+    padding: 1.5rem;
     display: flex;
     flex-direction: column;
-    gap: .5rem;
-    padding: 1rem 2rem;
+    gap: .625rem;
 }
 
-.blog-card_tag {
+.blog-card__tag {
+    display: inline-block;
+    background: var(--color-surface);
+    color: var(--color-accent);
+    font-size: .78rem;
+    font-weight: 700;
+    padding: .125rem .625rem;
+    border-radius: var(--radius-md);
+    text-transform: uppercase;
+    letter-spacing: .05em;
     text-align: center;
-    font-size: larger;
-    font-weight: bolder;
 }
-
-.blog-card_headline, h2 {
+.blog-card h2, .blog-card h3 {
+    font-size: 1.15rem;
     text-align: center;
 }
-
-.blog-card_headline, a {
-    color: black;
+.blog-card h3 a {
+    color: var(--color-ink);
 }
-
-.blog-card_desc, p {
-    margin-top: 1rem;
+.blog-card p {
+    color: var(--color-muted);
+    font-size: .95rem;
+    flex-grow: 1;
 }
-
-.blog-card_meta {
+.blog-card__meta {
     display: flex;
-    font-size: smaller;
-    gap: 2.1rem;
+    gap: 1rem;
+    font-size: .82rem;
+    color: var(--color-muted);
+    flex-wrap: wrap;
 }
-
-.read__button {
-    margin-top: 1.2rem;
-    background-color: #008FFF;
-    color: white;
+.blog-card:hover {
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-2px);
 }
-
-
-
-/* ---------- BLOG DETAIL PAGE ---------- */
-.blog-article_meta {
-    display: flex;
-    justify-content: center;
-    gap: 1.5rem;
+.blog-card h3 a:hover {
+    color: var(--color-primary);
 }
+/* ---------- End of Blog Card ---------- */
 
 .two-col {
     display: grid;
@@ -1501,54 +1530,20 @@ section {
     padding: 1.75rem;
     background-color: var(--color-surface);
 }
-.sidebar-cta_contact {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-}
-
 .sidebar-cta h3 {
-    font-weight: bolder;
     margin-bottom: 1rem;
 }
-
 .sidebar-cta p {
-    font-size: medium;
-    margin: auto;
-    margin-bottom: 1.25rem;
+   color: var(--color-muted);
+   margin-bottom: 1.25rem;
+   font-size: .95rem;
 }
-
-.sidebar-cta_buttons {
-    display: flex;
-    flex-direction: column;
-    gap: .5rem;
+.sidebar-cta .btn {
+    margin-bottom: .75rem;
 }
-
-.contact-button {
-    color: white;
-    background-color: #0f172a;
+.sitebar-cta, a, i {
+    color: var(--color-primary);
 }
-
-.contact-button:hover {
-    transform: scale(1.1);
-    background-color: #0f172a;
-    color: white;
-}
-
-.call-button {
-    color: white;
-    background-color: #008FFF;
-    display: flex;
-    gap: .5rem;
-    justify-content: center;
-}
-
-.call-button:hover {
-    transform: scale(1.1);
-    background-color: #008FFF;
-    color: white;
-}
-
 .prose h1 { 
     font-size: 2em;   
     font-weight: 700; 
