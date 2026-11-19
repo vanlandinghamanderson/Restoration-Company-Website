@@ -1570,6 +1570,11 @@ section {
     text-align: left; 
 }
 
+.prose p {
+    margin-bottom: 1rem;
+    color: var(--color-ink);
+}
+
 .two-main__projects-cta {
     display: flex;
     justify-content: center;
