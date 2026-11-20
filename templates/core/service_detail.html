@@ -47,7 +47,7 @@
             {% endif %}
 
         </main>
-        <aside class="two-col_sidebar">
+        <aside class="two-col__sidebar">
             <div class="sidebar-cta">
                 <h3>Get a Free Estimate</h3>
                 <p>Experiencing {{ service.name }}? Our StaDry team is ready to help.</p>
@@ -56,6 +56,29 @@
                     <a href="tel:{{ site_setting.phone_number }}" class="btn btn--outline btn--block">{{ site_setting.phone_number }}</a>
                 </div>
             </div>
+
+            <nav class="sidebar-nav">
+                <h3>Our Services</h3>
+                <ul>
+                    {% for svc in services %}
+                    <li><a href="{{ svc.get_absolute_url }}"{% if svc.pk == service.pk %} aria-current="page"{% endif %}>{{ svc.name }}</a></li>
+                    {% endfor %}
+                    <li class="sidebar-nav__all"><a href="{% url 'service_list' %}">All Services</a></li>
+                </ul>
+            </nav>
+
+            {% if posts %}
+            <div class="sidebar-posts">
+                <h3>Related Articles</h3>
+                {% for post in posts %}
+                <a href="{{ post.get_absolute_url }}" class="sidebar-posts__page">
+                    <span>{{ post.title }}</span>
+                    <small>{{ post.published_at|date:"M j, Y" }}</small>
+                </a>
+                {% endfor %}
+            </div>
+            {% endif %}
+
         </aside>
     </div>
 </section>
