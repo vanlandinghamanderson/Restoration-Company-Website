@@ -856,9 +856,9 @@ section {
 .reasons__list i { margin-right: .5rem; color: teal; }
 
 /* ---------- Review ---------- */
-
-.review {}
-
+.review {
+    background: var(--color-surface);
+}
 .review__grid {
     margin-top: 48px;
     display: grid;
@@ -866,39 +866,38 @@ section {
     gap: 15px;
     justify-items: center;
 }
-
 .review-card {
     background-color: white;
-    border-radius: 12px;
-    padding: 20px;
+    border-radius: var(--radius-lg);
+    padding: 1.75rem;
     text-align: left;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    box-shadow: var(--shadow-sm);
     width: clamp(280px, 90%, 360px);
     box-sizing: border-box;
 }
-
+.review-card__stars {
+    color: #f5a623;
+    font-size: 1rem;
+}
+.review-card blockquote {
+    color: var(--color-muted);
+    font-size: .95rem;
+    font-style: italic;
+    flex-grow: 1;
+}
 .review-card footer {
+    font-size: .88rem;
     display: flex;
     flex-direction: column;
-    gap: .25rem;
+    gap: .125rem;
+}
+.review-card footer strong {
+    color: var(--color-ink);
+}
+.review-card footer span {
+    color: var(--color-muted);
 }
 
-.review-stars {
-    color: gold;
-    font-size: 1.1rem;
-    margin-bottom: 8px;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.75);
-}
-
-.review-name, .review-service, .review-service_area {
-    font-weight: 900;
-}
-
-/* ---------- HOVER EFFECT - REVIEW CARD ---------- */
-.review-card:hover {
-    transform: scale(1.1);
-    transition: transform .5s ease;
-}
 
 /* ----- STEP PROCESS SECTION ----- */
 .step-process {

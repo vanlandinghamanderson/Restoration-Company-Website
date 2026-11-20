@@ -77,17 +77,17 @@
                 <div class="review-grid">
                 {% for review in reviews %}
                 <article class="review-card" itemscope itemtype="https://schema.org/Review">
-                     <div class="review-stars">
+                     <div class="review-card__stars">
                         {% for i in "12345" %}{% if forloop.counter <= review.rating %}★{% else %}☆{% endif %} {% endfor %}
                     </div>
-                    <blockquote itemprop="review-body">{{ review.quote }}</blockquote>
+                    <blockquote itemprop="review-card__body">{{ review.quote }}</blockquote>
                     <footer>
-                        <strong itemprop="review-name">{{ review.name }}</strong>
+                        <strong itemprop="review-card__name">{{ review.name }}</strong>
                         {% if review.service_area %}
-                        <span class="review-service_area">{{ review.service_area }}</span>
+                        <span class="review-card__service_area">{{ review.service_area }}</span>
                         {% endif %}
                         {% if review.service %}
-                        <span class="review-service">{{ review.service }}</span>
+                        <span class="review-card__service">{{ review.service }}</span>
                         {% endif %}
                     </footer>
                 </article>
