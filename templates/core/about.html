@@ -68,33 +68,32 @@
         </aside>
     </div>
 </section>
-
-    {% if reviews %}
-    <section>
-        <div class="review">
-            <div class="container about-section">
-                <h2 class="section-title">What People Are Saying?</h2>
-                <div class="review-grid">
-                {% for review in reviews %}
-                <article class="review-card" itemscope itemtype="https://schema.org/Review">
-                     <div class="review-card__stars">
-                        {% for i in "12345" %}{% if forloop.counter <= review.rating %}★{% else %}☆{% endif %} {% endfor %}
-                    </div>
-                    <blockquote itemprop="review-card__body">{{ review.quote }}</blockquote>
-                    <footer>
-                        <strong itemprop="review-card__name">{{ review.name }}</strong>
-                        {% if review.service_area %}
-                        <span class="review-card__service_area">{{ review.service_area }}</span>
-                        {% endif %}
-                        {% if review.service %}
-                        <span class="review-card__service">{{ review.service }}</span>
-                        {% endif %}
-                    </footer>
-                </article>
-                {% endfor %}
-            </div>
+{% if reviews %}
+<section class="review">
+    <div class="container">
+        <div class="section__header">
+            <h2 class="section__header-title">What Our Customers Are Saying?</h2>
         </div>
-    </section>
-    {% endif %}
+        <div class="review__grid">
+            {% for review in reviews %}
+            <article class="review-card" itemscope itemtype="https://schema.org/Review">
+                <div class="review-card__stars">
+                    {% for i in "12345" %}{% if forloop.counter <= review.rating %}★{% else %}☆{% endif %} {% endfor %}
+                </div>
+                <blockquote itemprop="review-card__body">{{ review.quote }}</blockquote>
+                <footer>
+                    <strong itemprop="review-card__name">{{ review.name }}</strong>
+                    {% if review.service_area %}
+                    <span class="review-card__service_area">{{ review.service_area }}</span>
+                    {% endif %}
+                    {% if review.service %}
+                    <span class="review-card__service">{{ review.service }}</span>
+                    {% endif %}
+                </footer>
+            </article>
+            {% endfor %}
+        </div>
+</section>
+{% endif %}
 
 {% endblock %}

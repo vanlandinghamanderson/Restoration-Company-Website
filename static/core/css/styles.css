@@ -860,11 +860,9 @@ section {
     background: var(--color-surface);
 }
 .review__grid {
-    margin-top: 48px;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 15px;
-    justify-items: center;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
 }
 .review-card {
     background-color: white;
@@ -873,7 +871,6 @@ section {
     text-align: left;
     box-shadow: var(--shadow-sm);
     width: clamp(280px, 90%, 360px);
-    box-sizing: border-box;
 }
 .review-card__stars {
     color: #f5a623;
