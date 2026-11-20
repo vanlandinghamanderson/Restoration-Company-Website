@@ -17,7 +17,7 @@
             <p>Need your roofing, siding, or painting done? Visit our roofing website & our siding and painting website.</p>
             
             <h2>Our Certifications</h2>
-            <ul class="certification-list" aria-label="Certifications and memberships">
+            <ul class="two_col--certification-list" aria-label="Certifications and memberships">
                 {% for certification in certifications %}
                 <li><i class="bi bi-award-fill" aria-hidden="true"></i>{{ certification.title }}</li>
                 {% empty %}
@@ -26,7 +26,7 @@
             </ul>
 
             <h2>Our Values</h2>
-            <div class="value-grid">
+            <div class="two-col__value-grid">
                 <div class="value-item">
                     <i class="bi bi-briefcase-fill"></i>
                     <h3>Professionalism</h3>
@@ -44,13 +44,11 @@
                 </div>
             </div>
 
-
-                
             <h2 style="text-align: center;">Meet Our Team</h2>
-            <div class="team-grid">
+            <div class="two-col__team-grid">
                 {% for team in teams %}
                 <div class="team-card">
-                    <img src="{{ team.image.url }}" class="team_member-pic">
+                    <img src="{{ team.image.url }}" class="team-card__pic">
                     <h3>{{ team.team_member }}</h3>
                     <span>{{ team.occupation }}</span>
                 </div>
