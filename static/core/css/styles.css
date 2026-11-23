@@ -482,6 +482,9 @@ img {
 .service__card p { color: var(--color-muted); flex-grow: 1; }
 .service__control-actions { display: none; }
 
+@media (max-width: 1024px) {
+    .services__grid { grid-template-columns: repeat(2, 1fr);}
+}
 @media (max-width:640px) {
     .services__carousel-track {
         margin-top: 0;
