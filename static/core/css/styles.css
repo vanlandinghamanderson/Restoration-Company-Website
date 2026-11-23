@@ -547,6 +547,7 @@ img {
 /* ---------- Review ---------- */
 .review { background: var(--color-surface); }
 .review__grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
+.review__grid-full { grid-template-columns: repeat(auto-fit, min(300px, 100%)); justify-content: center; }
 .review-card {
     background-color: white;
     border-radius: var(--radius-lg);
