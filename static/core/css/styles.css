@@ -419,10 +419,16 @@ img {
 .hero__caption span { font-size: 1rem; font-weight: 500; }
 .hero__caption i { margin-right: .5rem; color: green; font-size: 1rem; }
 
+@media (max-width: 1024px) {
+    .hero-content {
+        padding: 0 10rem;
+    }
+}
 @media (max-width: 640px) {
     .hero { height: 90svh; min-height: 420px; }
     .hero-content { top: -3rem; padding: 0 7rem; }
 }
+
 
 /* ---------- Section Header ---------- */
 .section__header {
@@ -749,17 +755,44 @@ img {
     color: var(--color-muted);
 }
 .site-footer__brand-map {
-    display: flex;
-    flex-direction: column;
-    gap: .625rem;
+    position: relative; /* Button positions over the maps */
+    width: 100%;
+    max-width: 320px;
 }
 .site-footer__brand-map iframe {
     display: block;
     width: 100%;
+    height: 150px; /* Removes the small gap under inline iframes */
     border: 0;
-    aspect-ratio: 4 / 3;
     border-radius: var(--radius-sm);
 }
+.site-footer__map {
+    width: 100%;
+    max-width: 320px;
+    aspect-ratio: 16 / 9;
+    height: auto;
+    border: 0;
+}
+.site-footer__map-directions {
+    position: absolute;
+    right: 8px;
+    bottom: 8px;
+    padding: .5rem .875rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #fff;
+    background: var(--color-accent);
+    border-radius: var(--radius-sm);
+}
+.site-footer__map-directions i {
+    color: #fff;
+    margin-right: .25rem;
+}
+.site-footer__map-directions:hover {
+    background: var(--color-accent-dark);
+    transform: translateY(-1px);    
+}
+.site-footer__
 .site-footer__brand-address { display: flex; gap: .625rem; }
 .site-footer__brand-address p {
     display: flex;
@@ -792,6 +825,7 @@ img {
     align-items: center;
     gap: .625rem;
     font-size: .9rem;
+    color: var(--color-muted);
 }
 .site-footer__contact-info address p i { color: var(--color-accent); }
 .site-footer__contact-info address a { text-decoration: none; color: var(--color-muted); }
@@ -807,16 +841,9 @@ img {
 }
 .site-footer__bottom { border-top: 1px solid rgba(255, 255, 255, .1); padding: 1.25rem 0; }
 .site-footer__bottom p { font-size: .85rem; color: rgba(255, 255, 255, .6); }
-.site-footer__services li:hover, .site-footer__nav li:hover,
-.site-footer__contact-info address p:hover {
-    color: white;
-    font-weight: 600;
-    text-shadow: var(--white-glow);
-}
 .site-footer__grid > * {  min-width: 0; }
 @media (max-width: 1100px) {
     .site-footer__grid { grid-template-columns: 1fr 1fr; }
-    .site-footer__brand-map iframe { width: 50%; }
     .site-footer__brand { grid-column: 1 / -1; }
     .site-footer__brand-address { margin-right: 10rem; }
     .site-footer__contact { display: contents; }

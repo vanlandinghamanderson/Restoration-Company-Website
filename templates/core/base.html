@@ -80,18 +80,26 @@
                 <a class="site-footer__brand-logo" href="/">{{ site_setting.company_name }}</a>
                 <p>Restoration services serving Wilson and surrounding areas throughout eastern NC since 2009. Water damage, mold, and fire restoration.</p>
                 <div class="site-footer__brand-map">
-                    {% if google_maps_api_key and site_setting.address %}
-                    <iframe
-                        loading="lazy"
-                        allowfullscreen
-                        referrerpolicy="trict-origin-when-cross-origin"
-                        title="Map shown in StaDry location"
-                        src="https://www.google.com/maps/embed/v1/place?key={{ google_maps_api_key }}&q={{ site_setting.address|urlencode }}"></iframe>
-                    </iframe>
+                    {% if site_setting.address %}
+                        {% with full_address=site_setting.adress|add:", "|add:site_setting.city|add:", "|add:site_setting.state|add:" "|add:site_setting.zip_code %}
+                            {% if google_maps_api_key %}
+                            <iframe
+                                class="site-footer__map" 
+                                loading="lazy"
+                                allowfullscreen
+                                referrerpolicy="trict-origin-when-cross-origin"
+                                title="Map shown in StaDry location"
+                                src="https://www.google.com/maps/embed/v1/place?key={{ google_maps_api_key }}&q={{ site_setting.address|urlencode }}">
+                            </iframe>
+                            {% endif %}
+                            <a class="site-footer__map-directions"
+                                href="https://www.google.com/maps/dir/?api=1&amp;destination={{ full_address|urlencode }}"
+                                target="_blank"
+                                rel="noopener">
+                                <i class="bi bi-compass-fill"></i>Get Directions
+                            </a>
+                        {% endwith %}
                     {% endif %}
-                    <address class="site-footer__brand-address">
-                        <p><i class="bi bi-geo-alt-fill"></i>{{ site_setting.address }}, {{ site_setting.city }}, {{ site_setting.state }} {{ site_setting.zip_code }}</p>
-                    </address>
                 </div>
             </div>
             <div class="site-footer__link site-footer__services">
@@ -129,6 +137,7 @@
                     <address>
                         <p><i class="bi bi-telephone-fill"></i><a href="tel:{{ site_setting.phone_number }}">{{ site_setting.phone_number }}</a></p>
                         <p><i class="bi bi-envelope-fill"></i><a href="mailto:{{ site_setting.email }}">{{ site_setting.email }}</a></p>
+                        <p><i class="bi bi-geo-alt-fill"></i>{{ site_setting.address }}, {{ site_setting.city }}, {{ site_setting.state }} {{ site_setting.zip_code }}</p>
                     </address>
                 </div>
                 <div class="site-footer__contact-hours">
